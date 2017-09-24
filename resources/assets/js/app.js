@@ -1,0 +1,54 @@
+
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+require('./bootstrap');
+
+window.Vue = require('vue');
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('init', require('./components/Init.vue'));
+Vue.component('feed', require('./components/Feed.vue'));
+Vue.component('post', require('./components/Post.vue'));
+Vue.component('search', require('./components/Search.vue'));
+Vue.component('friend', require('./components/Friend.vue'));
+Vue.component('unread', require('./components/UnreadNots.vue'));
+Vue.component('notification', require('./components/Notification.vue'));
+
+
+//MASTERFILE
+
+Vue.component('faqs', require('./components/MasterFile/Faqs.vue'));
+Vue.component('listfaqs', require('./components/MasterFile/ListFaqs.vue'));
+Vue.component('glossary', require('./components/MasterFile/Glossary.vue'));
+Vue.component('listglossary', require('./components/MasterFile/ListGlossary.vue'));
+Vue.component('currency', require('./components/MasterFile/Currency.vue'));
+Vue.component('listcurrency', require('./components/MasterFile/ListCurrency.vue'));
+Vue.component('plans', require('./components/MasterFile/Plans.vue'));
+Vue.component('listplans', require('./components/MasterFile/ListPlans.vue'));
+Vue.component('programminglanguage', require('./components/MasterFile/ProgrammingLanguage.vue'));
+Vue.component('listprogramminglanguage', require('./components/MasterFile/ListProgrammingLanguage.vue'));
+Vue.component('planscontent', require('./components/MasterFile/PlansContent.vue'));
+Vue.component('listplanscontent', require('./components/MasterFile/ListPlansContent.vue'));
+//ENDMASTERFILE
+
+//GALLERY
+Vue.component('media', require('./components/Gallery/Media.vue'));
+Vue.component('listmedia', require('./components/Gallery/ListMedia.vue'));
+//ENDGALLERY
+
+import { store } from './store'
+
+const app = new Vue({
+    el: '#app',
+    store,
+
+});

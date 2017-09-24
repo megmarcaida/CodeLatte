@@ -1,0 +1,147 @@
+a.free-trial{
+    border: 1px solid #b68c5d;
+    border-radius: 4px;
+    padding: 6px 15px !important;
+    margin: 5px !important;
+}
+
+a.free-trial:hover{
+    background: #b68c5d !important;
+    color:#f5f8fa !important;
+}
+
+.latte-carousel{
+    max-height: 700px;
+    overflow: hidden !important;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%) !important;
+}
+
+.latte-carousel > div.item > img{
+    max-height: 700px;
+    margin:0 auto;
+    width: 100%;
+
+}
+
+.displayInlineBlock{
+    display: inline-block !important;
+}
+
+.latte-menu, .latte-brand{
+    font-weight: bold;
+}
+
+.latte-brand{
+    color:#b68c5d !important;
+}
+
+.latte-nav{
+    margin-bottom: 0 !important;
+
+}
+
+.process-tree{
+    background: #f5f5f5 !important;
+    margin-bottom: 0 !important;
+}
+
+.info-stuff{
+    background: #fcf8e3 !important;
+    min-height: 900px;
+}
+
+.info-stuff .container{
+    padding-top: 10em;
+}
+
+.info-stuff .container div h5{
+    line-height: 25px;
+    min-height: 100px;
+}
+
+img.tree{
+    width:100%;
+    display: inline-block;
+}
+
+.data-stuff{
+    background: #eef1f2 !important;
+    min-height: 900px;
+}
+
+.data-stuff .container{
+    padding-top: 10em;
+
+}
+img.twit {
+    width: 100%;
+    display: inline-block;
+}
+
+.trial-stuff{
+    background: #b68c5d !important;
+    min-height: 550px;
+}
+
+.trial-center {
+    padding: 15px 35px 15px 35px !important;
+    min-height: 350px;
+    margin-top: 8em;
+
+}
+
+.trial-center h3{
+    font-weight: bolder;
+}
+
+.trial-center ul li{
+    list-style: none;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+
+.btn-brown{
+    background: #b68c5d !important;
+    color:#fff6f6 !important;
+    font-size: 1.5em;
+    font-weight:bold;
+    line-height: 20px;
+    width: 80%;
+    margin: 0 10%!important;
+}
+
+.footer-stuff{
+    background: #7c8485 !important;
+    min-height: 350px;
+   padding-top: 9em;
+    color: #ffffff;
+
+}
+
+.footer-stuff  ul li{
+    font-weight: bolder;
+    list-style: none;
+
+
+}
+
+.break-word{
+    word-wrap: break-word;
+}
+
+img.gal-media{
+    width: 100%;
+    height:200px;
+}
+
+video.gal-media
+{
+    width: 100%;
+    height: 200px;
+}
+
+
+
+
+
