@@ -303,6 +303,6 @@ Route::group(['middleware' => 'admin_auth'], function(){
     Route::get('admin/quizzes', function() {
         return view('admin.test.quiz');
     });
-    
+
 //END TEST
 });
