@@ -102,8 +102,8 @@
                                                     break;
                                                     case 'Video':
                                                 ?>
-                                                    <video class="gal-media" controls>
-                                                        <source src="{{route('getmedia', $med->filename)}}" type="video/mp4">
+                                                    <video id="video_{{ $med->id }}" class="gal-media" controls>
+                                                        <source src={{route('getmedia', $med->filename)}} type="video/mp4">
                                                     </video>
                                                 <?php
                                                     break;
@@ -116,6 +116,7 @@
                                                     <!-- Trigger the modal with a button -->
                                                     <a class="btn btn-success btn-xs" id="openMedia" data-id="{{ $med->id }}" href="#" type="button" data-title="{{ $med->title }}" data-description="{{ $med->description }}"  data-toggle="modal" data-target="#mediaEdit">Edit Info</a>
                                                     <a href="{{ url('/admin/media/delete/'. $med->id ) }}" class="btn btn-danger btn-xs" id="openMedia" data-id="{{ $med->id }}"  href="#" type="button" >Delete</a>
+                                                    <button id="videoBtn_{{ $med->id }}" class="btn btn-success btn-xs">Set</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -130,4 +131,5 @@
             </div>
         </div><!-- contentpanel -->
     </div><!-- mainpanel -->
+
 @endsection

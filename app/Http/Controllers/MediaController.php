@@ -86,4 +86,26 @@ class MediaController extends Controller
         ]);*/
         return redirect('admin/media');
     }
+
+    public function media()
+    {
+
+        $media = Media::latest()->paginate(10);
+
+        $response = [
+            'pagination' => [
+                'total' => $media->total(),
+                'per_page' => $media->perPage(),
+                'current_page' => $media->currentPage(),
+                'last_page' => $media->lastPage(),
+                'from' => $media->firstItem(),
+                'to' => $media->lastItem()
+            ],
+            'media' => $media
+        ];
+
+        return response()->json([
+            'media' => $response
+        ]);
+    }
 }

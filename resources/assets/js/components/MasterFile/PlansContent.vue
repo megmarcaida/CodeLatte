@@ -81,15 +81,13 @@
                 this.$http.patch('/admin/plans-content/update/' + oldPlansContent.id, newPlansContent).then(response => {
                     this.$emit('update-planscontent');
                     this.cancelEdit();
-                    console.log(response.data);
                 }, (response) => {
-                    console.log(response.data);
                 });
             },
             fetchPlans(){
                 this.$http.get('/admin/plans/list').then(response => {
                     this.plans = response.data.plans.plan.data;;
-                    console.log(this.plans)
+
 
                 });
             },

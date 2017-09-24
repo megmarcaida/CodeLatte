@@ -348,7 +348,7 @@
                                           <li><a href="{{ url('admin/users') }}">List of Users</a></li>
                                           <li><a href="{{ url('admin/billing') }}">Billing</a></li>
                                           <li><a href="{{ url('admin/videos') }}">Progress</a></li>
-                                          <li><a href="{{ url('admin/files') }}">Courses</a></li>
+                                          <li><a href="{{ url('admin/courses') }}">Courses</a></li>
                                           <li><a href="{{ url('admin/support') }}">Support Center</a></li>
                                       </ul>
                                   </li>
@@ -361,7 +361,7 @@
                                   <li class="nav-parent">
                                       <a href=""><i class="fa fa-code"></i> <span>Courses</span></a>
                                       <ul class="children">
-                                          <li><a href="{{ url('admin/course') }}">Course List</a></li>
+                                          <li><a href="{{ url('admin/course-list') }}">Course List</a></li>
                                           <li><a href="{{ url('admin/tutorials') }}">Tutorials</a></li>
                                           <li><a href="{{ url('admin/templates') }}">Templates</a></li>
                                       </ul>
@@ -371,7 +371,7 @@
                                       <ul class="children">
                                           <li><a href="{{ url('admin/quizzes') }}">Quizzes</a></li>
                                           <li><a href="{{ url('admin/questionnaires') }}">Questionnaires</a></li>
-                                          <li><a href="{{ url('admin/activities') }}">Code Block</a></li>
+                                          <li><a href="{{ url('admin/code-block') }}">Code Block</a></li>
 
                                       </ul>
                                   </li>

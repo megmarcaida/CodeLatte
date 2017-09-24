@@ -250,30 +250,78 @@ Route::group(['middleware' => 'admin_auth'], function(){
 
     Route::post('admin/media/update',[
         'as' => 'updatemedia', 'uses' => 'MediaController@update']);
+
+    Route::get('/admin/media/list', [
+        'uses' => 'MediaController@media',
+        'as' => 'course-list'
+    ]);
     //EndMEDIA
 //ENDGALLERY
 
 //COURSES
-    Route::get('/admin/course', function(){
+
+    //Course-List
+    Route::post('/admin/course-list/add',[
+        'uses' => 'CourseListController@add'
+    ]);
+
+    Route::get('/admin/course-list', function(){
         return view('admin.courses.course-list');
     });
+
+
+    Route::get('/admin/course-list/list', [
+        'uses' => 'CourseListController@courseList',
+        'as' => 'course-list'
+    ]);
+
+    Route::delete('/admin/course-list/delete/{id}', [
+        'uses' => 'CourseListController@delete'
+    ]);
+
+    Route::patch('/admin/course-list/update/{id}', 'CourseListController@update');
+    //ENDCOURSE-LIST
+
+    //TUTORIALS
+    Route::post('/admin/tutorials/add',[
+        'uses' => 'TutorialsController@add'
+    ]);
 
     Route::get('/admin/tutorials', function(){
         return view('admin.courses.tutorials');
     });
 
+    Route::get('/admin/tutorials/list', [
+        'uses' => 'TutorialsController@tutorials',
+        'as' => 'course-list'
+    ]);
+
+    Route::delete('/admin/tutorials/delete/{id}', [
+        'uses' => 'TutorialsController@delete'
+    ]);
+
+    Route::patch('/admin/tutorials/update/{id}', 'TutorialsController@update');
+    //ENDTUTORIALS
+
+    //TEMPLATES
+
     Route::get('admin/templates', function() {
         return view('admin.courses.templates');
     });
+
+    //ENDTEMPLATES
 
 //END COURSES
 
 
 //USERS
 
+    //USERS-LIST
     Route::get('admin/users', function() {
         return view('admin.users.list-of-users');
     });
+    //ENDUSERS-LIST
+
 
     Route::get('admin/billing', function() {
         return view('admin.users.billing');
@@ -287,14 +335,14 @@ Route::group(['middleware' => 'admin_auth'], function(){
         return view('admin.users.support-center');
     });
 
-    Route::get('admin/files ', function() {
+    Route::get('admin/courses ', function() {
         return view('admin.users.courses');
     });
 
 //END USERS
 
 //TEST
-    Route::get('admin/activities', function() {
+    Route::get('admin/code-block', function() {
         return view('admin.test.code-block');
     });
     Route::get('admin/questionnaires', function() {

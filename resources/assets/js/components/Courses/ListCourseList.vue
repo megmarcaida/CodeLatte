@@ -4,37 +4,37 @@
         <div class="col-xs-12 col-md-4 col-lg-4">
             <div class="panel">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Add Plans Content</h4>
+                    <h4 class="panel-title">Add Course </h4>
                 </div>
                 <div class="panel-body">
 
-                    <form v-on:submit.prevent="createPlansContent" method="post">
+                    <form v-on:submit.prevent="createCourseList" method="post">
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.name}">
                             <label>Name:</label>
-                            <input type="text" v-model="planscontent.name" class="form-control">
+                            <input type="text" v-model="courselist.name" class="form-control">
                             <span class="help-block" v-for="error in errors.name">{{ error }}</span>
                         </div>
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.description}">
                             <label>Description:</label>
-                            <input type="text" v-model="planscontent.description" class="form-control">
+                            <input type="text" v-model="courselist.description" class="form-control">
                             <span class="help-block" v-for="error in errors.description">{{ error }}</span>
                         </div>
 
-                        <div v-bind:class="{'form-group': true, 'has-error': errors.discount}">
-                            <label>Plans:</label>
-                            <!--<input type="text" v-model="planscontent.plans_id" class="form-control">-->
-                            <select class="form-control" v-model="planscontent.plans_id">
-                                <option v-bind:value="plan.id"  v-for="plan in plans">
-                                    {{ plan.name }}
+                        <div v-bind:class="{'form-group': true, 'has-error': errors.tutorials_id}">
+                            <label>Tutorial:</label>
+                            <select class="form-control" v-model="courselist.tutorials_id">
+                                <option v-bind:value="tutorial.id"  v-for="tutorial in tutorials">
+                                    {{ tutorial.name }}
                                 </option>
                             </select>
-                            <span class="help-block" v-for="error in errors.plans_id">{{ error }}</span>
+                            <span class="help-block" v-for="error in errors.tutorials_id">{{ error }}</span>
                         </div>
 
+
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Add New Plan</button>
+                            <button type="submit" class="btn btn-primary">Add New Tutorials</button>
                         </div>
 
                     </form>
@@ -45,7 +45,7 @@
         <div class="col-xs-12 col-md-8 col-lg-8">
             <div class="panel">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Plans Content List</h4>
+                    <h4 class="panel-title">Tutorials List</h4>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -54,14 +54,14 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Plans</th>
+                                <th>Tutorials</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            <PlansContent v-for="planscontent in planscontents" :key="planscontent.id"  v-bind:planscontent="planscontent"v-on:delete-planscontent="deletePlansContent" v-on:update-planscontent="fetchPlansContent">
-                            </PlansContent>
+                            <CourseList v-for="courselist in courselists" :key="courselist.id"  v-bind:courselist="courselist"v-on:delete-courselist="deleteCourseList" v-on:update-courselist="fetchCourseList">
+                            </CourseList>
                             </tbody>
                         </table>
 
@@ -96,17 +96,17 @@
 </template>
 
 <script>
-    import PlansContent from './PlansContent.vue';
+    import CourseList from './CourseList.vue';
     export default {
         data(){
             return {
-                planscontents: [],
-                plans : [],
+                courselists: [],
+                tutorials:[],
                 errors: [],
-                planscontent:{
+                courselist:{
                     name: '',
                     description: '',
-                    plans_id: ''
+                    tutorials_id: '',
                 },
                 pagination: {
                     total: 0,
@@ -118,11 +118,10 @@
                 offset: 4,
             }
         },
-        components:{ PlansContent },
+        components:{ CourseList },
         created(){
-            this.fetchPlansContent(this.pagination.current_page);
-            //this.fetchPlansContent();
-            this.fetchPlans();
+            this.fetchCourseList(this.pagination.current_page);
+            this.fetchTutorials();
         },
         computed: {
             isActived: function () {
@@ -149,20 +148,18 @@
             }
         },
         methods: {
-            fetchPlansContent: function(page){
-                this.$http.get('/admin/plans-content/list?page='+page).then(response => {
-                    this.planscontents  = response.data.planscontent.pc.data;
-                    this.pagination = response.data.planscontent.pagination;
-                    //this.planscontents = response.data.planscontent;
-                    console.log(response)
+            fetchCourseList: function(page){
+                this.$http.get('/admin/course-list/list?page='+page).then(response => {
+                    this.courselists  = response.data.courselist.courselist.data;
+                    this.pagination = response.data.courselist.pagination;
+
 
                 });
             },
-            createPlansContent(){
-                this.$http.post('/admin/plans-content/add', this.planscontent).then(response => {
+            createCourseList(){
+                this.$http.post('/admin/course-list/add', this.courselist).then(response => {
                     this.changePage(this.pagination.current_page);
-                    //this.planscontents.push(response.data.planscontent);
-                    this.planscontent = {name: '', description:'',plans_id :''};
+                    this.courselist = {name: '', description:'',tutorials_id:''};
                     if (this.errors) {
                         this.errors = [];
                     }
@@ -171,17 +168,17 @@
                     this.errors = response.data;
                 });
             },
-            deletePlansContent(planscontent){
-                this.$http.delete('/admin/plans-content/delete/' + planscontent.id).then(response => {
+            deleteCourseList(tutorial){
+                this.$http.delete('/admin/course-list/delete/' + courselist.id).then(response => {
                     this.changePage(this.pagination.current_page);
-                    let index = this.planscontents.indexOf(planscontent);
-                    this.planscontents.splice(index, 1);
+                    let index = this.tutorials.indexOf(tutorial);
+                    this.tutorials.splice(index, 1);
 
                 });
             },
-            fetchPlans(){
-                this.$http.get('/admin/plans/list').then(response => {
-                    this.plans = response.data.plans.plan.data;;
+            fetchTutorials(){
+                this.$http.get('/admin/tutorials/list').then(response => {
+                    this.tutorials = response.data.tutorial.tutorial.data;
 
 
                 });
@@ -189,7 +186,7 @@
 
             changePage: function (page) {
                 this.pagination.current_page = page;
-                this.fetchPlansContent(page);
+                this.fetchTutorials(page);
             }
         },
         http: {

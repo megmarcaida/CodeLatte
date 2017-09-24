@@ -4,37 +4,52 @@
         <div class="col-xs-12 col-md-4 col-lg-4">
             <div class="panel">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Add Plans Content</h4>
+                    <h4 class="panel-title">Add Tutorials </h4>
                 </div>
                 <div class="panel-body">
 
-                    <form v-on:submit.prevent="createPlansContent" method="post">
+                    <form v-on:submit.prevent="createTutorials" method="post">
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.name}">
                             <label>Name:</label>
-                            <input type="text" v-model="planscontent.name" class="form-control">
+                            <input type="text" v-model="tutorial.name" class="form-control">
                             <span class="help-block" v-for="error in errors.name">{{ error }}</span>
                         </div>
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.description}">
                             <label>Description:</label>
-                            <input type="text" v-model="planscontent.description" class="form-control">
+                            <input type="text" v-model="tutorial.description" class="form-control">
                             <span class="help-block" v-for="error in errors.description">{{ error }}</span>
                         </div>
 
-                        <div v-bind:class="{'form-group': true, 'has-error': errors.discount}">
-                            <label>Plans:</label>
-                            <!--<input type="text" v-model="planscontent.plans_id" class="form-control">-->
-                            <select class="form-control" v-model="planscontent.plans_id">
-                                <option v-bind:value="plan.id"  v-for="plan in plans">
-                                    {{ plan.name }}
+                        <div v-bind:class="{'form-group': true, 'has-error': errors.textarea}">
+                            <label>Text Content:</label>
+                            <textarea type="text" v-model="tutorial.textarea" class="form-control"></textarea>
+                            <span class="help-block" v-for="error in errors.textarea">{{ error }}</span>
+                        </div>
+
+                        <div v-bind:class="{'form-group': true, 'has-error': errors.programminglanguage_id}">
+                            <label>Programming Languages:</label>
+                            <select class="form-control" v-model="tutorial.programminglanguage_id">
+                                <option v-bind:value="proglang.id"  v-for="proglang in programminglanguage">
+                                    {{ proglang.name }}
                                 </option>
                             </select>
-                            <span class="help-block" v-for="error in errors.plans_id">{{ error }}</span>
+                            <span class="help-block" v-for="error in errors.programminglanguage_id">{{ error }}</span>
+                        </div>
+
+                        <div v-bind:class="{'form-group': true, 'has-error': errors.media_id}">
+                            <label>Media:</label>
+                            <select class="form-control" v-model="tutorial.media_id">
+                                <option v-bind:value="med.id"  v-for="med in media">
+                                    {{ med.title }}
+                                </option>
+                            </select>
+                            <span class="help-block" v-for="error in errors.media_id">{{ error }}</span>
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Add New Plan</button>
+                            <button type="submit" class="btn btn-primary">Add New Tutorials</button>
                         </div>
 
                     </form>
@@ -45,7 +60,7 @@
         <div class="col-xs-12 col-md-8 col-lg-8">
             <div class="panel">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Plans Content List</h4>
+                    <h4 class="panel-title">Tutorials List</h4>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -54,14 +69,17 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Plans</th>
+                                <th>Text Content</th>
+                                <th>Programming Language</th>
+                                <th>Media</th>
+                                <th>Views</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            <PlansContent v-for="planscontent in planscontents" :key="planscontent.id"  v-bind:planscontent="planscontent"v-on:delete-planscontent="deletePlansContent" v-on:update-planscontent="fetchPlansContent">
-                            </PlansContent>
+                            <Tutorials v-for="tutorial in tutorials" :key="tutorial.id"  v-bind:tutorial="tutorial"v-on:delete-tutorial="deleteTutorials" v-on:update-tutorial="fetchTutorials">
+                            </Tutorials>
                             </tbody>
                         </table>
 
@@ -96,17 +114,20 @@
 </template>
 
 <script>
-    import PlansContent from './PlansContent.vue';
+    import Tutorials from './Tutorials.vue';
     export default {
         data(){
             return {
-                planscontents: [],
-                plans : [],
+                tutorials: [],
+                programminglanguage : [],
+                media:[],
                 errors: [],
-                planscontent:{
+                tutorial:{
                     name: '',
                     description: '',
-                    plans_id: ''
+                    textarea: '',
+                    programminglanguage_id: '',
+                    media_id: ''
                 },
                 pagination: {
                     total: 0,
@@ -118,11 +139,11 @@
                 offset: 4,
             }
         },
-        components:{ PlansContent },
+        components:{ Tutorials },
         created(){
-            this.fetchPlansContent(this.pagination.current_page);
-            //this.fetchPlansContent();
-            this.fetchPlans();
+            this.fetchTutorials(this.pagination.current_page);
+            this.fetchProgrammingLanguage();
+            this.fetchMedia();
         },
         computed: {
             isActived: function () {
@@ -149,20 +170,18 @@
             }
         },
         methods: {
-            fetchPlansContent: function(page){
-                this.$http.get('/admin/plans-content/list?page='+page).then(response => {
-                    this.planscontents  = response.data.planscontent.pc.data;
-                    this.pagination = response.data.planscontent.pagination;
-                    //this.planscontents = response.data.planscontent;
-                    console.log(response)
+            fetchTutorials: function(page){
+                this.$http.get('/admin/tutorials/list?page='+page).then(response => {
+                    this.tutorials  = response.data.tutorial.tutorial.data;
+                    this.pagination = response.data.tutorial.pagination;
+
 
                 });
             },
-            createPlansContent(){
-                this.$http.post('/admin/plans-content/add', this.planscontent).then(response => {
+            createTutorials(){
+                this.$http.post('/admin/tutorials/add', this.tutorial).then(response => {
                     this.changePage(this.pagination.current_page);
-                    //this.planscontents.push(response.data.planscontent);
-                    this.planscontent = {name: '', description:'',plans_id :''};
+                    this.tutorial = {name: '', description:'',textarea:'',programminglanguage_id :'',media_id:''};
                     if (this.errors) {
                         this.errors = [];
                     }
@@ -171,17 +190,24 @@
                     this.errors = response.data;
                 });
             },
-            deletePlansContent(planscontent){
-                this.$http.delete('/admin/plans-content/delete/' + planscontent.id).then(response => {
+            deleteTutorials(tutorial){
+                this.$http.delete('/admin/tutorials/delete/' + tutorial.id).then(response => {
                     this.changePage(this.pagination.current_page);
-                    let index = this.planscontents.indexOf(planscontent);
-                    this.planscontents.splice(index, 1);
+                    let index = this.tutorials.indexOf(tutorial);
+                    this.tutorials.splice(index, 1);
 
                 });
             },
-            fetchPlans(){
-                this.$http.get('/admin/plans/list').then(response => {
-                    this.plans = response.data.plans.plan.data;;
+            fetchProgrammingLanguage(){
+                this.$http.get('/admin/programminglanguage/list').then(response => {
+                    this.programminglanguage = response.data.programminglanguage.prog.data;;
+
+
+                });
+            },
+            fetchMedia(){
+                this.$http.get('/admin/media/list').then(response => {
+                    this.media = response.data.media.media.data;;
 
 
                 });
@@ -189,7 +215,7 @@
 
             changePage: function (page) {
                 this.pagination.current_page = page;
-                this.fetchPlansContent(page);
+                this.fetchTutorials(page);
             }
         },
         http: {

@@ -45,6 +45,13 @@ Vue.component('media', require('./components/Gallery/Media.vue'));
 Vue.component('listmedia', require('./components/Gallery/ListMedia.vue'));
 //ENDGALLERY
 
+//TUTORIALS
+Vue.component('tutorials', require('./components/Courses/Tutorials.vue'));
+Vue.component('listtutorials', require('./components/Courses/ListTutorials.vue'));
+Vue.component('courselist', require('./components/Courses/CourseList.vue'));
+Vue.component('listcourselist', require('./components/Courses/ListCourseList.vue'));
+//ENDTUTORIALS
+
 import { store } from './store'
 
 const app = new Vue({
