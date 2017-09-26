@@ -105,7 +105,7 @@ Route::group(['middleware' => 'admin_auth'], function(){
         return view('admin.home');
     });
 
-//MASTERFILE
+#MASTERFILE
     //FAQS
     Route::post('/admin/faqs/add',[
         'uses' => 'FaqsController@add'
@@ -232,9 +232,9 @@ Route::group(['middleware' => 'admin_auth'], function(){
     Route::patch('/admin/plans-content/update/{id}', 'PlansContentController@update');
 
     //EndPlans
-//ENDMASTERFILE
+#ENDMASTERFILE
 
-//GALLERY
+#GALLERY
     //MEDIA
 
 
@@ -256,9 +256,9 @@ Route::group(['middleware' => 'admin_auth'], function(){
         'as' => 'course-list'
     ]);
     //EndMEDIA
-//ENDGALLERY
+#ENDGALLERY
 
-//COURSES
+#COURSES
 
     //Course-List
     Route::post('/admin/course-list/add',[
@@ -311,10 +311,10 @@ Route::group(['middleware' => 'admin_auth'], function(){
 
     //ENDTEMPLATES
 
-//END COURSES
+#END COURSES
 
 
-//USERS
+#USERS
 
     //USERS-LIST
     Route::get('admin/users', function() {
@@ -323,25 +323,34 @@ Route::group(['middleware' => 'admin_auth'], function(){
     //ENDUSERS-LIST
 
 
+    //BILLING
     Route::get('admin/billing', function() {
         return view('admin.users.billing');
     });
+    //ENDBILLING
 
-    Route::get('admin/videos', function() {
+    //USERSPROGRESS
+    Route::get('admin/progress', function() {
         return view('admin.users.progress');
     });
+    //ENDUSERPROGRESS
 
+    //SUPPORT
     Route::get('admin/support', function() {
         return view('admin.users.support-center');
     });
+    //ENDSUPPORT
 
+
+    //USERCOURSES
     Route::get('admin/courses ', function() {
         return view('admin.users.courses');
     });
+    //ENDUSERCOURSES
 
-//END USERS
+#END USERS
 
-//TEST
+#TEST
     Route::get('admin/code-block', function() {
         return view('admin.test.code-block');
     });
@@ -395,5 +404,5 @@ Route::group(['middleware' => 'admin_auth'], function(){
     //ENDQUIZ
 
 
-//END TEST
+#END TEST
 });
