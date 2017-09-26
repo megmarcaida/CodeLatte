@@ -48,6 +48,16 @@
                             <span class="help-block" v-for="error in errors.media_id">{{ error }}</span>
                         </div>
 
+                        <div v-bind:class="{'form-group': true, 'has-error': errors.course_id}">
+                            <label>Course:</label>
+                            <select class="form-control" v-model="tutorial.course_id">
+                                <option v-bind:value="course.id"  v-for="course in courselist">
+                                    {{ course.name }}
+                                </option>
+                            </select>
+                            <span class="help-block" v-for="error in errors.course_id">{{ error }}</span>
+                        </div>
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Add New Tutorials</button>
                         </div>
@@ -72,6 +82,7 @@
                                 <th>Text Content</th>
                                 <th>Programming Language</th>
                                 <th>Media</th>
+                                <th>Course</th>
                                 <th>Views</th>
                                 <th>Action</th>
                             </tr>
@@ -121,13 +132,15 @@
                 tutorials: [],
                 programminglanguage : [],
                 media:[],
+                courselist:[],
                 errors: [],
                 tutorial:{
                     name: '',
                     description: '',
                     textarea: '',
                     programminglanguage_id: '',
-                    media_id: ''
+                    media_id: '',
+                    course_id: ''
                 },
                 pagination: {
                     total: 0,
@@ -144,6 +157,7 @@
             this.fetchTutorials(this.pagination.current_page);
             this.fetchProgrammingLanguage();
             this.fetchMedia();
+            this.fetchCourseList();
         },
         computed: {
             isActived: function () {
@@ -181,7 +195,7 @@
             createTutorials(){
                 this.$http.post('/admin/tutorials/add', this.tutorial).then(response => {
                     this.changePage(this.pagination.current_page);
-                    this.tutorial = {name: '', description:'',textarea:'',programminglanguage_id :'',media_id:''};
+                    this.tutorial = {name: '', description:'',textarea:'',programminglanguage_id :'',media_id:'',course_id:''};
                     if (this.errors) {
                         this.errors = [];
                     }
@@ -208,6 +222,13 @@
             fetchMedia(){
                 this.$http.get('/admin/media/list').then(response => {
                     this.media = response.data.media.media.data;;
+
+
+                });
+            },
+            fetchCourseList(){
+                this.$http.get('/admin/course-list/list').then(response => {
+                    this.courselist = response.data.courselist.courselist.data;;
 
 
                 });

@@ -624,4 +624,11 @@
           // $('#addBookDialog').modal('show');
       });
   </script>
+  <script>
+      $(document).on("click", ".showCourseDetails", function (e) {
+          e.preventDefault();
+          $(this).parents("tr").next().toggle();
+      });
+
+  </script>
 </html>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CourseList;
+use App\CourseLists;
 use App\Tutorials;
 use Illuminate\Http\Request;
 
@@ -13,14 +13,12 @@ class CourseListController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'description' => 'required',
-            'tutorials_id' => 'required',
 
         ]);
 
-        $courselist = CourseList::create([
+        $courselist = CourseLists::create([
             'name' => $request->name,
             'description' => $request->description,
-            'tutorials_id' => $request->tutorials_id,
             'views' => 1,
             'status' => 1
         ]);
@@ -34,7 +32,7 @@ class CourseListController extends Controller
     public function courseList()
     {
 
-        $courselist = CourseList::with('tutorials')->paginate(10);
+        $courselist = CourseLists::paginate(10);
 
         $response = [
             'pagination' => [
@@ -53,9 +51,31 @@ class CourseListController extends Controller
         ]);
     }
 
+    public function courseDetails($id)
+    {
+
+        $coursedetails = Tutorials::where('course_id','=',$id)->paginate(10);
+
+        $response = [
+            'pagination' => [
+                'total' => $coursedetails->total(),
+                'per_page' => $coursedetails->perPage(),
+                'current_page' => $coursedetails->currentPage(),
+                'last_page' => $coursedetails->lastPage(),
+                'from' => $coursedetails->firstItem(),
+                'to' => $coursedetails->lastItem()
+            ],
+            'coursedetails' => $coursedetails
+        ];
+
+        return response()->json([
+            'coursedetails' => $response
+        ]);
+    }
+
     public function delete($id)
     {
-        $courselist = CourseList::find($id)->delete();
+        $courselist = CourseLists::find($id)->delete();
 
         return response()->json([
             'message'=>'Course List deleted successfully'
@@ -67,10 +87,10 @@ class CourseListController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'description' => 'required',
-            'tutorials_id' => 'required',
+
         ]);
 
-        $courselist = CourseList::find($id);
+        $courselist = CourseLists::find($id);
 
         $courselist->update($request->all());
 

@@ -3,7 +3,10 @@
 
 
 
+    <tbody>
     <tr>
+        <td><a v-on:click="fetchCourseDetails(courselist)" class="showCourseDetails" href="#"><i v-if="!showDetails" class="glyphicon glyphicon-plus"></i><i v-if="showDetails" class="glyphicon glyphicon-minus"></i></a>
+            </td>
         <td>
             <div class="form-group">
                 <input type="text" id="name" class="form-control" v-model="editForm.name" v-if="edit">
@@ -14,16 +17,6 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="description"  v-model="editForm.description" v-if="edit">
                 <span v-else>{{ courselist.description }}</span>
-            </div>
-        </td>
-        <td>
-            <div class="form-group">
-                <select class="form-control" id="tutorials_id"  v-model="editForm.tutorials_id" v-if="edit">
-                    <option v-bind:value="tutorial.id"  v-for="tutorial in tutorials">
-                        {{ tutorial.name }}
-                    </option>
-                </select>
-                <span v-else>{{ courselist.tutorials.name }}</span>
             </div>
         </td>
         <td>
@@ -41,40 +34,53 @@
             <button type="button" class="btn btn-danger" v-on:click="$emit('delete-courselist', courselist)" v-if="!edit">
                 Delete
             </button>
+
         </td>
     </tr>
+    <tr class="courseDetails"  style="display: none;">
+        <table>
+            <thead>
+            <th>Name</th>
+            <th>Description</th>
+            </thead>
+            <CourseDetails v-for="coursedetail in courseDetails" :key="coursedetail.id"  v-bind:coursedetail="coursedetail"></CourseDetails>
+        </table>
+    </tr>
+
+    </tbody>
 </template>
 
 <script>
+    import CourseDetails from './CourseDetails.vue';
     export default {
         props:['courselist'],
         data(){
             return {
                 courselists: [],
+                courseDetails: [],
                 edit: false,
                 editForm :{
                     name: '',
-                    description: '',
-                    tutorials_id: ''
-                }
+                    description: ''
+
+                },
+                showDetails: false
+
             }
         },
-        created(){
-            this.fetchTutorials();
-        }
-        ,
+        components:{ CourseDetails },
         methods: {
             editCourseList(){
                 this.edit = true;
                 this.editForm.name = this.courselist.name;
                 this.editForm.description = this.courselist.description;
-                this.editForm.tutorials_id = this.courselist.tutorials_id;
+
             },
             cancelEdit(){
                 this.edit = false;
                 this.editForm.name = '';
                 this.editForm.description = '';
-                this.editForm.tutorials_id = '';
+
             },
             updateCourseList(oldCourseList, newCourseList){
                 this.$http.patch('/admin/course-list/update/' + oldCourseList.id, newCourseList).then(response => {
@@ -85,10 +91,17 @@
                     console.log(response.data);
                 });
             },
-            fetchTutorials(){
-                this.$http.get('/admin/tutorials/list').then(response => {
-                    this.tutorials = response.data.tutorial.tutorial.data;;
-                    console.log(response)
+            fetchCourseDetails: function(courselist){
+
+                if (this.showDetails==false){
+                    this.showDetails = true;
+                }
+                else{
+                    this.showDetails = false;
+                }
+                this.$http.get('/admin/course-list/details/'+courselist.id).then(response => {
+                    this.courseDetails  = response.data.coursedetails.coursedetails.data;
+
 
                 });
             },

@@ -275,6 +275,11 @@ Route::group(['middleware' => 'admin_auth'], function(){
         'as' => 'course-list'
     ]);
 
+    Route::get('/admin/course-list/details/{id}', [
+        'uses' => 'CourseListController@courseDetails',
+        'as' => 'course-details'
+    ]);
+
     Route::delete('/admin/course-list/delete/{id}', [
         'uses' => 'CourseListController@delete'
     ]);

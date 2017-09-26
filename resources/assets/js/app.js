@@ -50,6 +50,7 @@ Vue.component('tutorials', require('./components/Courses/Tutorials.vue'));
 Vue.component('listtutorials', require('./components/Courses/ListTutorials.vue'));
 Vue.component('courselist', require('./components/Courses/CourseList.vue'));
 Vue.component('listcourselist', require('./components/Courses/ListCourseList.vue'));
+Vue.component('coursedetails', require('./components/Courses/CourseDetails.vue'));
 //ENDTUTORIALS
 
 import { store } from './store'

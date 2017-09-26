@@ -22,19 +22,9 @@
                             <span class="help-block" v-for="error in errors.description">{{ error }}</span>
                         </div>
 
-                        <div v-bind:class="{'form-group': true, 'has-error': errors.tutorials_id}">
-                            <label>Tutorial:</label>
-                            <select class="form-control" v-model="courselist.tutorials_id">
-                                <option v-bind:value="tutorial.id"  v-for="tutorial in tutorials">
-                                    {{ tutorial.name }}
-                                </option>
-                            </select>
-                            <span class="help-block" v-for="error in errors.tutorials_id">{{ error }}</span>
-                        </div>
-
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Add New Tutorials</button>
+                            <button type="submit" class="btn btn-primary">Add New Course</button>
                         </div>
 
                     </form>
@@ -45,24 +35,22 @@
         <div class="col-xs-12 col-md-8 col-lg-8">
             <div class="panel">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Tutorials List</h4>
+                    <h4 class="panel-title">Course List</h4>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
+                                <th></th>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Tutorials</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
 
-                            <tbody>
                             <CourseList v-for="courselist in courselists" :key="courselist.id"  v-bind:courselist="courselist"v-on:delete-courselist="deleteCourseList" v-on:update-courselist="fetchCourseList">
                             </CourseList>
-                            </tbody>
                         </table>
 
                         <!-- Pagination -->
@@ -101,12 +89,11 @@
         data(){
             return {
                 courselists: [],
-                tutorials:[],
                 errors: [],
                 courselist:{
                     name: '',
                     description: '',
-                    tutorials_id: '',
+
                 },
                 pagination: {
                     total: 0,
@@ -121,7 +108,7 @@
         components:{ CourseList },
         created(){
             this.fetchCourseList(this.pagination.current_page);
-            this.fetchTutorials();
+
         },
         computed: {
             isActived: function () {
@@ -159,7 +146,7 @@
             createCourseList(){
                 this.$http.post('/admin/course-list/add', this.courselist).then(response => {
                     this.changePage(this.pagination.current_page);
-                    this.courselist = {name: '', description:'',tutorials_id:''};
+                    this.courselist = {name: '', description:''};
                     if (this.errors) {
                         this.errors = [];
                     }
@@ -168,25 +155,18 @@
                     this.errors = response.data;
                 });
             },
-            deleteCourseList(tutorial){
+            deleteCourseList(courselist){
                 this.$http.delete('/admin/course-list/delete/' + courselist.id).then(response => {
                     this.changePage(this.pagination.current_page);
-                    let index = this.tutorials.indexOf(tutorial);
-                    this.tutorials.splice(index, 1);
-
-                });
-            },
-            fetchTutorials(){
-                this.$http.get('/admin/tutorials/list').then(response => {
-                    this.tutorials = response.data.tutorial.tutorial.data;
-
+                    let index = this.courselists.indexOf(courselist);
+                    this.courselists.splice(index, 1);
 
                 });
             },
 
             changePage: function (page) {
                 this.pagination.current_page = page;
-                this.fetchTutorials(page);
+                this.fetchCourseList(page);
             }
         },
         http: {

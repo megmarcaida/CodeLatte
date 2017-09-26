@@ -44,6 +44,16 @@
         </td>
         <td>
             <div class="form-group">
+                <select class="form-control" id="course_id"  v-model="editForm.course_id" v-if="edit">
+                    <option v-bind:value="course.id"  v-for="course in courselist">
+                        {{ course.name }}
+                    </option>
+                </select>
+                <span v-else>{{ tutorial.courselist.name}}</span>
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
                 <span>{{ tutorial.views }}</span>
             </div>
         </td>
@@ -78,13 +88,15 @@
                     description: '',
                     programminglanguage_id:'',
                     textarea:'',
-                    media_id: ''
+                    media_id: '',
+                    course_id: ''
                 }
             }
         },
         created(){
             this.fetchProgrammingLanguage();
             this.fetchMedia();
+            this.fetchCourseList();
         }
         ,
         methods: {
@@ -95,6 +107,7 @@
                 this.editForm.textarea = this.tutorial.textarea;
                 this.editForm.programminglanguage_id = this.tutorial.programminglanguage_id;
                 this.editForm.media_id = this.tutorial.media_id;
+                this.editForm.course_id = this.tutorial.course_id;
             },
             cancelEdit(){
                 this.edit = false;
@@ -102,27 +115,35 @@
                 this.editForm.description = '';
                 this.editForm.programminglanguage_id = '';
                 this.editForm.media_id = '';
+                this.editForm.course_id = '';
             },
             updateTutorials(oldTutorials, newTutorials){
                 this.$http.patch('/admin/tutorials/update/' + oldTutorials.id, newTutorials).then(response => {
                     this.$emit('update-tutorial');
                     this.cancelEdit();
-                    console.log(response.data);
+                    //console.log(response.data);
                 }, (response) => {
-                    console.log(response.data);
+                    //console.log(response.data);
                 });
             },
             fetchProgrammingLanguage(){
                 this.$http.get('/admin/programminglanguage/list').then(response => {
                     this.programminglanguage = response.data.programminglanguage.prog.data;;
-                    console.log(response)
+                    //console.log(response)
 
                 });
             },
             fetchMedia(){
                 this.$http.get('/admin/media/list').then(response => {
                     this.media = response.data.media.media.data;;
-                    console.log(response)
+                    //console.log(response)
+
+                });
+            },
+            fetchCourseList(){
+                this.$http.get('/admin/course-list/list').then(response => {
+                    this.courselist = response.data.courselist.courselist.data;;
+                    //console.log(response)
 
                 });
             },

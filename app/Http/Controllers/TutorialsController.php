@@ -14,6 +14,7 @@ class TutorialsController extends Controller
             'description' => 'required',
             'programminglanguage_id' => 'required',
             'media_id' => 'required',
+            'course_id' => 'required'
 
         ]);
 
@@ -22,6 +23,7 @@ class TutorialsController extends Controller
             'description' => $request->description,
             'programminglanguage_id' => $request->programminglanguage_id,
             'media_id' => $request->media_id,
+            'course_id' => $request->course_id,
             'textarea' => $request->textarea,
             'views' => 1,
             'status' => 1
@@ -36,8 +38,11 @@ class TutorialsController extends Controller
     public function tutorials()
     {
 
-        $tutorials = Tutorials::with(['programminglanguage','media'])->paginate(10);
+    /*    $tutorials = Tutorials::leftjoin('programming_languages', 'tutorials.programminglanguage_id', '=', 'programming_languages.id')
+            ->leftjoin('media', 'tutorials.media_id', '=', 'media.id')
+            ->leftjoin('course_lists', 'tutorials.course_id', '=', 'course_lists.id')->paginate(10);*/
 
+    $tutorials = Tutorials::with(['programminglanguage', 'media', 'courselist'])->paginate(10);
         $response = [
             'pagination' => [
                 'total' => $tutorials->total(),
@@ -71,6 +76,7 @@ class TutorialsController extends Controller
             'description' => 'required',
             'programminglanguage_id' => 'required',
             'media_id' => 'required',
+            'course_id' => 'required'
         ]);
 
         $tutorials = Tutorials::find($id);

@@ -20,6 +20,7 @@ class CreateTutorialsTable extends Migration
             $table->text('textarea')->nullable();
             $table->integer('programminglanguage_id');
             $table->integer('media_id');
+            $table->integer('course_id');
             $table->integer('views');
             $table->boolean('status');
             $table->timestamps();

@@ -17,7 +17,6 @@ class CreateCourseListsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->integer('tutorials_id');
             $table->boolean('status');
             $table->timestamps();
         });
