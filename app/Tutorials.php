@@ -21,4 +21,8 @@ class Tutorials extends Model
     {
         return $this->hasMany('App\CourseList');
     }
+
+    public function quiz(){
+        return $this->belongsTo('App\Quiz');
+    }
 }

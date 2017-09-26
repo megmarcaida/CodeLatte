@@ -32,7 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/profile/{slug}',[
-       'uses' => 'ProfilesController@index',
+        'uses' => 'ProfilesController@index',
         'as' => 'profile'
     ]);
 
@@ -81,7 +81,7 @@ Route::group(['middleware'=>'auth'],function(){
     ]);
 
     Route::post('/create/post',[
-       'uses' => 'PostsController@store'
+        'uses' => 'PostsController@store'
     ]);
 
     Route::get('/get_auth_user_data', function(){
@@ -345,12 +345,55 @@ Route::group(['middleware' => 'admin_auth'], function(){
     Route::get('admin/code-block', function() {
         return view('admin.test.code-block');
     });
+
+
+    //QUESTIONNAIRES
+    Route::post('/admin/questionnaires/add',[
+        'uses' => 'QuestionnairesController@add'
+    ]);
+
     Route::get('admin/questionnaires', function() {
         return view('admin.test.questionnaires');
     });
+
+    Route::get('/admin/questionnaires/list', [
+        'uses' => 'QuestionnairesController@questionnaires',
+        'as' => 'questionnaires'
+    ]);
+
+    Route::delete('/admin/questionnaires/delete/{id}', [
+        'uses' => 'QuestionnairesController@delete'
+    ]);
+
+    Route::patch('/admin/questionnaires/update/{id}', 'QuestionnairesController@update');
+
+
+    //ENDQUESTIONNAIRES
+
+
+    //QUIZ
+
+    Route::post('/admin/quizzes/add',[
+        'uses' => 'QuizController@add'
+    ]);
+
     Route::get('admin/quizzes', function() {
         return view('admin.test.quiz');
     });
+
+    Route::get('/admin/quizzes/list', [
+        'uses' => 'QuizController@questionnaires',
+        'as' => 'quizzes'
+    ]);
+
+    Route::delete('/admin/quizzes/delete/{id}', [
+        'uses' => 'QuizController@delete'
+    ]);
+
+    Route::patch('/admin/quizzes/update/{id}', 'QuizController@update');
+
+    //ENDQUIZ
+
 
 //END TEST
 });
