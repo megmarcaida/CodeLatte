@@ -387,24 +387,29 @@ Route::group(['middleware' => 'admin_auth'], function(){
 
     //QUIZ
 
-    Route::post('/admin/quizzes/add',[
+    Route::post('/admin/quiz/add',[
         'uses' => 'QuizController@add'
     ]);
 
-    Route::get('admin/quizzes', function() {
+    Route::get('admin/quiz', function() {
         return view('admin.test.quiz');
     });
 
-    Route::get('/admin/quizzes/list', [
-        'uses' => 'QuizController@questionnaires',
+    Route::get('/admin/quiz/list', [
+        'uses' => 'QuizController@quiz',
         'as' => 'quizzes'
     ]);
 
-    Route::delete('/admin/quizzes/delete/{id}', [
+    Route::get('/admin/quiz/details/{id}', [
+        'uses' => 'QuizController@quizDetails',
+        'as' => 'course-details'
+    ]);
+
+    Route::delete('/admin/quiz/delete/{id}', [
         'uses' => 'QuizController@delete'
     ]);
 
-    Route::patch('/admin/quizzes/update/{id}', 'QuizController@update');
+    Route::patch('/admin/quiz/update/{id}', 'QuizController@update');
 
     //ENDQUIZ
 

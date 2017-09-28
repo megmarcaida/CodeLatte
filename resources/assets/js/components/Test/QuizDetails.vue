@@ -1,12 +1,12 @@
 <template>
-        <tr>
-            <td>{{ coursedetail.name }}</td>
-            <td>{{ coursedetail.description }}</td>
-        </tr>
+    <tr>
+        <td>{{ quizdetail.name }}</td>
+        <td>{{ quizdetail.description }}</td>
+    </tr>
 </template>
 <script>
     export default {
-        props:['coursedetail'],
+        props:['quizdetail'],
         http: {
             root: '/root',
             headers: {

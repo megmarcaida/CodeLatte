@@ -1,53 +1,65 @@
 <template>
 
-
-
-
-    <tbody>
-    <tr>
-        <td><a v-on:click="fetchCourseDetails(courselist)" class="showCourseDetails" href="#"><i v-if="!showDetails" class="glyphicon glyphicon-plus"></i><i v-if="showDetails" class="glyphicon glyphicon-minus"></i></a>
-            </td>
-        <td>
-            <div class="form-group">
-                <input type="text" id="name" class="form-control" v-model="editForm.name" v-if="edit">
-                <span v-else>{{ courselist.name }}</span>
-            </div>
-        </td>
-        <td>
-            <div class="form-group">
-                <input type="text" class="form-control" id="description"  v-model="editForm.description" v-if="edit">
-                <span v-else>{{ courselist.description }}</span>
-            </div>
-        </td>
-        <td>
-            <button type="button" class="btn btn-info" v-on:click="editCourseList" v-if="!edit">
-                Edit
-            </button>
-
-            <button type="button" class="btn btn-default" v-on:click="cancelEdit" v-if="edit">
-                Cancel
-            </button>
-
-            <button type="button" class="btn btn-primary" v-on:click="updateCourseList(courselist, editForm)" v-if="edit">
-                update
-            </button>
-            <button type="button" class="btn btn-danger" v-on:click="$emit('delete-courselist', courselist)" v-if="!edit">
-                Delete
-            </button>
-
-        </td>
-    </tr>
-    <tr class="courseDetails"  style="display: none;">
-        <table>
-            <thead>
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th></th>
             <th>Name</th>
             <th>Description</th>
-            </thead>
-            <CourseDetails v-for="coursedetail in courseDetails" :key="coursedetail.id"  v-bind:coursedetail="coursedetail"></CourseDetails>
-        </table>
-    </tr>
+            <th>Action</th>
+        </tr>
+        </thead>
 
-    </tbody>
+        <tbody>
+            <tr>
+                <td><a v-on:click="fetchCourseDetails(courselist)" class="showCourseDetails" href="#"><i v-if="!showDetails" class="glyphicon glyphicon-plus"></i><i v-if="showDetails" class="glyphicon glyphicon-minus"></i></a>
+                    </td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" id="name" class="form-control" v-model="editForm.name" v-if="edit">
+                        <span v-else>{{ courselist.name }}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="description"  v-model="editForm.description" v-if="edit">
+                        <span v-else>{{ courselist.description }}</span>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info" v-on:click="editCourseList" v-if="!edit">
+                        Edit
+                    </button>
+
+                    <button type="button" class="btn btn-default" v-on:click="cancelEdit" v-if="edit">
+                        Cancel
+                    </button>
+
+                    <button type="button" class="btn btn-primary" v-on:click="updateCourseList(courselist, editForm)" v-if="edit">
+                        update
+                    </button>
+                    <button type="button" class="btn btn-danger" v-on:click="$emit('delete-courselist', courselist)" v-if="!edit">
+                        Delete
+                    </button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-striped courseDetails" style="display:none;">
+
+        <thead>
+            <tr>
+                <th>Tutorial Name</th>
+                <th>Tutorial Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <CourseDetails v-for="coursedetail in courseDetails" :key="coursedetail.id"  v-bind:coursedetail="coursedetail"></CourseDetails>
+        </tbody>
+    </table>
+</div>
 </template>
 
 <script>

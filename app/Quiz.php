@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
 {
-    protected $fillable = ['tutorial_id','namee','description','status'];
+    protected $fillable = ['tutorial_id','name','description','status'];
 
     public function tutorials(){
         return $this->hasMany('App\Tutorials');

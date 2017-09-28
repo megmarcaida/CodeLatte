@@ -369,7 +369,7 @@
                                   <li class="nav-parent">
                                       <a href=""><i class="fa fa-question"></i> <span>Test</span></a>
                                       <ul class="children">
-                                          <li><a href="{{ url('admin/quizzes') }}">Quizzes</a></li>
+                                          <li><a href="{{ url('admin/quiz') }}">Quizzes</a></li>
                                           <li><a href="{{ url('admin/questionnaires') }}">Questionnaires</a></li>
                                           <li><a href="{{ url('admin/code-block') }}">Code Block</a></li>
 
@@ -627,7 +627,12 @@
   <script>
       $(document).on("click", ".showCourseDetails", function (e) {
           e.preventDefault();
-          $(this).parents("tr").next().toggle();
+          $(this).parents("table").next().toggle();
+      });
+
+      $(document).on("click", ".showQuizDetails", function (e) {
+          e.preventDefault();
+          $(this).parents("table").next().toggle();
       });
 
   </script>

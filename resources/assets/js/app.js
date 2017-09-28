@@ -53,6 +53,12 @@ Vue.component('listcourselist', require('./components/Courses/ListCourseList.vue
 Vue.component('coursedetails', require('./components/Courses/CourseDetails.vue'));
 //ENDTUTORIALS
 
+//TEST
+Vue.component('quiz', require('./components/Test/Quiz.vue'));
+Vue.component('listquiz', require('./components/Test/ListQuiz.vue'));
+Vue.component('quizdetails', require('./components/Test/QuizDetails.vue'));
+//ENDTEST
+
 import { store } from './store'
 
 const app = new Vue({

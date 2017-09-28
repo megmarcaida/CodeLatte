@@ -4,27 +4,37 @@
         <div class="col-xs-12 col-md-4 col-lg-4">
             <div class="panel">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Add Course </h4>
+                    <h4 class="panel-title">Add Quiz </h4>
                 </div>
                 <div class="panel-body">
 
-                    <form v-on:submit.prevent="createCourseList" method="post">
+                    <form v-on:submit.prevent="createQuiz" method="post">
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.name}">
                             <label>Name:</label>
-                            <input type="text" v-model="courselist.name" class="form-control">
+                            <input type="text" v-model="quiz.name" class="form-control">
                             <span class="help-block" v-for="error in errors.name">{{ error }}</span>
                         </div>
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.description}">
                             <label>Description:</label>
-                            <input type="text" v-model="courselist.description" class="form-control">
+                            <input type="text" v-model="quiz.description" class="form-control">
                             <span class="help-block" v-for="error in errors.description">{{ error }}</span>
+                        </div>
+
+                        <div v-bind:class="{'form-group': true, 'has-error': errors.tutorial_id}">
+                            <label>Tutorial:</label>
+                            <select class="form-control" v-model="quiz.tutorial_id">
+                                <option v-bind:value="tutorial.id"  v-for="tutorial in tutorials">
+                                    {{ tutorial.name }}
+                                </option>
+                            </select>
+                            <span class="help-block" v-for="error in errors.tutorial_id">{{ error }}</span>
                         </div>
 
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Add New Course</button>
+                            <button type="submit" class="btn btn-primary">Add New Quiz</button>
                         </div>
 
                     </form>
@@ -35,14 +45,14 @@
         <div class="col-xs-12 col-md-8 col-lg-8">
             <div class="panel">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Course List</h4>
+                    <h4 class="panel-title">Quiz List</h4>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
 
 
-                            <CourseList v-for="courselist in courselists" :key="courselist.id"  v-bind:courselist="courselist"v-on:delete-courselist="deleteCourseList" v-on:update-courselist="fetchCourseList">
-                            </CourseList>
+                        <Quiz v-for="quiz in quizzes" :key="quiz.id"  v-bind:quiz="quiz"v-on:delete-quiz="deleteQuiz" v-on:update-quiz="fetchQuiz">
+                        </Quiz>
 
 
                         <!-- Pagination -->
@@ -76,13 +86,14 @@
 </template>
 
 <script>
-    import CourseList from './CourseList.vue';
+    import Quiz from './Quiz.vue';
     export default {
         data(){
             return {
-                courselists: [],
+                quizzes: [],
                 errors: [],
-                courselist:{
+                tutorials: [],
+                quiz:{
                     name: '',
                     description: '',
 
@@ -97,9 +108,10 @@
                 offset: 4,
             }
         },
-        components:{ CourseList },
+        components:{ Quiz },
         created(){
-            this.fetchCourseList(this.pagination.current_page);
+            this.fetchQuiz(this.pagination.current_page);
+            this.fetchTutorials();
 
         },
         computed: {
@@ -127,18 +139,18 @@
             }
         },
         methods: {
-            fetchCourseList: function(page){
-                this.$http.get('/admin/course-list/list?page='+page).then(response => {
-                    this.courselists  = response.data.courselist.courselist.data;
-                    this.pagination = response.data.courselist.pagination;
+            fetchQuiz: function(page){
+                this.$http.get('/admin/quiz/list?page='+page).then(response => {
+                    this.quizzes  = response.data.quiz.quiz.data;
+                    this.pagination = response.data.quiz.pagination;
 
 
                 });
             },
-            createCourseList(){
-                this.$http.post('/admin/course-list/add', this.courselist).then(response => {
+            createQuiz(){
+                this.$http.post('/admin/quiz/add', this.quiz).then(response => {
                     this.changePage(this.pagination.current_page);
-                    this.courselist = {name: '', description:''};
+                    this.quiz = {name: '', description:''};
                     if (this.errors) {
                         this.errors = [];
                     }
@@ -147,19 +159,26 @@
                     this.errors = response.data;
                 });
             },
-            deleteCourseList(courselist){
-                this.$http.delete('/admin/course-list/delete/' + courselist.id).then(response => {
+            deleteQuiz(quiz){
+                this.$http.delete('/admin/quiz/delete/' + quiz.id).then(response => {
                     this.changePage(this.pagination.current_page);
-                    let index = this.courselists.indexOf(courselist);
-                    this.courselists.splice(index, 1);
+                    let index = this.quizzes.indexOf(quiz);
+                    this.quizzes.splice(index, 1);
 
                 });
             },
 
             changePage: function (page) {
                 this.pagination.current_page = page;
-                this.fetchCourseList(page);
-            }
+                this.fetchQuiz(page);
+            },
+            fetchTutorials(){
+                this.$http.get('/admin/tutorials/list').then(response => {
+                    this.tutorials = response.data.tutorial.tutorial.data;;
+
+
+                });
+            },
         },
         http: {
             root: '/root',
