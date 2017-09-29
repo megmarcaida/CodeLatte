@@ -33,7 +33,7 @@ class QuizController extends Controller
     public function quiz()
     {
 
-        $quiz = Quiz::paginate(10);
+        $quiz = Quiz::with('tutorials')->paginate(10);
 
         $response = [
             'pagination' => [
@@ -46,7 +46,7 @@ class QuizController extends Controller
             'quiz' => $quiz
         ];
 
-        return response()->json([
+            return response()->json([
             'quiz' => $response
         ]);
     }

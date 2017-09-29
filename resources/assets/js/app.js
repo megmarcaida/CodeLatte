@@ -57,6 +57,8 @@ Vue.component('coursedetails', require('./components/Courses/CourseDetails.vue')
 Vue.component('quiz', require('./components/Test/Quiz.vue'));
 Vue.component('listquiz', require('./components/Test/ListQuiz.vue'));
 Vue.component('quizdetails', require('./components/Test/QuizDetails.vue'));
+Vue.component('questionnaires', require('./components/Test/Questionnaires.vue'));
+Vue.component('listquestionnaires', require('./components/Test/ListQuestionnaires.vue'));
 //ENDTEST
 
 import { store } from './store'

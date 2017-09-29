@@ -52,9 +52,9 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a class="latte-menu" href="{{ route('login') }}">For Business</a></li>
-                            <li><a class="latte-menu" href="{{ route('login') }}">Testimonials</a></li>
+                            <li><a class="latte-menu" href="{{ url('testimonials') }}">Testimonials</a></li>
                             <li><a class="latte-menu" href="{{ route('login') }}">Login</a></li>
-                            <li><a class="free-trial" href="{{ route('register') }}">Free Trial</a></li>
+                            <li><a class="free-trial" href="{{ url('plan') }}">Free Trial</a></li>
                         @else
                             <li><a href="{{ route('home') }}">Feed</a></li>
                             <li><a href="{{ route('profile',['slug'=> Auth::user()->slug ]) }}">{{ Auth::user()->name  }}</a></li>

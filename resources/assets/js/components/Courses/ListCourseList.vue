@@ -22,6 +22,15 @@
                             <span class="help-block" v-for="error in errors.description">{{ error }}</span>
                         </div>
 
+                        <div v-bind:class="{'form-group': true, 'has-error': errors.discount}">
+                            <label>Plans:</label>
+                            <select class="form-control" v-model="courselist.plan_id">
+                                <option v-bind:value="plan.id"  v-for="plan in plans">
+                                    {{ plan.name }}
+                                </option>
+                            </select>
+                            <span class="help-block" v-for="error in errors.plan_id">{{ error }}</span>
+                        </div>
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Add New Course</button>
@@ -82,9 +91,11 @@
             return {
                 courselists: [],
                 errors: [],
+                plans:[],
                 courselist:{
                     name: '',
                     description: '',
+                    plan_id: ''
 
                 },
                 pagination: {
@@ -100,7 +111,7 @@
         components:{ CourseList },
         created(){
             this.fetchCourseList(this.pagination.current_page);
-
+            this.fetchPlans();
         },
         computed: {
             isActived: function () {
@@ -138,7 +149,7 @@
             createCourseList(){
                 this.$http.post('/admin/course-list/add', this.courselist).then(response => {
                     this.changePage(this.pagination.current_page);
-                    this.courselist = {name: '', description:''};
+                    this.courselist = {name: '', description:'',plan_id};
                     if (this.errors) {
                         this.errors = [];
                     }
@@ -159,6 +170,13 @@
             changePage: function (page) {
                 this.pagination.current_page = page;
                 this.fetchCourseList(page);
+            },
+            fetchPlans(){
+                this.$http.get('/admin/plans/list').then(response => {
+                    this.plans = response.data.plans.plan.data;;
+
+
+                });
             }
         },
         http: {

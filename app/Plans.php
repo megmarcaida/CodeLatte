@@ -12,4 +12,9 @@ class Plans extends Model
     {
         return $this->hasMany('App\PlansContent');
     }
+
+    public function courselist()
+    {
+        return $this->hasMany('App\CourseLists');
+    }
 }

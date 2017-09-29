@@ -29,6 +29,16 @@
                     </div>
                 </td>
                 <td>
+                    <div class="form-group">
+                        <select class="form-control" id="tutorial_id"  v-model="editForm.tutorial_id" v-if="edit">
+                            <option v-bind:value="tutorial.id"  v-for="tutorial in tutorials">
+                                {{ tutorial.name }}
+                            </option>
+                        </select>
+                        <span v-else>{{ quiz.tutorials.name }}</span>
+                    </div>
+                </td>
+                <td>
                     <button type="button" class="btn btn-info" v-on:click="editQuiz" v-if="!edit">
                         Edit
                     </button>
@@ -71,15 +81,20 @@
             return {
                 quizzes: [],
                 quizDetails: [],
+                tutorials:[],
                 edit: false,
                 editForm :{
                     name: '',
-                    description: ''
+                    description: '',
+                    tutorial_id: ''
 
                 },
                 showDetails: false
 
             }
+        },
+        created(){
+            this.fetchTutorials();
         },
         components:{ QuizDetails },
         methods: {
@@ -87,12 +102,14 @@
                 this.edit = true;
                 this.editForm.name = this.quiz.name;
                 this.editForm.description = this.quiz.description;
+                this.editForm.tutorial_id = this.quiz.tutorial_id;
 
             },
             cancelEdit(){
                 this.edit = false;
                 this.editForm.name = '';
                 this.editForm.description = '';
+                this.editForm.tutorial_id = '';
 
             },
             updateQuiz(oldQuiz, newQuiz){
@@ -114,6 +131,13 @@
                 }
                 this.$http.get('/admin/quiz/details/'+quiz.id).then(response => {
                     this.quizDetails  = response.data.quizdetails.quizdetails.data;
+
+
+                });
+            },
+            fetchTutorials(){
+                this.$http.get('/admin/tutorials/list').then(response => {
+                    this.tutorials = response.data.tutorial.tutorial.data;;
 
 
                 });

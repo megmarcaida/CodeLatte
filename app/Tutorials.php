@@ -23,7 +23,7 @@ class Tutorials extends Model
     }
 
     public function quiz(){
-        return $this->belongsTo('App\Quiz');
+        return $this->hasMany('App\Quiz');
     }
 
 

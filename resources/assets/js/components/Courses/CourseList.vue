@@ -7,6 +7,7 @@
             <th></th>
             <th>Name</th>
             <th>Description</th>
+            <th>Plans</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -25,6 +26,16 @@
                     <div class="form-group">
                         <input type="text" class="form-control" id="description"  v-model="editForm.description" v-if="edit">
                         <span v-else>{{ courselist.description }}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <select class="form-control" v-model="editForm.plan_id" v-if="edit">
+                            <option v-bind:value="plan.id"  v-for="plan in plans">
+                                {{ plan.name }}
+                            </option>
+                        </select>
+                        <span v-else>{{ courselist.plans.name }}</span>
                     </div>
                 </td>
                 <td>
@@ -71,14 +82,19 @@
                 courselists: [],
                 courseDetails: [],
                 edit: false,
+                plans: [],
                 editForm :{
                     name: '',
-                    description: ''
+                    description: '',
+                    plan_id: ''
 
                 },
                 showDetails: false
 
             }
+        },
+        created(){
+            this.fetchPlans();
         },
         components:{ CourseDetails },
         methods: {
@@ -86,12 +102,14 @@
                 this.edit = true;
                 this.editForm.name = this.courselist.name;
                 this.editForm.description = this.courselist.description;
+                this.editForm.plan_id = this.courselist.plan_id;
 
             },
             cancelEdit(){
                 this.edit = false;
                 this.editForm.name = '';
                 this.editForm.description = '';
+                this.editForm.plan_id = '';
 
             },
             updateCourseList(oldCourseList, newCourseList){
@@ -117,6 +135,13 @@
 
                 });
             },
+            fetchPlans(){
+                this.$http.get('/admin/plans/list').then(response => {
+                    this.plans = response.data.plans.plan.data;;
+
+
+                });
+            }
         },
         http: {
             root: '/root',

@@ -13,26 +13,27 @@ class CourseListController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'description' => 'required',
+            'plan_id' => 'required'
 
         ]);
 
         $courselist = CourseLists::create([
             'name' => $request->name,
             'description' => $request->description,
-            'views' => 1,
+            'plan_id' => $request->plan_id,
             'status' => 1
         ]);
 
         return response()->json([
             'message' => 'Course List created successfully',
-            'courselist' =>$courselist
+            'courselist' =>$request->plan_id
         ]);
     }
 
     public function courseList()
     {
 
-        $courselist = CourseLists::paginate(10);
+        $courselist = CourseLists::with('plans')->paginate(10);
 
         $response = [
             'pagination' => [
@@ -87,6 +88,7 @@ class CourseListController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'description' => 'required',
+            'plan_id' => 'required',
 
         ]);
 

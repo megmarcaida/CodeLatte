@@ -9,7 +9,7 @@ class Quiz extends Model
     protected $fillable = ['tutorial_id','name','description','status'];
 
     public function tutorials(){
-        return $this->hasMany('App\Tutorials');
+        return $this->belongsTo('App\Tutorials','tutorial_id');
     }
 
     public function questionnaires(){

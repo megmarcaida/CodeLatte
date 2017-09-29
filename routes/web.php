@@ -25,6 +25,40 @@ Route::post('admin/register', 'AdminAuth\RegisterController@register');
 Route::get('/admin/home', function(){
     return view('admin.home');
 });
+
+//HOMEPAGES
+Route::get('/plan', function(){
+    return view('plan');
+});
+Route::get('/about', function() {
+    return view('about');
+});
+
+Route::get('/gallery', function() {
+    return view('gallery');
+});
+
+Route::get('/faqs', function() {
+    return view('faqs');
+});
+
+Route::get('/courses', function() {
+    return view('courses');
+});
+
+Route::get('/faqs', function() {
+    return view('faqs');
+});
+Route::get('/contact_us', function() {
+    return view('contact_us');
+});
+Route::get('/testimonials', function() {
+    return view('testimonials');
+});
+
+
+//ENDPAGES
+
 Route::get('admin/login', 'AdminAuth\AdminLoginController@showLoginForm');
 Route::post('admin/login', 'AdminAuth\AdminLoginController@login');
 
@@ -95,6 +129,35 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/unlike/{id}',[
         'uses' => 'LikesController@unlike'
     ]);
+
+
+    //FOR USER PAGES
+    Route::get('/users/my_course', function(){
+        return view('users.my_course');
+    });
+
+    Route::get('/users/account_information', function(){
+        return view('users.account_information');
+    });
+
+    Route::get('/users/check_plans', function(){
+        return view('users.check_plans');
+    });
+
+    Route::get('/users/billing_info', function(){
+        return view('users.billing_info');
+    });
+
+    Route::get('/users/account_information', function(){
+        return view('users.account_information');
+    });
+
+    Route::get('/users/glossary', function(){
+        return view('users.glossary');
+    });
+
+    //USER PAGES
+
 });
 
 //Only logged in sellers can access or send requests to these pages
@@ -200,7 +263,7 @@ Route::group(['middleware' => 'admin_auth'], function(){
 
     Route::get('/admin/programminglanguage/list', [
         'uses' => 'ProgrammingLanguageController@programminglanguage',
-        'as' => 'plans'
+        'as' => 'programminglanguage'
     ]);
 
     Route::delete('/admin/programminglanguage/delete/{id}', [
