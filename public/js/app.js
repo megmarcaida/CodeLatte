@@ -62066,7 +62066,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.editForm.price = $event.target.value
       }
     }
-  }) : _c('span', [_vm._v(_vm._s(_vm.plan.price))])])]), _vm._v(" "), _c('td', [_c('div', {
+  }) : _c('span', [_vm._v("$" + _vm._s(_vm.plan.cost))])])]), _vm._v(" "), _c('td', [_c('div', {
     staticClass: "form-group"
   }, [(_vm.edit) ? _c('input', {
     directives: [{
@@ -62089,43 +62089,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.editForm.discount = $event.target.value
       }
     }
-  }) : _c('span', [_vm._v(_vm._s(_vm.plan.discount))])])]), _vm._v(" "), _c('td', [(!_vm.edit) ? _c('button', {
-    staticClass: "btn btn-info",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": _vm.editPlan
-    }
-  }, [_vm._v("\n            Edit\n        ")]) : _vm._e(), _vm._v(" "), (_vm.edit) ? _c('button', {
-    staticClass: "btn btn-default",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": _vm.cancelEdit
-    }
-  }, [_vm._v("\n            Cancel\n        ")]) : _vm._e(), _vm._v(" "), (_vm.edit) ? _c('button', {
-    staticClass: "btn btn-primary",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": function($event) {
-        _vm.updatePlan(_vm.plan, _vm.editForm)
-      }
-    }
-  }, [_vm._v("\n            update\n        ")]) : _vm._e(), _vm._v(" "), (!_vm.edit) ? _c('button', {
-    staticClass: "btn btn-danger",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": function($event) {
-        _vm.$emit('delete-plan', _vm.plan)
-      }
-    }
-  }, [_vm._v("\n            Delete\n        ")]) : _vm._e()])])
+  }) : _c('span', [_vm._v(_vm._s(_vm.plan.description))])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -62430,7 +62394,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('div', {
-    staticClass: "col-xs-12 col-md-4 col-lg-4"
+    staticClass: "col-xs-12 col-md-4 col-lg-4",
+    staticStyle: {
+      "display": "none"
+    }
   }, [_c('div', {
     staticClass: "panel"
   }, [_vm._m(0), _vm._v(" "), _c('div', {
@@ -62530,7 +62497,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "help-block"
     }, [_vm._v(_vm._s(error))])
   })], 2), _vm._v(" "), _vm._m(1)])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col-xs-12 col-md-8 col-lg-8"
+    staticClass: "col-xs-12 col-md-12 col-lg-12"
   }, [_c('div', {
     staticClass: "panel"
   }, [_vm._m(2), _vm._v(" "), _c('div', {
@@ -62619,7 +62586,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel-title"
   }, [_vm._v("Plans List")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("Name")]), _vm._v(" "), _c('th', [_vm._v("Price")]), _vm._v(" "), _c('th', [_vm._v("Discount")]), _vm._v(" "), _c('th', [_vm._v("Action")])])])
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("Name")]), _vm._v(" "), _c('th', [_vm._v("Price")]), _vm._v(" "), _c('th', [_vm._v("Discount")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

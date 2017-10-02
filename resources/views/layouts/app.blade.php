@@ -17,6 +17,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -106,7 +107,6 @@
 
 
 
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/noty.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
 

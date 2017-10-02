@@ -83,13 +83,19 @@ class RegisterController extends Controller
             'avatar' => $avatar
         ]);
 
+        // get the plan after submitting the form
+        $plan = Plans::findOrFail($data['plan']);
+
+        // subscribe the user
+        $user->newSubscription('main', $plan->braintree_plan)->create($data['payment_method_nonce']);
+
         Profile::create(['user_id'=>$user->id]);
 
         return $user;
     }
 
-    public function getPlans($id){
-        $getplans = Plans::where('id','=',$id);
-        return view('auth.register',compact("getplans"));
+    public function getPlans($slug){
+        $plans = Plans::where('slug','=',$slug)->first();
+        return view('auth.register',compact("plans"));
     }
 }

@@ -4,19 +4,24 @@
     <link rel="stylesheet" href="{{ asset('css/pricing/style.css') }}">
     <section>
 
+
         <div class="cd-pricing-container cd-has-margins">
 
             <ul class="cd-pricing-list">
                 @if (count($plans) > 0)
                     {{count($plans) }}
                     @foreach($plans as $plan)
+                        @if($plan->id == 2)
+                        <li class="cd-popular">
+                        @else
                         <li>
+                        @endif
                             <header class="cd-pricing-header">
                                 <h2>{{$plan->name}}</h2>
 
                                 <div class="cd-price">
                                     <span class="cd-currency">$</span>
-                                    <span class="cd-value">{{$plan->price}}</span>
+                                    <span class="cd-value">{{$plan->cost}}</span>
                                     <span class="cd-duration">mo</span>
                                 </div>
                             </header> <!-- .cd-pricing-header -->
@@ -30,7 +35,7 @@
                             </div> <!-- .cd-pricing-body -->
 
                             <footer class="cd-pricing-footer">
-                                <a class="cd-select" href="{{ url('register') }}/{{  str_slug($plan->name) }} ">Select</a>
+                                <a class="cd-select" href="{{ url('register') }}/{{ $plan->slug }} ">Select</a>
                             </footer> <!-- .cd-pricing-footer -->
                         </li>
                     @endforeach

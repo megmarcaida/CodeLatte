@@ -33,6 +33,9 @@ Route::get('/register/{plan}/', [
     'as' => 'getplans'
 ]);
 
+Route::get('/braintree/token', 'BraintreeTokenController@token');
+Route::post('/subscribe', 'SubscriptionController@store');
+
 //HOMEPAGES
 Route::get('/plan',[
     'uses' => 'PlansController@getPlans'

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class PlansController extends Controller
 {
-    public function add(Request $request)
+    /*public function add(Request $request)
     {
         $this->validate($request,[
             'name' => 'required',
@@ -27,7 +27,7 @@ class PlansController extends Controller
             'message' => 'Plans created successfully',
             'plans' =>$plans
         ]);
-    }
+    }*/
 
     public function plans()
     {
@@ -50,16 +50,16 @@ class PlansController extends Controller
         ]);
     }
 
-    public function delete($id)
+    /*public function delete($id)
     {
         $plans = Plans::find($id)->delete();
 
         return response()->json([
             'message'=>'Plan deleted successfully'
         ]);
-    }
+    }*/
 
-    public function update(Request $request,$id)
+    /*public function update(Request $request,$id)
     {
         $this->validate($request,[
             'name' => 'required',
@@ -74,7 +74,7 @@ class PlansController extends Controller
         return response()->json([
             'message' => 'Plans updated successfully'
         ]);
-    }
+    }*/
 
 
 

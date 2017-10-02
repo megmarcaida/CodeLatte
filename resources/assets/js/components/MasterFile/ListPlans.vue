@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <div class="col-xs-12 col-md-4 col-lg-4">
+        <div style="display:none;" class="col-xs-12 col-md-4 col-lg-4">
             <div class="panel">
                 <div class="panel-heading">
                     <h4 class="panel-title">Add Plan</h4>
@@ -37,7 +37,7 @@
             </div><!-- panel -->
         </div> <!-- col -->
 
-        <div class="col-xs-12 col-md-8 col-lg-8">
+        <div class="col-xs-12 col-md-12 col-lg-12">
             <div class="panel">
                 <div class="panel-heading">
                     <h4 class="panel-title">Plans List</h4>
@@ -50,7 +50,7 @@
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Discount</th>
-                                <th>Action</th>
+                               <!-- <th>Action</th>-->
                             </tr>
                             </thead>
 

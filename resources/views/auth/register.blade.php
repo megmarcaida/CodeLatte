@@ -6,7 +6,7 @@
 
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading"><h3 class="text-center">{{ $plans->name }}</h3></div>
                 <div class="panel-body">
 
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
@@ -79,10 +79,19 @@
                             </div>
                         </div>
 
+                       {{-- @if($plans->id != 1)--}}
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
+                                <div id="dropin-container"></div>
+                                <input type="hidden" name="plan" value="{{ $plans->id }}">
+                            </div>
+                        </div>
+                        {{--@endif--}}
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button id="payment-button" type="submit"  class="btn btn-primary btn-flat">
+                                    Pay now
                                 </button>
                             </div>
                         </div>
@@ -95,4 +104,18 @@
 
 @include('includes.data-stuff')
 @include('includes.footer')
+<script src="https://js.braintreegateway.com/js/braintree-2.30.0.min.js"></script>
+
+<script>
+    $.ajax({
+        url: '{{ url('braintree/token') }}'
+    }).done(function (response) {
+        braintree.setup(response.data.token, 'dropin', {
+            container: 'dropin-container',
+            onReady: function () {
+                $('#payment-button').removeClass('hidden');
+            }
+        });
+    });
+</script>
 @endsection
