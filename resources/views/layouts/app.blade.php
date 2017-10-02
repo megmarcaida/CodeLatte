@@ -15,6 +15,8 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/noty.css') }}" rel="stylesheet">
 
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
     <div id="app">
@@ -52,7 +54,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a class="latte-menu" href="{{ route('login') }}">For Business</a></li>
-                            <li><a class="latte-menu" href="{{ url('testimonials') }}">Testimonials</a></li>
+                            <li><a class="latte-menu" href="{{ route('login') }}">Testimonials</a></li>
                             <li><a class="latte-menu" href="{{ route('login') }}">Login</a></li>
                             <li><a class="free-trial" href="{{ url('plan') }}">Free Trial</a></li>
                         @else

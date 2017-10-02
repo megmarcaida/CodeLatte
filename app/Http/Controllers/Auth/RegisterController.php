@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Profile;
 use App\User;
+use App\Plans;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -85,5 +86,10 @@ class RegisterController extends Controller
         Profile::create(['user_id'=>$user->id]);
 
         return $user;
+    }
+
+    public function getPlans($id){
+        $getplans = Plans::where('id','=',$id);
+        return view('auth.register',compact("getplans"));
     }
 }

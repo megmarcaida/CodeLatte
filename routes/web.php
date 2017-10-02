@@ -26,10 +26,18 @@ Route::get('/admin/home', function(){
     return view('admin.home');
 });
 
+
+
+Route::get('/register/{plan}/', [
+    'uses' => 'Auth\RegisterController@getPlans',
+    'as' => 'getplans'
+]);
+
 //HOMEPAGES
-Route::get('/plan', function(){
-    return view('plan');
-});
+Route::get('/plan',[
+    'uses' => 'PlansController@getPlans'
+
+]);
 Route::get('/about', function() {
     return view('about');
 });

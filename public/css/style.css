@@ -1,3 +1,12 @@
+body{
+    font-family: "Open Sans", sans-serif;
+}
+
+div.auth-content{
+    height: 55em;
+    padding-top: 10em;
+}
+
 a.free-trial{
     border: 1px solid #b68c5d;
     border-radius: 4px;
