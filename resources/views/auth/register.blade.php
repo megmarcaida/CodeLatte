@@ -29,6 +29,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Username</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+
+                                @if ($errors->has('username'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 
@@ -42,7 +56,6 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
@@ -79,19 +92,25 @@
                             </div>
                         </div>
 
-                       {{-- @if($plans->id != 1)--}}
+                        @if($plans->id != 1)
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <label for="password-confirm" class="col-md-4 control-label">Payment Method : </label>
+
+                            <div class="col-md-6 ">
                                 <div id="dropin-container"></div>
-                                <input type="hidden" name="plan" value="{{ $plans->id }}">
+
                             </div>
                         </div>
-                        {{--@endif--}}
-
+                        @endif
+                        <input type="hidden" name="plan" value="{{ $plans->id }}">
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button id="payment-button" type="submit"  class="btn btn-primary btn-flat">
+                                    @if($plans->id != 1)
                                     Pay now
+                                    @else
+                                        Sign Up
+                                    @endif
                                 </button>
                             </div>
                         </div>
@@ -104,18 +123,5 @@
 
 @include('includes.data-stuff')
 @include('includes.footer')
-<script src="https://js.braintreegateway.com/js/braintree-2.30.0.min.js"></script>
 
-<script>
-    $.ajax({
-        url: '{{ url('braintree/token') }}'
-    }).done(function (response) {
-        braintree.setup(response.data.token, 'dropin', {
-            container: 'dropin-container',
-            onReady: function () {
-                $('#payment-button').removeClass('hidden');
-            }
-        });
-    });
-</script>
 @endsection

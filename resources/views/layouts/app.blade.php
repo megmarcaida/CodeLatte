@@ -17,7 +17,6 @@
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
-    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -44,10 +43,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
 
-                        @if(Auth::check())
-                        &nbsp;<unread></unread>
-                              <search></search>
-                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -59,7 +54,9 @@
                             <li><a class="latte-menu" href="{{ route('login') }}">Login</a></li>
                             <li><a class="free-trial" href="{{ url('plan') }}">Free Trial</a></li>
                         @else
+                            <search></search>
                             <li><a href="{{ route('home') }}">Feed</a></li>
+                            <unread></unread>
                             <li><a href="{{ route('profile',['slug'=> Auth::user()->slug ]) }}">{{ Auth::user()->name  }}</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -107,6 +104,7 @@
 
 
 
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/noty.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
 
@@ -126,6 +124,20 @@
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
+    </script>
+    <script src="https://js.braintreegateway.com/js/braintree-2.30.0.min.js"></script>
+
+    <script>
+        $.ajax({
+            url: '{{ url('braintree/token') }}'
+        }).done(function (response) {
+            braintree.setup(response.data.token, 'dropin', {
+                container: 'dropin-container',
+                onReady: function () {
+                    $('#payment-button').removeClass('hidden');
+                }
+            });
+        });
     </script>
 </body>
 </html>

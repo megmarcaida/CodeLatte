@@ -50,7 +50,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255|unique:users',
+            'username' => 'required|string|max:255|unique:users',
+            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'gender' => 'required|bool'
@@ -75,19 +76,28 @@ class RegisterController extends Controller
             $avatar = 'public/defaults/avatars/female.png';
         }
         $user = User::create([
+            'username' => $data['username'],
             'name' => $data['name'],
             'email' => $data['email'],
             'gender' => $data['gender'],
             'password' => bcrypt($data['password']),
-            'slug' => str_slug($data['name']),
+            'slug' => str_slug($data['username']),
             'avatar' => $avatar
         ]);
 
         // get the plan after submitting the form
+
         $plan = Plans::findOrFail($data['plan']);
 
         // subscribe the user
-        $user->newSubscription('main', $plan->braintree_plan)->create($data['payment_method_nonce']);
+        if ($data['plan'] != 1) {
+            $payment_method_nonce = $data['payment_method_nonce'];
+
+            $user->newSubscription('main', $plan->braintree_plan)->create($payment_method_nonce);
+        }
+        else
+            $payment_method_nonce = 'Trial Period';
+
 
         Profile::create(['user_id'=>$user->id]);
 

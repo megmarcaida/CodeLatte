@@ -59886,7 +59886,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": "/notifications"
     }
-  }, [_vm._v("\n        Unread notifications\n        "), _c('span', {
+  }, [_c('span', {
+    staticClass: "fa fa-bell-o"
+  }, [_vm._v(_vm._s(_vm.all_nots_count))]), _vm._v(" "), _c('span', {
     staticClass: "badge"
   }, [_vm._v(_vm._s(_vm.all_nots_count))])])])
 },staticRenderFns: []}

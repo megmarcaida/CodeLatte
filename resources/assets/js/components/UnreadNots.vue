@@ -2,8 +2,8 @@
 
     <li>
         <a href="/notifications">
-            Unread notifications
-            <span class="badge">{{ all_nots_count }}</span>
+            <span class="fa fa-bell-o">{{ all_nots_count }}</span>
+           <span class="badge">{{ all_nots_count }}</span>
         </a>
     </li>
 
