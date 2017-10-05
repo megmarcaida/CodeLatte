@@ -1,17 +1,16 @@
 <template>
     <li>
-                <input type="text" class="input-lg form-control" placeholder="Search users..." v-model="query" @keyup.enter="search">
+        <input style="margin-top:1em;" type="text" class="input-sm form-control" placeholder="Search users..." v-model="query" @keyup.enter="search">
 
-                <br/>
-                <div class="row" v-if="results.length">
-                    <div class="text-center" v-for="user in results">
-                        <a :href="'/profile/'+ user.slug">
-                            <img :src="user.avatar" alt="" width="50px" height="50px" class="searched-user">
-                            <h4 class="text-center">{{ user.name }}</h4>
-                        </a>
+        <div class="row" v-if="results.length">
+            <div class="text-center" v-for="user in results">
+                <a :href="'/profile/'+ user.slug">
+                    <img :src="user.avatar" alt="" width="50px" height="50px" class="searched-user">
+                    <h4 class="text-center">{{ user.name }}</h4>
+                </a>
 
-                    </div>
-                </div>
+            </div>
+        </div>
     </li>
 </template>
 

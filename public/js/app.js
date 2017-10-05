@@ -53779,7 +53779,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "width": "40px",
         "height": "40px"
       }
-    }), _vm._v("\n                    " + _vm._s(post.user.name) + "\n                    "), _c('span', {
+    }), _vm._v("\n                    " + _vm._s(post.user.firstname) + "\n                    "), _c('span', {
       staticClass: "pull-right"
     }, [_vm._v("\n                        " + _vm._s(post.created_at) + "\n                    ")])]), _vm._v(" "), _c('div', {
       staticClass: "panel-body"
@@ -54061,7 +54061,6 @@ exports.push([module.i, "\n.searched-user{\n    border-radius:50%;\n}\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -59334,7 +59333,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.query),
       expression: "query"
     }],
-    staticClass: "input-lg form-control",
+    staticClass: "input-sm form-control",
+    staticStyle: {
+      "margin-top": "1em"
+    },
     attrs: {
       "type": "text",
       "placeholder": "Search users..."
@@ -59352,7 +59354,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.query = $event.target.value
       }
     }
-  }), _vm._v(" "), _c('br'), _vm._v(" "), (_vm.results.length) ? _c('div', {
+  }), _vm._v(" "), (_vm.results.length) ? _c('div', {
     staticClass: "row"
   }, _vm._l((_vm.results), function(user) {
     return _c('div', {
@@ -59887,10 +59889,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "/notifications"
     }
   }, [_c('span', {
-    staticClass: "fa fa-bell-o"
-  }, [_vm._v(_vm._s(_vm.all_nots_count))]), _vm._v(" "), _c('span', {
     staticClass: "badge"
-  }, [_vm._v(_vm._s(_vm.all_nots_count))])])])
+  }, [_vm._v(_vm._s(_vm.all_nots_count))]), _vm._v(" "), _c('span', {
+    staticClass: "glyphicon glyphicon-bell"
+  })])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

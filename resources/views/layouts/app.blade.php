@@ -22,7 +22,7 @@
     <div id="app">
         <init></init>
         <nav class="navbar navbar-default navbar-static-top latte-nav">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -41,8 +41,8 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-
+                    <ul class="nav navbar-nav latte-nav">
+                        <li><a class="latte-menu" href="{{ route('login') }}">Courses</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -55,9 +55,9 @@
                             <li><a class="free-trial" href="{{ url('plan') }}">Free Trial</a></li>
                         @else
                             <search></search>
-                            <li><a href="{{ route('home') }}">Feed</a></li>
                             <unread></unread>
-                            <li><a href="{{ route('profile',['slug'=> Auth::user()->slug ]) }}">{{ Auth::user()->name  }}</a></li>
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="{{ route('profile',['slug'=> Auth::user()->slug ]) }}">{{ Auth::user()->firstname  }}</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <span class="caret"></span>

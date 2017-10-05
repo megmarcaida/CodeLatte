@@ -2,8 +2,8 @@
 
     <li>
         <a href="/notifications">
-            <span class="fa fa-bell-o">{{ all_nots_count }}</span>
-           <span class="badge">{{ all_nots_count }}</span>
+            <span class="badge">{{ all_nots_count }}</span>
+            <span class="glyphicon glyphicon-bell"></span>
         </a>
     </li>
 

@@ -6,7 +6,7 @@
             <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        {{ $user->name  }}'s Profile.
+                        {{ $user->firstname  }}'s Profile.
                     </div>
                     <div class="panel-body">
                         <div class="text-center">
