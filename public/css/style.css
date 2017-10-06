@@ -40,6 +40,10 @@ a.free-trial:hover{
     font-weight: bold;
 }
 
+.latte-icons{
+    font-size: 2em;
+}
+
 .latte-brand{
     color:#b68c5d !important;
 }
@@ -150,6 +154,34 @@ video.gal-media
     height: 200px;
 }
 
+.fa-stack[data-count]:after{
+    position:absolute;
+    right:0%;
+    top:1%;
+    content: attr(data-count);
+    font-size:30%;
+    padding:.6em;
+    border-radius:999px;
+    line-height:.75em;
+    color: white;
+    background:rgba(255,0,0,.85);
+    text-align:center;
+    min-width:2em;
+    font-weight:bold;
+}
+
+.not-bell{
+    top:-0.7em !important;
+    left:20px !important;
+    font-size: 30px !important;
+}
+
+.span-count{
+    font-size:40px !important;
+    top:-0.5em !important;;
+    position:relative !important;;
+    height:auto !important;
+}
 
 
 

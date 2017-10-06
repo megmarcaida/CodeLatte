@@ -16,13 +16,13 @@
     <link href="{{ asset('css/noty.css') }}" rel="stylesheet">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
 </head>
 <body>
     <div id="app">
         <init></init>
         <nav class="navbar navbar-default navbar-static-top latte-nav">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -42,22 +42,29 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav latte-nav">
-                        <li><a class="latte-menu" href="{{ route('login') }}">Courses</a></li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a class="latte-menu" href="{{ route('login') }}">For Business</a></li>
-                            <li><a class="latte-menu" href="{{ route('login') }}">Testimonials</a></li>
-                            <li><a class="latte-menu" href="{{ route('login') }}">Login</a></li>
-                            <li><a class="free-trial" href="{{ url('plan') }}">Free Trial</a></li>
+                            <li><a title="Testimonials" class="latte-menu" href="{{ url('testimonials') }}">Testimonials</a></li>
+                            <li><a title="About" class="latte-menu" href="{{ url('about') }}">About</a></li>
+                            <li><a title="Gallery" class="latte-menu" href="{{ url('gallery') }}">Gallery</a></li>
+                            <li><a title="Faqs" class="latte-menu" href="{{ url('faqs') }}">Faqs</a></li>
+                            <li><a title="Login" class="latte-menu" href="{{ route('login') }}">Login</a></li>
+                            <li><a title="Try our plans" class="free-trial" href="{{ url('plan') }}">Free Trial</a></li>
                         @else
                             <search></search>
                             <unread></unread>
-                            <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="{{ route('profile',['slug'=> Auth::user()->slug ]) }}">{{ Auth::user()->firstname  }}</a></li>
+
+                            <li><a title="Take a curriculum" class="latte-icons" href="{{ url('/users/curriculum') }}"><i class="fa fa-laptop" aria-hidden="true"></i></a></li>
+                            <li><a title="Show your progress" class="latte-icons" href="{{ url('/users/progress') }}"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
+                            <li><a title="Upgrade Plans" class="latte-icons" href="{{ url('/users/check_plans') }}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></li>
+                            <li><a title="Check your billing" class="latte-icons" href="{{ url('/users/billing_info') }}"><i class="fa fa-credit-card" aria-hidden="true"></i></a></li>
+                            <li><a title="News Feed" href="{{ route('home') }}"class="latte-icons"><i class="fa fa-newspaper-o" aria-hidden="true"></i></a></li>
+                            <li><a class="latte-menu" title="Go to your profile" href="{{ route('profile',['slug'=> Auth::user()->slug ]) }}">{{ Auth::user()->firstname  }}</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <span class="caret"></span>

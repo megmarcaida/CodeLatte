@@ -2,12 +2,14 @@
 
 @section('content')
 
+
     <section id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        Score
+        Billing Info
     </section>
 
 
     @include('includes.footer')
+
 
 
 @endsection

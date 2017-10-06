@@ -59326,7 +59326,12 @@ module.exports = '3.24.3';
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('li', [_c('input', {
+  return _c('li', {
+    staticStyle: {
+      "width": "320px",
+      "margin": "0 auto"
+    }
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -59335,7 +59340,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "input-sm form-control",
     staticStyle: {
-      "margin-top": "1em"
+      "margin": "1em auto"
     },
     attrs: {
       "type": "text",
@@ -59854,6 +59859,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -59889,10 +59898,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "/notifications"
     }
   }, [_c('span', {
-    staticClass: "badge"
-  }, [_vm._v(_vm._s(_vm.all_nots_count))]), _vm._v(" "), _c('span', {
-    staticClass: "glyphicon glyphicon-bell"
-  })])])
+    staticClass: "fa-stack has-badge span-count",
+    attrs: {
+      "data-count": _vm.all_nots_count
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-bell fa-stack-1x not-bell"
+  })])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

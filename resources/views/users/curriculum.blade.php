@@ -3,7 +3,7 @@
 @section('content')
 
     <section id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        Score
+        Course
     </section>
 
 

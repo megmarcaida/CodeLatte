@@ -2,8 +2,12 @@
 
     <li>
         <a href="/notifications">
-            <span class="badge">{{ all_nots_count }}</span>
-            <span class="glyphicon glyphicon-bell"></span>
+            <span class="fa-stack has-badge span-count" v-bind:data-count="all_nots_count">
+              <i class="fa fa-bell fa-stack-1x not-bell"></i>
+            </span>
+
+            <!--<span class="badge">{{ all_nots_count }}</span>
+            <span class="glyphicon glyphicon-bell"></span>-->
         </a>
     </li>
 

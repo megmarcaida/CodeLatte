@@ -1,6 +1,6 @@
 <template>
-    <li>
-        <input style="margin-top:1em;" type="text" class="input-sm form-control" placeholder="Search users..." v-model="query" @keyup.enter="search">
+    <li style="width: 320px;margin: 0 auto;">
+        <input style="margin:1em auto;" type="text" class="input-sm form-control" placeholder="Search users..." v-model="query" @keyup.enter="search">
 
         <div class="row" v-if="results.length">
             <div class="text-center" v-for="user in results">
