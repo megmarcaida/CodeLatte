@@ -170,6 +170,7 @@ return [
 
         Laravel\Scout\ScoutServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
+        Laravel\Cashier\CashierServiceProvider::class,
 
         /*
          * Application Service Providers...

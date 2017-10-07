@@ -30,26 +30,26 @@ class PlansContentController extends Controller
     }
 
     public function planscontent()
-    {
+{
 
-        $planscontent = PlansContent::with('plans')->paginate(10);
+    $planscontent = PlansContent::with('plans')->paginate(10);
 
-        $response = [
-            'pagination' => [
-                'total' => $planscontent->total(),
-                'per_page' => $planscontent->perPage(),
-                'current_page' => $planscontent->currentPage(),
-                'last_page' => $planscontent->lastPage(),
-                'from' => $planscontent->firstItem(),
-                'to' => $planscontent->lastItem()
-            ],
-            'pc' => $planscontent
-        ];
+    $response = [
+        'pagination' => [
+            'total' => $planscontent->total(),
+            'per_page' => $planscontent->perPage(),
+            'current_page' => $planscontent->currentPage(),
+            'last_page' => $planscontent->lastPage(),
+            'from' => $planscontent->firstItem(),
+            'to' => $planscontent->lastItem()
+        ],
+        'pc' => $planscontent
+    ];
 
-        return response()->json([
-            'planscontent' => $response
-        ]);
-    }
+    return response()->json([
+        'planscontent' => $response
+    ]);
+}
 
     public function delete($id)
     {

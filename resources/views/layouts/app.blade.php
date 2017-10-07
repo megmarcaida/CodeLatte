@@ -15,6 +15,8 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/noty.css') }}" rel="stylesheet">
 
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
 </head>
 <body>
     <div id="app">
@@ -39,25 +41,30 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav latte-nav">
 
-                        @if(Auth::check())
-                        &nbsp;<unread></unread>
-                              <search></search>
-                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a class="latte-menu" href="{{ route('login') }}">For Business</a></li>
-                            <li><a class="latte-menu" href="{{ url('testimonials') }}">Testimonials</a></li>
-                            <li><a class="latte-menu" href="{{ route('login') }}">Login</a></li>
-                            <li><a class="free-trial" href="{{ url('plan') }}">Free Trial</a></li>
+                            <li><a title="Testimonials" class="latte-menu" href="{{ url('testimonials') }}">Testimonials</a></li>
+                            <li><a title="About" class="latte-menu" href="{{ url('about') }}">About</a></li>
+                            <li><a title="Gallery" class="latte-menu" href="{{ url('gallery') }}">Gallery</a></li>
+                            <li><a title="Faqs" class="latte-menu" href="{{ url('faqs') }}">Faqs</a></li>
+                            <li><a title="Login" class="latte-menu" href="{{ route('login') }}">Login</a></li>
+                            <li><a title="Try our plans" class="free-trial" href="{{ url('plan') }}">Free Trial</a></li>
                         @else
-                            <li><a href="{{ route('home') }}">Feed</a></li>
-                            <li><a href="{{ route('profile',['slug'=> Auth::user()->slug ]) }}">{{ Auth::user()->name  }}</a></li>
+                            <search></search>
+                            <unread></unread>
+
+                            <li><a title="Take a curriculum" class="latte-icons" href="{{ url('/users/curriculum') }}"><i class="fa fa-laptop" aria-hidden="true"></i></a></li>
+                            <li><a title="Show your progress" class="latte-icons" href="{{ url('/users/progress') }}"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
+                            <li><a title="Upgrade Plans" class="latte-icons" href="{{ url('/users/check_plans') }}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></li>
+                            <li><a title="Check your billing" class="latte-icons" href="{{ url('/users/billing_info') }}"><i class="fa fa-credit-card" aria-hidden="true"></i></a></li>
+                            <li><a title="News Feed" href="{{ route('home') }}"class="latte-icons"><i class="fa fa-newspaper-o" aria-hidden="true"></i></a></li>
+                            <li><a class="latte-menu" title="Go to your profile" href="{{ route('profile',['slug'=> Auth::user()->slug ]) }}">{{ Auth::user()->firstname  }}</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <span class="caret"></span>
@@ -124,6 +131,20 @@
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
+    </script>
+    <script src="https://js.braintreegateway.com/js/braintree-2.30.0.min.js"></script>
+
+    <script>
+        $.ajax({
+            url: '{{ url('braintree/token') }}'
+        }).done(function (response) {
+            braintree.setup(response.data.token, 'dropin', {
+                container: 'dropin-container',
+                onReady: function () {
+                    $('#payment-button').removeClass('hidden');
+                }
+            });
+        });
     </script>
 </body>
 </html>

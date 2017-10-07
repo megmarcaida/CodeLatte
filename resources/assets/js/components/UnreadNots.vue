@@ -1,10 +1,22 @@
 <template>
 
     <li>
-        <a href="/notifications">
-            Unread notifications
-            <span class="badge">{{ all_nots_count }}</span>
+
+        <a href="/notifications" v-if="all_nots_count > 1">
+            <span class="fa-stack has-badge span-count" v-bind:data-count="all_nots_count">
+              <i class="fa fa-bell fa-stack-1x not-bell"></i>
+            </span>
+            <!--<span class="badge">{{ all_nots_count }}</span>
+            <span class="glyphicon glyphicon-bell"></span>-->
         </a>
+        <a href="/notifications" v-else-if="all_nots_count == 0">
+            <span class="fa-stack has-badge span-count">
+              <i class="fa fa-bell fa-stack-1x not-bell"></i>
+            </span>
+            <!--<span class="badge">{{ all_nots_count }}</span>
+            <span class="glyphicon glyphicon-bell"></span>-->
+        </a>
+
     </li>
 
 </template>

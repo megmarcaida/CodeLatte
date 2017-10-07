@@ -10,6 +10,6 @@ class PlansContent extends Model
 
     public function plans()
     {
-        return $this->belongsTo('App\Plans');
+        return $this->belongsTo('App\Plans','plans_id');
     }
 }

@@ -7,19 +7,21 @@ use App\Traits\Friendable;
 use Laravel\Scout\Searchable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use Friendable;
     use Searchable;
+    use Billable;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','slug','gender','avatar'
+        'username','firstname','lastname', 'email', 'password','slug','gender','avatar'
     ];
 
     /**

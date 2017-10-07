@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Profile;
 use App\User;
+use App\Plans;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -49,7 +50,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255|unique:users',
+            'username' => 'required|string|max:255|unique:users',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'gender' => 'required|bool'
@@ -74,16 +77,37 @@ class RegisterController extends Controller
             $avatar = 'public/defaults/avatars/female.png';
         }
         $user = User::create([
-            'name' => $data['name'],
+            'username' => $data['username'],
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
             'email' => $data['email'],
             'gender' => $data['gender'],
             'password' => bcrypt($data['password']),
-            'slug' => str_slug($data['name']),
+            'slug' => str_slug($data['username']),
             'avatar' => $avatar
         ]);
+
+        // get the plan after submitting the form
+
+        $plan = Plans::findOrFail($data['plan']);
+
+        // subscribe the user
+        if ($data['plan'] != 1) {
+            $payment_method_nonce = $data['payment_method_nonce'];
+
+            $user->newSubscription('main', $plan->braintree_plan)->create($payment_method_nonce);
+        }
+        else
+            $payment_method_nonce = 'Trial Period';
+
 
         Profile::create(['user_id'=>$user->id]);
 
         return $user;
+    }
+
+    public function getPlans($slug){
+        $plans = Plans::where('slug','=',$slug)->first();
+        return view('auth.register',compact("plans"));
     }
 }

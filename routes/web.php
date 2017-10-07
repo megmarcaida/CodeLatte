@@ -26,10 +26,21 @@ Route::get('/admin/home', function(){
     return view('admin.home');
 });
 
+
+
+Route::get('/register/{plan}/', [
+    'uses' => 'Auth\RegisterController@getPlans',
+    'as' => 'getplans'
+]);
+
+Route::get('/braintree/token', 'BraintreeTokenController@token');
+Route::post('/subscribe', 'SubscriptionController@store');
+
 //HOMEPAGES
-Route::get('/plan', function(){
-    return view('plan');
-});
+Route::get('/plan',[
+    'uses' => 'PlansController@getPlans'
+
+]);
 Route::get('/about', function() {
     return view('about');
 });
@@ -46,9 +57,6 @@ Route::get('/courses', function() {
     return view('courses');
 });
 
-Route::get('/faqs', function() {
-    return view('faqs');
-});
 Route::get('/contact_us', function() {
     return view('contact_us');
 });
@@ -132,13 +140,14 @@ Route::group(['middleware'=>'auth'],function(){
 
 
     //FOR USER PAGES
-    Route::get('/users/my_course', function(){
-        return view('users.my_course');
+    Route::get('/users/curriculum', function(){
+        return view('users.curriculum');
     });
 
-    Route::get('/users/account_information', function(){
-        return view('users.account_information');
-    });
+    Route::get('/users/curriculum/list',[
+        'uses' => 'CourseListController@getCurriculum'
+    ]);
+
 
     Route::get('/users/check_plans', function(){
         return view('users.check_plans');
@@ -148,12 +157,12 @@ Route::group(['middleware'=>'auth'],function(){
         return view('users.billing_info');
     });
 
-    Route::get('/users/account_information', function(){
-        return view('users.account_information');
-    });
-
     Route::get('/users/glossary', function(){
         return view('users.glossary');
+    });
+
+    Route::get('/users/progress', function(){
+        return view('users.progress');
     });
 
     //USER PAGES

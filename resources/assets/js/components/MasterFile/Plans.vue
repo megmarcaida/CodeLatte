@@ -13,16 +13,16 @@
         <td>
             <div class="form-group">
                 <input type="number" class="form-control" id="price"  v-model="editForm.price" v-if="edit">
-                <span v-else>{{ plan.price }}</span>
+                <span v-else>${{ plan.cost }}</span>
             </div>
         </td>
         <td>
             <div class="form-group">
                 <input type="number" class="form-control" id="discount"  v-model="editForm.discount" v-if="edit">
-                <span v-else>{{ plan.discount }}</span>
+                <span v-else>{{ plan.description }}</span>
             </div>
         </td>
-        <td>
+        <!--<td>
             <button type="button" class="btn btn-info" v-on:click="editPlan" v-if="!edit">
                 Edit
             </button>
@@ -37,7 +37,7 @@
             <button type="button" class="btn btn-danger" v-on:click="$emit('delete-plan', plan)" v-if="!edit">
                 Delete
             </button>
-        </td>
+        </td>-->
     </tr>
 </template>
 

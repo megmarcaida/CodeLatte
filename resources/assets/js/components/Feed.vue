@@ -5,7 +5,7 @@
                 <div class="panel panel-default" v-for="post in posts">
                     <div class="panel-heading">
                         <img :src="post.user.avatar" alt="" width="40px" height="40px" class="avatar-feed">
-                        {{ post.user.name }}
+                        {{ post.user.firstname }}
                         <span class="pull-right">
                             {{ post.created_at }}
                         </span>

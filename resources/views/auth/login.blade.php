@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container auth-content">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -65,4 +65,7 @@
         </div>
     </div>
 </div>
+
+@include('includes.data-stuff')
+@include('includes.footer')
 @endsection
