@@ -100,4 +100,26 @@ class CourseListController extends Controller
             'message' => 'Course List updated successfully'
         ]);
     }
+
+    public function getCurriculum()
+    {
+
+        $curriculums = CourseLists::with('plans')->paginate(10);
+
+        $response = [
+            'pagination' => [
+                'total' => $curriculums->total(),
+                'per_page' => $curriculums->perPage(),
+                'current_page' => $curriculums->currentPage(),
+                'last_page' => $curriculums->lastPage(),
+                'from' => $curriculums->firstItem(),
+                'to' => $curriculums->lastItem()
+            ],
+            'curriculums' => $curriculums
+        ];
+
+        return response()->json([
+            'curriculums' => $response
+        ]);
+    }
 }

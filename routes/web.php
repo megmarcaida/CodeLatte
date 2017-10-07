@@ -144,6 +144,11 @@ Route::group(['middleware'=>'auth'],function(){
         return view('users.curriculum');
     });
 
+    Route::get('/users/curriculum/list',[
+        'uses' => 'CourseListController@getCurriculum'
+    ]);
+
+
     Route::get('/users/check_plans', function(){
         return view('users.check_plans');
     });

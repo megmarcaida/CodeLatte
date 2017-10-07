@@ -61,6 +61,11 @@ Vue.component('questionnaires', require('./components/Test/Questionnaires.vue'))
 Vue.component('listquestionnaires', require('./components/Test/ListQuestionnaires.vue'));
 //ENDTEST
 
+//USERS
+Vue.component('curriculum', require('./components/Users/Curriculum.vue'));
+//ENDUSERS
+
+
 import { store } from './store'
 
 const app = new Vue({
