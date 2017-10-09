@@ -84,7 +84,8 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'password' => bcrypt($data['password']),
             'slug' => str_slug($data['username']),
-            'avatar' => $avatar
+            'avatar' => $avatar,
+            'plan_id' => $data['plan']
         ]);
 
         // get the plan after submitting the form

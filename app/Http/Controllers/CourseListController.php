@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class CourseListController extends Controller
 {
+
     public function add(Request $request)
     {
         $this->validate($request,[
@@ -21,6 +22,7 @@ class CourseListController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'plan_id' => $request->plan_id,
+            'slug' => str_slug($request->name),
             'status' => 1
         ]);
 
@@ -121,5 +123,24 @@ class CourseListController extends Controller
         return response()->json([
             'curriculums' => $response
         ]);
+    }
+
+    public function index($slug)
+    {
+        $courselist = CourseLists::where('slug',$slug)->first();
+        $tutorials = Tutorials::orderBy('id')->with(['programminglanguage','media','courselist'])->where('course_id','=',$courselist->id)->get();
+        /*$tutorials = Tutorials::leftjoin('programming_languages', 'tutorials.programminglanguage_id', '=', 'programming_languages.id')
+                ->leftjoin('media', 'tutorials.media_id', '=', 'media.id')
+                ->leftjoin('course_lists', 'tutorials.course_id', '=', 'course_lists.id')
+                ->where('course_lists.id',"=",$course->id);*/
+        return view('users.take-curriculum')->with(['tutorials' => $tutorials,'courselist' => $courselist]);
+    }
+
+    public function starttutorial($course_slug,$tutorial_slug){
+
+        $courselist = CourseLists::where('slug',$course_slug)->first();
+        $tutorials = Tutorials::orderBy('id')->with(['programminglanguage','media','courselist'])
+            ->where('course_id','=',$courselist->id)->where('slug','=',$tutorial_slug)->get();
+        return view('users.start-tutorials')->with(['tutorials' => $tutorials,'courselist' => $courselist]);
     }
 }

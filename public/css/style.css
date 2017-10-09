@@ -1,5 +1,5 @@
 body{
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans", "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
 }
 
 div.auth-content{
@@ -202,92 +202,153 @@ video.gal-media
     color: #1b150d;
 }
 
-.bg-auburn {
-   background-color: #922724;
+.curriculum a{
+    text-decoration: none;
+
 }
 
+.card-curriculum{
+    margin: 0 auto 2rem;
+    background-color: white;
+    word-wrap: break-word;
+    box-shadow: 0 0.0625em 0.1875em 0 rgba(0, 0, 0, 0.1), 0 0.5em 0 -0.25em #f2f2f2, 0 0.5em 0.1875em -0.25em rgba(0, 0, 0, 0.1), 0 1em 0 -0.5em #e5e5e5, 0 1em 0.1875em -0.5em rgba(0, 0, 0, 0.1);
+    transition: all 100ms;
+}
+
+.card-curriculum:hover{
+    margin: 0 auto 2rem;
+    background-color: white;
+    word-wrap: break-word;
+    box-shadow: 0 0.0625em 0.1875em 0 rgba(0, 0, 0, 0.1), 0 1em 0 -0.25em #f2f2f2, 0 1.5em 0.1875em -0.25em rgba(0, 0, 0, 0.1), 0 1.5em 0 -0.5em #e5e5e5, 0 1.5em 0.1875em -0.5em rgba(0, 0, 0, 0.1);
+}
+
+div.panel-body > a{
+    text-decoration: none;
+}
+
+.card-curriculum-footer a{
+    font-size: 1em;
+
+}
+
+#curriculum strong {
+    font-size: 16px;
+    color: #7b8b8e;
+    margin-bottom: 8px;
+    display: block;
+}
+
+
+.bg-auburn {
+   background-color: #922724 !important;
+    color:#fff !important;
+}
+
+
+
 .bg-hunter {
-    background-color: #355e3b;
+    background-color: #355e3b !important;
+    color:#fff !important;
 }
 
 .bg-jet {
-    background-color: #050002;
+    background-color: #050002 !important;
+    color:#fff !important;
 }
 
 .bg-redd {
-    background-color: #d60e0e;
+    background-color: #d60e0e !important;
+    color:#fff !important;
 }
 
 .bg-rusty {
-    background-color: #b7410e;
+    background-color: #b7410e !important;
+    color:#fff !important;
 }
 
 .bg-slate {
-    background-color: #708090;
+    background-color: #708090 !important;
+    color:#fff !important;
 }
 
 .bg-sterling {
-    background-color: #bec2cb;
+    background-color: #bec2cb !important;
+    color:#000000 !important;
 }
 
 .bg-fuschia {
-    background-color: #FF0080;
+    background-color: #FF0080 !important;
+    color:#000000 !important;
 }
 
 .bg-cinnamon {
-    background-color: #D2691E;
+    background-color: #D2691E !important;
+    color:#fff !important;
 }
 
 .bg-diamond {
-    background-color: #c8e5eb;
+    background-color: #c8e5eb !important;
+    color:#000000 !important;
 }
 
 .bg-crystal {
-    background-color: #a7d8de;
+    background-color: #a7d8de !important;
+    color:#000000 !important;
 }
 
 .bg-ebony {
-    background-color: #282C34;
+    background-color: #282C34 !important;
+    color:#fff !important;
 }
 
 .bg-amber {
-     background-color: #ffbf00;
+     background-color: #ffbf00 !important;
+    color:#000000 !important;
  }
 
 .bg-hazel {
-      background-color: #776536;
+      background-color: #776536 !important;
+    color:#fff !important;
   }
 
 .bg-ruby {
-    background-color: #9b111e;
+    background-color: #9b111e !important;
+    color:#fff !important;
 }
 
 .bg-sable {
-    background-color: #624a3e;
+    background-color: #624a3e !important;
+    color:#fff !important;
 }
 
 .bg-siena {
-    background-color: #A0522D;
+    background-color: #A0522D !important;
+    color:#fff !important;
 }
 
 .bg-scarlet {
-    background-color: #ff2400;
+    background-color: #ff2400 !important;
+    color:#000 !important;
 }
 
 .bg-turquoise {
-    background-color: #40E0D0;
+    background-color: #40E0D0 !important;
+    color:#000 !important;
 }
 
 .bg-gold {
-    background-color: #D0B240;
+    background-color: #D0B240 !important;
+    color:#000 !important;
 }
 
 .bg-raven {
-    background-color: #667480;
+    background-color: #667480 !important;
+    color:#fff !important;
 }
 
 .bg-azure {
-    background-color: #F0FFFF;
+    background-color: #F0FFFF !important;
+    color:#000 !important;
 }
 
 

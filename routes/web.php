@@ -140,14 +140,27 @@ Route::group(['middleware'=>'auth'],function(){
 
 
     //FOR USER PAGES
+
+    //CURRICULUM
     Route::get('/users/curriculum', function(){
         return view('users.curriculum');
     });
+
+    Route::get('/users/curriculum/take/{slug}',[
+        'uses' => 'CourseListController@index',
+        'as' => 'curriculum'
+    ]);
+
+    Route::get('/users/library/{course_slug}/{tutorial_slug}',[
+        'uses' => 'CourseListController@starttutorial',
+        'as' => 'starttutorial'
+    ]);
 
     Route::get('/users/curriculum/list',[
         'uses' => 'CourseListController@getCurriculum'
     ]);
 
+    //ENDCURRICULUM
 
     Route::get('/users/check_plans', function(){
         return view('users.check_plans');

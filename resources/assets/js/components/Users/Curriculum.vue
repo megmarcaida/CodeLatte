@@ -1,11 +1,21 @@
 <template>
 
     <div class="col-xs-12 col-md-12 col-lg-12">
-            <div class="panel panel-primary"  v-for="curriculum in curriculums" >
-                <div class="panel-heading">{{ curriculum.name }}</div>
-                <div class="panel-body">
-                    {{ curriculum.description }}
-                </div>
+            <div class="curriculum" v-for="curriculum in curriculums">
+                <a v-bind:href="'curriculum/take/'+ curriculum.slug">
+                    <div class=" panel-primary card-curriculum">
+
+                            <div class="panel-heading"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;{{ curriculum.name }}</div>
+                            <div class="panel-body">
+                                {{ curriculum.description }}
+                            </div>
+                            <div class="panel-footer card-curriculum-footer">
+                                <a href="#" data-toggle="tooltip"  title="$80,000/yr"><i class="fa fa-university" aria-hidden="true"></i></a>
+                                <a href="" data-toggle="tooltip" title="Watch Trailer"><i class="fa fa-play-circle-o" aria-hidden="true"></i></a>
+                                <a v-bind:href="'curriculum/take/'+ curriculum.slug" class="btn btn-xs btn-primary pull-right">Switch</a>
+                            </div>
+                     </div>
+                </a>
             </div>
 
 
@@ -32,7 +42,6 @@
             </nav>
     </div>
 </template>
-
 <script>
     export default {
         data(){
@@ -108,6 +117,7 @@
         }
     }
 </script>
+
 
 <style>
     .avatar-feed{

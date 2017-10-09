@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tutorials extends Model
 {
-    protected $fillable = ['name','description','textarea','programminglanguage_id','media_id','course_id','views','status'];
+    protected $fillable = ['name','description','textarea','programminglanguage_id','media_id','course_id','views','slug','status'];
     public function programminglanguage()
     {
         return $this->belongsTo('App\ProgrammingLanguage','programminglanguage_id');

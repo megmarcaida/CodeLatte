@@ -26,6 +26,7 @@ class TutorialsController extends Controller
             'course_id' => $request->course_id,
             'textarea' => $request->textarea,
             'views' => 1,
+            'slug' => str_slug($request->name),
             'status' => 1
         ]);
 

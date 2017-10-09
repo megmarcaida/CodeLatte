@@ -17,6 +17,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css" type="text/css">
 </head>
 <body>
     <div id="app">
@@ -58,7 +59,6 @@
                         @else
                             <search></search>
                             <unread></unread>
-
                             <li><a title="Take a curriculum" class="latte-icons" href="{{ url('/users/curriculum') }}"><i class="fa fa-laptop" aria-hidden="true"></i></a></li>
                             <li><a title="Show your progress" class="latte-icons" href="{{ url('/users/progress') }}"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
                             <li><a title="Upgrade Plans" class="latte-icons" href="{{ url('/users/check_plans') }}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></li>
@@ -114,7 +114,6 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/noty.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
-
     <script>
         @if(Session::has('success'))
               $(document).ready(function(){
@@ -126,14 +125,28 @@
                 });
         @endif
     </script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            setTimeout(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+                $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+                    $('.tooltip').addClass('animated rubberBand');
+                })
+            }, 1500);
+
+        })
+    </script>
+
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    @if (!Auth::check())
     <script src="https://js.braintreegateway.com/js/braintree-2.30.0.min.js"></script>
-
     <script>
         $.ajax({
             url: '{{ url('braintree/token') }}'
@@ -146,5 +159,6 @@
             });
         });
     </script>
+    @endif
 </body>
 </html>
