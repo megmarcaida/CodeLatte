@@ -61,7 +61,7 @@
                                 <div class="panel-body">
                                    <strong>Tutorial</strong>
                                     <br>
-                                    <a href="/users/library/{{$courselist->slug}}/{{ $tutorial->slug }}"><strong>{{ $tutorial->name }}</strong></a>
+                                    <a data-toggle="tooltip" title="Start this tutorial" href="/users/library/{{$courselist->slug}}/{{ $tutorial->slug }}"><strong>{{ $tutorial->name }}</strong></a>
                                     <hr>
                                     <p>{{ $tutorial->description }}</p>
                                 </div>

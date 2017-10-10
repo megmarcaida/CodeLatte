@@ -64,6 +64,7 @@
                             <li><a title="Upgrade Plans" class="latte-icons" href="{{ url('/users/check_plans') }}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></li>
                             <li><a title="Check your billing" class="latte-icons" href="{{ url('/users/billing_info') }}"><i class="fa fa-credit-card" aria-hidden="true"></i></a></li>
                             <li><a title="News Feed" href="{{ route('home') }}"class="latte-icons"><i class="fa fa-newspaper-o" aria-hidden="true"></i></a></li>
+                            <li><a href=""> <img src="{{ Auth::user()->avatar  }}" width="30px" height="30px" style="border-radius:50%;" alt=""></a></li>
                             <li><a class="latte-menu" title="Go to your profile" href="{{ route('profile',['slug'=> Auth::user()->slug ]) }}">{{ Auth::user()->firstname  }}</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -159,6 +160,7 @@
             });
         });
     </script>
+
     @endif
 </body>
 </html>

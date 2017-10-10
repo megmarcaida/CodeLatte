@@ -138,7 +138,7 @@ class CourseListController extends Controller
 
     public function starttutorial($course_slug,$tutorial_slug){
 
-        $courselist = CourseLists::where('slug',$course_slug)->first();
+        $courselist = CourseLists::with('plans')->where('slug',$course_slug)->first();
         $tutorials = Tutorials::orderBy('id')->with(['programminglanguage','media','courselist'])
             ->where('course_id','=',$courselist->id)->where('slug','=',$tutorial_slug)->get();
         return view('users.start-tutorials')->with(['tutorials' => $tutorials,'courselist' => $courselist]);

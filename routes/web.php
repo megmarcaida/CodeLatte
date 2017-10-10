@@ -160,6 +160,8 @@ Route::group(['middleware'=>'auth'],function(){
         'uses' => 'CourseListController@getCurriculum'
     ]);
 
+    Route::get('users/get/{filename}', [
+        'as' => 'usersgetmedia', 'uses' => 'MediaController@get']);
     //ENDCURRICULUM
 
     Route::get('/users/check_plans', function(){
