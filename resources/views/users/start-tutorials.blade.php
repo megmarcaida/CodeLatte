@@ -53,15 +53,14 @@
 
             <div class="col-xs-12 col-md-12 col-lg-12">
 
-                @if (count($tutorials) > 0)
-                    @foreach($tutorials as $tutorial)
+                @if (count($tutorial) > 0)
 
                         <div class="panel panel-success card-curriculum">
                             <div class="panel-heading bg-auburn">
                                 <strong><i class="fa fa-file-code-o" aria-hidden="true"></i></strong>
 
                             </div>
-                            <div>
+                            <div class="tutorial-">
 
                                 <?php
                                 switch ($tutorial->media->category){
@@ -73,16 +72,19 @@
                                 break;
                                 case 'Video':
                                 ?>
-                                        <video id="video_{{ $tutorial->media->id }}" controls preload="auto" class="img-responsive latte-video"  width="380" >
-                                            <source src="{{route('usersgetmedia', $tutorial->media->filename)}}#t=0,5" type="video/mp4" />
+                                        <video id="videoAllUrBase" controls preload="auto" class="img-responsive latte-video"  width="380" >
+                                            <source src="{{route('usersgetmedia', $tutorial->media->filename)}}{{--#t=0,5--}}" type="video/mp4" />
                                             <p>Your browser does not support the video tag.</p>
                                         </video>
                                 <?php
                                 break;
                                 }
                                 ?>
-
-
+                                <br></br>{{--
+                                <input id="playButton" type="button" onclick="playVideo();" value="Play" />
+                                <input id="skipButton" type="button" onclick="skip(10);" value="Skip" />
+                                <input id="rewButton" type="button" onclick="skip(-10);" value="Rewind" />--}}
+                                    <a class="pull-right latte-tutorial-next" style="display:block;" href="/users/tutorial/take/quiz/{{ $quiz->slug }}">Take quiz now to proceed to next tutorial.</a>
                             </div>
                             <div class="panel-body">
 
@@ -93,7 +95,6 @@
                             </div>
                         </div>
 
-                    @endforeach
                 @endif
             </div>
 

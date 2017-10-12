@@ -389,6 +389,17 @@ div.panel-body > a{
     font-size: 0.9em;
 }
 
+.latte-tutorial-next , .latte-tutorial-next:hover{
+    padding-right: 2em;
+    text-decoration: none;
+}
+
+.latte-quiz{
+    padding-left:2em;
+    font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+    font-size: 1.3em;
+}
+
 
 
 

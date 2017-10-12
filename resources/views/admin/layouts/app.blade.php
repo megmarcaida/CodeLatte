@@ -625,12 +625,12 @@
       });
   </script>
   <script>
-      $(document).on("click", ".showCourseDetails", function (e) {
+      $(document).on("click", ".showQuizDetails", function (e) {
           e.preventDefault();
           $(this).parents("table").next().toggle();
       });
 
-      $(document).on("click", ".showQuizDetails", function (e) {
+      $(document).on("click", ".showCourseDetails", function (e) {
           e.preventDefault();
           $(this).parents("table").next().toggle();
       });

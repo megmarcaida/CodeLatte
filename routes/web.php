@@ -162,6 +162,15 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::get('users/get/{filename}', [
         'as' => 'usersgetmedia', 'uses' => 'MediaController@get']);
+
+
+    Route::get('users/tutorial/take/quiz/{slug}', [
+        'as' => 'takequizzes', 'uses' => 'QuizController@getQuiz']);
+
+    Route::get('/users/tutorial/take/quiz/answer',[
+        'uses' => 'QuizController@createAnswer',
+        'as' => 'createAnswer'
+    ]);
     //ENDCURRICULUM
 
     Route::get('/users/check_plans', function(){

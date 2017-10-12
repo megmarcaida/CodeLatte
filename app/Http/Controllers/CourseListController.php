@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CourseLists;
+use App\Quiz;
 use App\Tutorials;
 use Illuminate\Http\Request;
 
@@ -139,8 +140,10 @@ class CourseListController extends Controller
     public function starttutorial($course_slug,$tutorial_slug){
 
         $courselist = CourseLists::with('plans')->where('slug',$course_slug)->first();
-        $tutorials = Tutorials::orderBy('id')->with(['programminglanguage','media','courselist'])
-            ->where('course_id','=',$courselist->id)->where('slug','=',$tutorial_slug)->get();
-        return view('users.start-tutorials')->with(['tutorials' => $tutorials,'courselist' => $courselist]);
+        $tutorial = Tutorials::orderBy('id')->with(['programminglanguage','media','courselist'])
+            ->where('course_id','=',$courselist->id)->where('slug','=',$tutorial_slug)->first();
+        $quiz = Quiz::with('questionnaires')->where('tutorial_id',$tutorial->id)->first();
+
+        return view('users.start-tutorials')->with(['tutorial' => $tutorial,'courselist' => $courselist,'quiz' => $quiz]);
     }
 }

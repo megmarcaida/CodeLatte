@@ -66622,6 +66622,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -66682,6 +66683,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             this.$http.get('/admin/quiz/details/' + quiz.id).then(function (response) {
                 _this2.quizDetails = response.data.quizdetails.quizdetails.data;
+                console.log(_this2.quizDetails);
             });
         },
         fetchTutorials: function fetchTutorials() {
@@ -66712,9 +66714,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['quizdetail'],
+    props: ['quizDetail'],
     http: {
         root: '/root',
         headers: {
@@ -66728,7 +66731,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(_vm._s(_vm.quizdetail.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.quizdetail.description))])])
+  return _c('tr', [_c('td', [_vm._v(_vm._s(_vm.quizDetail.question_text))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.quizDetail.answer_explanation))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.quizDetail.correct_answer))])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -66876,18 +66879,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "display": "none"
     }
-  }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.quizDetails), function(quizdetail) {
+  }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.quizDetails), function(quizDetail) {
     return _c('QuizDetails', {
-      key: quizdetail.id,
+      key: quizDetail.id,
       attrs: {
-        "quizdetail": quizdetail
+        "quizDetail": quizDetail
       }
     })
   }))])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th'), _vm._v(" "), _c('th', [_vm._v("Name")]), _vm._v(" "), _c('th', [_vm._v("Description")]), _vm._v(" "), _c('th', [_vm._v("Tutorial Name")]), _vm._v(" "), _c('th', [_vm._v("Action")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("Questionnaire Name")]), _vm._v(" "), _c('th', [_vm._v("Questionnaire Description")])])])
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("Question")]), _vm._v(" "), _c('th', [_vm._v("Answer Explanation")]), _vm._v(" "), _c('th', [_vm._v("Correct Answer")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -67490,6 +67493,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['questionnaire'],
@@ -67514,7 +67523,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     created: function created() {
-        this.fetchQuiz;
+        this.fetchQuiz();
     },
 
     methods: {
@@ -67552,9 +67561,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$http.patch('/admin/questionnaires/update/' + oldQuestionnaires.id, newQuestionnaires).then(function (response) {
                 _this.$emit('update-questionnaire');
                 _this.cancelEdit();
-                //console.log(response.data);
+                console.log(response.data);
             }, function (response) {
-                //console.log(response.data);
+                console.log(response.data);
             });
         },
         fetchQuiz: function fetchQuiz() {
@@ -67609,29 +67618,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v("\n                    " + _vm._s(quiz.name) + "\n                ")])
   })) : _c('span', [_vm._v(_vm._s(_vm.questionnaire.quiz.name))])])]), _vm._v(" "), _c('td', [_c('div', {
-    staticClass: "form-group"
-  }, [(_vm.edit) ? _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.name),
-      expression: "editForm.name"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "name"
-    },
-    domProps: {
-      "value": (_vm.editForm.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editForm.name = $event.target.value
-      }
-    }
-  }) : _c('span', [_vm._v(_vm._s(_vm.questionnaire.name))])])]), _vm._v(" "), _c('td', [_c('div', {
     staticClass: "form-group"
   }, [(_vm.edit) ? _c('textarea', {
     directives: [{
@@ -67838,7 +67824,51 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.editForm.choice5 = $event.target.value
       }
     }
-  }) : _c('span', [_vm._v(_vm._s(_vm.questionnaire.choice5))])])]), _vm._v(" "), _c('td', [(!_vm.edit) ? _c('button', {
+  }) : _c('span', [_vm._v(_vm._s(_vm.questionnaire.choice5))])])]), _vm._v(" "), _c('td', [_c('div', {
+    staticClass: "form-group"
+  }, [(_vm.edit) ? _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.correct_answer),
+      expression: "editForm.correct_answer"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "correct_answer"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.editForm.correct_answer = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "choice1"
+    }
+  }, [_vm._v("Choice 1")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "choice2"
+    }
+  }, [_vm._v("Choice 2")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "choice3"
+    }
+  }, [_vm._v("Choice 3")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "choice4"
+    }
+  }, [_vm._v("Choice 4")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "choice5"
+    }
+  }, [_vm._v("Choice 5")])]) : _c('span', [_vm._v(_vm._s(_vm.questionnaire.correct_answer))])])]), _vm._v(" "), _c('td', [(!_vm.edit) ? _c('button', {
     staticClass: "btn btn-info",
     attrs: {
       "type": "button"
@@ -67861,7 +67891,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.updateQuestionnaires(_vm.questionnaires, _vm.editForm)
+        _vm.updateQuestionnaires(_vm.questionnaire, _vm.editForm)
       }
     }
   }, [_vm._v("\n            update\n        ")]) : _vm._e(), _vm._v(" "), (!_vm.edit) ? _c('button', {
@@ -67871,7 +67901,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.$emit('delete-questionnaires', _vm.questionnaires)
+        _vm.$emit('delete-questionnaires', _vm.questionnaire)
       }
     }
   }, [_vm._v("\n            Delete\n        ")]) : _vm._e()])])
@@ -68233,6 +68263,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.$http.get('/admin/quiz/list').then(function (response) {
                 _this4.quizzes = response.data.quiz.quiz.data;
+                //console.log(response.data.quiz.quiz);
             });
         },
 
@@ -68279,8 +68310,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.questionnaires.quiz_id),
-      expression: "questionnaires.quiz_id"
+      value: (_vm.questionnaire.quiz_id),
+      expression: "questionnaire.quiz_id"
     }],
     staticClass: "form-control",
     on: {
@@ -68291,7 +68322,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.questionnaires.quiz_id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+        _vm.questionnaire.quiz_id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }
     }
   }, _vm._l((_vm.quizzes), function(quiz) {
@@ -68312,20 +68343,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.questionnaires.question_text),
-      expression: "questionnaires.question_text"
+      value: (_vm.questionnaire.question_text),
+      expression: "questionnaire.question_text"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": (_vm.questionnaires.question_text)
+      "value": (_vm.questionnaire.question_text)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.questionnaires.question_text = $event.target.value
+        _vm.questionnaire.question_text = $event.target.value
       }
     }
   }), _vm._v(" "), _vm._l((_vm.errors.question_text), function(error) {
@@ -68340,20 +68371,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.questionnaires.choice1),
-      expression: "questionnaires.choice1"
+      value: (_vm.questionnaire.choice1),
+      expression: "questionnaire.choice1"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": (_vm.questionnaires.choice1)
+      "value": (_vm.questionnaire.choice1)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.questionnaires.choice1 = $event.target.value
+        _vm.questionnaire.choice1 = $event.target.value
       }
     }
   }), _vm._v(" "), _vm._l((_vm.errors.choice1), function(error) {
@@ -68368,20 +68399,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.questionnaires.choice2),
-      expression: "questionnaires.choice2"
+      value: (_vm.questionnaire.choice2),
+      expression: "questionnaire.choice2"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": (_vm.questionnaires.choice2)
+      "value": (_vm.questionnaire.choice2)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.questionnaires.choice2 = $event.target.value
+        _vm.questionnaire.choice2 = $event.target.value
       }
     }
   }), _vm._v(" "), _vm._l((_vm.errors.choice2), function(error) {
@@ -68396,20 +68427,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.questionnaires.choice3),
-      expression: "questionnaires.choice3"
+      value: (_vm.questionnaire.choice3),
+      expression: "questionnaire.choice3"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": (_vm.questionnaires.choice3)
+      "value": (_vm.questionnaire.choice3)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.questionnaires.choice3 = $event.target.value
+        _vm.questionnaire.choice3 = $event.target.value
       }
     }
   }), _vm._v(" "), _vm._l((_vm.errors.choice3), function(error) {
@@ -68424,20 +68455,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.questionnaires.choice4),
-      expression: "questionnaires.choice4"
+      value: (_vm.questionnaire.choice4),
+      expression: "questionnaire.choice4"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": (_vm.questionnaires.choice4)
+      "value": (_vm.questionnaire.choice4)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.questionnaires.choice4 = $event.target.value
+        _vm.questionnaire.choice4 = $event.target.value
       }
     }
   }), _vm._v(" "), _vm._l((_vm.errors.choice4), function(error) {
@@ -68452,20 +68483,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.questionnaires.choice5),
-      expression: "questionnaires.choice5"
+      value: (_vm.questionnaire.choice5),
+      expression: "questionnaire.choice5"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": (_vm.questionnaires.choice5)
+      "value": (_vm.questionnaire.choice5)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.questionnaires.choice5 = $event.target.value
+        _vm.questionnaire.choice5 = $event.target.value
       }
     }
   }), _vm._v(" "), _vm._l((_vm.errors.choice5), function(error) {
@@ -68480,8 +68511,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.questionnaires.correct_answer),
-      expression: "questionnaires.correct_answer"
+      value: (_vm.questionnaire.correct_answer),
+      expression: "questionnaire.correct_answer"
     }],
     staticClass: "form-control",
     on: {
@@ -68492,7 +68523,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.questionnaires.correct_answer = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+        _vm.questionnaire.correct_answer = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }
     }
   }, [_c('option', {
@@ -68527,20 +68558,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.questionnaires.answer_explanation),
-      expression: "questionnaires.answer_explanation"
+      value: (_vm.questionnaire.answer_explanation),
+      expression: "questionnaire.answer_explanation"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": (_vm.questionnaires.answer_explanation)
+      "value": (_vm.questionnaire.answer_explanation)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.questionnaires.answer_explanation = $event.target.value
+        _vm.questionnaire.answer_explanation = $event.target.value
       }
     }
   }), _vm._v(" "), _vm._l((_vm.errors.answer_explanation), function(error) {
@@ -68555,20 +68586,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.questionnaires.code_snippet),
-      expression: "questionnaires.code_snippet"
+      value: (_vm.questionnaire.code_snippet),
+      expression: "questionnaire.code_snippet"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": (_vm.questionnaires.code_snippet)
+      "value": (_vm.questionnaire.code_snippet)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.questionnaires.code_snippet = $event.target.value
+        _vm.questionnaire.code_snippet = $event.target.value
       }
     }
   }), _vm._v(" "), _vm._l((_vm.errors.code_snippet), function(error) {
@@ -68583,20 +68614,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.questionnaires.more_info_link),
-      expression: "questionnaires.more_info_link"
+      value: (_vm.questionnaire.more_info_link),
+      expression: "questionnaire.more_info_link"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": (_vm.questionnaires.more_info_link)
+      "value": (_vm.questionnaire.more_info_link)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.questionnaires.more_info_link = $event.target.value
+        _vm.questionnaire.more_info_link = $event.target.value
       }
     }
   }), _vm._v(" "), _vm._l((_vm.errors.more_info_link), function(error) {
@@ -68693,7 +68724,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel-title"
   }, [_vm._v("Questionnaires List")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("Quiz")]), _vm._v(" "), _c('th', [_vm._v("Question Text")]), _vm._v(" "), _c('th', [_vm._v("Choice 1")]), _vm._v(" "), _c('th', [_vm._v("Choice 2")]), _vm._v(" "), _c('th', [_vm._v("Choice 3")]), _vm._v(" "), _c('th', [_vm._v("Choice 4")]), _vm._v(" "), _c('th', [_vm._v("Choice 5")]), _vm._v(" "), _c('th', [_vm._v("Correct Answer")]), _vm._v(" "), _c('th', [_vm._v("Answer Explanation")]), _vm._v(" "), _c('th', [_vm._v("Code Snippet")]), _vm._v(" "), _c('th', [_vm._v("More Info Link")]), _vm._v(" "), _c('th', [_vm._v("Action")])])])
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("Quiz")]), _vm._v(" "), _c('th', [_vm._v("Question Text")]), _vm._v(" "), _c('th', [_vm._v("Answer Explanation")]), _vm._v(" "), _c('th', [_vm._v("Code Snippet")]), _vm._v(" "), _c('th', [_vm._v("More Info Link")]), _vm._v(" "), _c('th', [_vm._v("Choice 1")]), _vm._v(" "), _c('th', [_vm._v("Choice 2")]), _vm._v(" "), _c('th', [_vm._v("Choice 3")]), _vm._v(" "), _c('th', [_vm._v("Choice 4")]), _vm._v(" "), _c('th', [_vm._v("Choice 5")]), _vm._v(" "), _c('th', [_vm._v("Correct Answer")]), _vm._v(" "), _c('th', [_vm._v("Action")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

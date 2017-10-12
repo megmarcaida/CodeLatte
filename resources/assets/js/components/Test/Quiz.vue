@@ -62,12 +62,13 @@
 
             <thead>
             <tr>
-                <th>Questionnaire Name</th>
-                <th>Questionnaire Description</th>
+                <th>Question</th>
+                <th>Answer Explanation</th>
+                <th>Correct Answer</th>
             </tr>
             </thead>
             <tbody>
-            <QuizDetails v-for="quizdetail in quizDetails" :key="quizdetail.id"  v-bind:quizdetail="quizdetail"></QuizDetails>
+            <QuizDetails v-for="quizDetail in quizDetails" :key="quizDetail.id"  v-bind:quizDetail="quizDetail"></QuizDetails>
             </tbody>
         </table>
     </div>
@@ -131,7 +132,7 @@
                 }
                 this.$http.get('/admin/quiz/details/'+quiz.id).then(response => {
                     this.quizDetails  = response.data.quizdetails.quizdetails.data;
-
+                    console.log(this.quizDetails)
 
                 });
             },

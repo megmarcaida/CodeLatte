@@ -18,6 +18,7 @@ class CreateQuizzesTable extends Migration
             $table->integer('tutorial_id');
             $table->string('name');
             $table->string('description');
+            $table->string('slug');
             $table->boolean('status');
             $table->timestamps();
         });

@@ -138,6 +138,37 @@
             }, 1500);
 
         })
+
+        function playVideo() {
+            var video = document.getElementById('videoAllUrBase');
+            var message = document.getElementById('vidMessage');
+            var button = document.getElementById('playButton');
+
+            if (video.paused) {
+                video.play();
+                button.value = "Pause";
+                message.innerHTML = "The video is playing, click the Pause button to pause the video.";
+            } else {
+                video.pause();
+                button.value = "Play";
+                message.innerHTML = "The video is paused, click the Play button to resume the video.";
+            }
+
+            video.onended = videoEnded;
+        }
+
+        function videoEnded() {
+            var video = document.getElementById('videoAllUrBase');
+            var message = document.getElementById('vidMessage');
+            //message.innerHTML = "The video has ended, click Play to restart the video.";
+            message.style.display = "block";
+        }
+
+        function skip(value) {
+            var video = document.getElementById("videoAllUrBase");
+            video.currentTime += value;
+            alert(video.currentTime);
+        }
     </script>
 
     <!-- Scripts -->
