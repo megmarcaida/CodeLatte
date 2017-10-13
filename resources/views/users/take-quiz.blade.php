@@ -46,25 +46,41 @@
                                     <code>{{ $questionnaire->code_snippet }}</code>
                                 <br>
                                 <?php $i++ ?>
+
+                                    <input type="hidden" value="{{ $questionnaire->id }}" name="questionnaire_id[{{$questionnaire->id}}]">
+                                    @if ($questionnaire->choice1 != "")
                                     <label class="radio-inline">
-                                        <input type="radio" name="answer{{ $questionnaire->id }}">{{ $questionnaire->choice1 }}
+                                        <input type="radio" name="answer[{{ $questionnaire->id }}]" value="{{ $questionnaire->choice1 }}">{{ $questionnaire->choice1 }}
                                     </label>
+                                    @endif
+
                                     <br>
+                                    @if ($questionnaire->choice2 != "")
                                     <label class="radio-inline">
-                                        <input type="radio" name="answer{{ $questionnaire->id }}">{{ $questionnaire->choice2 }}
+                                        <input type="radio" name="answer[{{ $questionnaire->id }}]" value="{{ $questionnaire->choice2 }}">{{ $questionnaire->choice2 }}
                                     </label>
+                                    @endif
+
                                     <br>
+                                    @if ($questionnaire->choice3 != "")
                                     <label class="radio-inline">
-                                        <input type="radio" name="answer{{ $questionnaire->id }}">{{ $questionnaire->choice3 }}
+                                        <input type="radio" name="answer[{{ $questionnaire->id }}]" value="{{ $questionnaire->choice3 }}">{{ $questionnaire->choice3 }}
                                     </label>
+                                    @endif
                                     <br>
+
+                                    @if ($questionnaire->choice4 != "")
                                     <label class="radio-inline">
-                                        <input type="radio" name="answer{{ $questionnaire->id }}">{{ $questionnaire->choice4 }}
+                                        <input type="radio" name="answer[{{ $questionnaire->id }}]" value="{{ $questionnaire->choice4 }}">{{ $questionnaire->choice4 }}
                                     </label>
+                                    @endif
+
                                     <br>
+                                    @if ($questionnaire->choice5 != "")
                                     <label class="radio-inline">
-                                        <input type="radio" name="answer{{ $questionnaire->id }}">{{ $questionnaire->choice5 }}
+                                        <input type="radio" name="answer[{{ $questionnaire->id }}]" value="{{ $questionnaire->choice5 }}">{{ $questionnaire->choice5 }}
                                     </label>
+                                    @endif
                                     <br><br>
                             @endforeach
                                 <button id="quiz-btn" type="submit"  class="btn btn-success btn-lg btn-flat pull-right">Submit Quiz</button>

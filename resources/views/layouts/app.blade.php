@@ -164,11 +164,26 @@
             message.style.display = "block";
         }
 
-        function skip(value) {
-            var video = document.getElementById("videoAllUrBase");
-            video.currentTime += value;
-            alert(video.currentTime);
-        }
+
+        var video = document.querySelector('video');
+        //video.BP = 0;
+
+        //vid.BP = 0;
+
+        /*vid.addEventListener('timeupdate', function(e){
+            var that = this;
+            (function(){
+                setTimeout(function(){
+                    that.BP=that.currentTime;
+                }, 500);
+            }).call(that);}
+        );*/
+
+
+
+        $("#btnGetting_started").click(function (e) {
+            $("#getting_started").fadeOut('slow');
+        });
     </script>
 
     <!-- Scripts -->

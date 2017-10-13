@@ -11,4 +11,8 @@ class Questionnaires extends Model
     public function quiz(){
         return $this->belongsTo('App\Quiz','quiz_id');
     }
+
+    public function usersquestionnairesanswer(){
+        return $this->hasOne('App\UsersQuestionnairesAnswer');
+    }
 }

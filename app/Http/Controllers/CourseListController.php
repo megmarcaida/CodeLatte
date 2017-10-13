@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\CourseLists;
 use App\Quiz;
 use App\Tutorials;
+use App\UsersCourse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseListController extends Controller
 {
@@ -108,7 +110,7 @@ class CourseListController extends Controller
     {
 
         $curriculums = CourseLists::with('plans')->paginate(10);
-
+        $usersCourse = UsersCourse::with(['users','course'])->get();
         $response = [
             'pagination' => [
                 'total' => $curriculums->total(),
@@ -118,7 +120,8 @@ class CourseListController extends Controller
                 'from' => $curriculums->firstItem(),
                 'to' => $curriculums->lastItem()
             ],
-            'curriculums' => $curriculums
+            'curriculums' => $curriculums,
+            'userscourse' => $usersCourse
         ];
 
         return response()->json([
@@ -130,6 +133,16 @@ class CourseListController extends Controller
     {
         $courselist = CourseLists::where('slug',$slug)->first();
         $tutorials = Tutorials::orderBy('id')->with(['programminglanguage','media','courselist'])->where('course_id','=',$courselist->id)->get();
+        $userscourses = UsersCourse::where('user_id',Auth::user()->id)->where('course_id',$courselist->id)->first();
+
+        if ($userscourses == null){
+            $usersCourse = UsersCourse::create([
+                'user_id' => Auth::user()->id,
+                'course_id' => $courselist->id,
+                'status' => 1
+            ]);
+        }
+
         /*$tutorials = Tutorials::leftjoin('programming_languages', 'tutorials.programminglanguage_id', '=', 'programming_languages.id')
                 ->leftjoin('media', 'tutorials.media_id', '=', 'media.id')
                 ->leftjoin('course_lists', 'tutorials.course_id', '=', 'course_lists.id')

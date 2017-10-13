@@ -14,7 +14,12 @@
 
                 <a class="latte-hover btn-lg" href="/users/curriculum/take/{{ $courselist->slug }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{ $courselist->name }}</a>
                 <br> <br>
-                <div class="panel">
+                <div id="getting_started" class="panel">
+                    <div class="panel-heading">
+                            <button type="button" class="close" id="btnGetting_started">
+                                <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                            </button>
+                    </div>
                     <div class="panel-body">
                         <div class="col-xs-12 col-md-6 col-lg-6">
                             <h1>Getting started</h1>
@@ -72,7 +77,7 @@
                                 break;
                                 case 'Video':
                                 ?>
-                                        <video id="videoAllUrBase" controls preload="auto" class="img-responsive latte-video"  width="380" >
+                                        <video id="videoAllUrBase" controls class="img-responsive latte-video"  width="380" >
                                             <source src="{{route('usersgetmedia', $tutorial->media->filename)}}{{--#t=0,5--}}" type="video/mp4" />
                                             <p>Your browser does not support the video tag.</p>
                                         </video>
@@ -80,11 +85,12 @@
                                 break;
                                 }
                                 ?>
-                                <br></br>{{--
+                                <br><br>
+                                    {{--
                                 <input id="playButton" type="button" onclick="playVideo();" value="Play" />
-                                <input id="skipButton" type="button" onclick="skip(10);" value="Skip" />
                                 <input id="rewButton" type="button" onclick="skip(-10);" value="Rewind" />--}}
-                                    <a class="pull-right latte-tutorial-next" style="display:block;" href="/users/tutorial/take/quiz/{{ $quiz->slug }}">Take quiz now to proceed to next tutorial.</a>
+                                    <a class="latte-hover btn-lg" href="/users/curriculum/take/{{ $courselist->slug }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{ $courselist->name }}</a>
+                                    <a id="vidMessage" class="pull-right latte-tutorial-next" style="display:block;" href="/users/tutorial/take/quiz/{{ $quiz->slug }}">Take quiz now to proceed to next tutorial.</a>
                             </div>
                             <div class="panel-body">
 

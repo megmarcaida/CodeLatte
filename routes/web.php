@@ -167,8 +167,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('users/tutorial/take/quiz/{slug}', [
         'as' => 'takequizzes', 'uses' => 'QuizController@getQuiz']);
 
-    Route::get('/users/tutorial/take/quiz/answer',[
-        'uses' => 'QuizController@createAnswer',
+    Route::post('/users/tutorial/take/quiz/answer',[
+        'uses' => 'UsersQuizAnswerController@createAnswer',
         'as' => 'createAnswer'
     ]);
     //ENDCURRICULUM

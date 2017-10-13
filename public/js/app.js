@@ -68868,6 +68868,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -68875,6 +68895,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             curriculums: [],
             plans: [],
             errors: [],
+            userscourse: [],
             pagination: {
                 total: 0,
                 per_page: 2,
@@ -68921,6 +68942,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$http.get('/users/curriculum/list?page=' + page).then(function (response) {
                 _this.curriculums = response.data.curriculums.curriculums.data;
                 _this.pagination = response.data.curriculums.pagination;
+                _this.userscourse = response.data.curriculums.userscourse;
+                console.log(response.data.curriculums.userscourse);
             });
         },
         fetchPlans: function fetchPlans() {
@@ -68950,10 +68973,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col-xs-12 col-md-12 col-lg-12"
-  }, [_vm._l((_vm.curriculums), function(curriculum) {
+  }, [_vm._l((_vm.curriculums), function(curriculum, index) {
     return _c('div', {
       staticClass: "curriculum"
-    }, [_c('a', {
+    }, [(_vm.userscourse[index] != null) ? _c('a', {
+      attrs: {
+        "href": 'curriculum/take/' + curriculum.slug
+      }
+    }, [_c('div', {
+      staticClass: " panel-warning card-curriculum"
+    }, [_c('div', {
+      staticClass: "panel-heading"
+    }, [_c('i', {
+      staticClass: "fa fa-book",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }), _vm._v("  " + _vm._s(curriculum.name) + "\n\n                                "), (_vm.userscourse[index].course_id) ? _c('h5', {
+      staticClass: "pull-right",
+      attrs: {
+        "data-toggle": "tooltip",
+        "title": "Continue this course."
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-bookmark",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }), _vm._v(" Pending")]) : _vm._e()]), _vm._v(" "), _c('div', {
+      staticClass: "panel-body"
+    }, [_vm._v("\n                            " + _vm._s(curriculum.description) + "\n                        ")]), _vm._v(" "), _c('div', {
+      staticClass: "panel-footer card-curriculum-footer"
+    }, [_vm._m(0, true), _vm._v(" "), _vm._m(1, true), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-xs btn-primary pull-right",
+      attrs: {
+        "href": 'curriculum/take/' + curriculum.slug
+      }
+    }, [_vm._v("Switch")])])])]) : _c('a', {
       attrs: {
         "href": 'curriculum/take/' + curriculum.slug
       }
@@ -68966,11 +69022,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    }), _vm._v("  " + _vm._s(curriculum.name))]), _vm._v(" "), _c('div', {
+    }), _vm._v("  " + _vm._s(curriculum.name) + "\n                    ")]), _vm._v(" "), _c('div', {
       staticClass: "panel-body"
-    }, [_vm._v("\n                            " + _vm._s(curriculum.description) + "\n                        ")]), _vm._v(" "), _c('div', {
+    }, [_vm._v("\n                        " + _vm._s(curriculum.description) + "\n                    ")]), _vm._v(" "), _c('div', {
       staticClass: "panel-footer card-curriculum-footer"
-    }, [_vm._m(0, true), _vm._v(" "), _vm._m(1, true), _vm._v(" "), _c('a', {
+    }, [_vm._m(2, true), _vm._v(" "), _vm._m(3, true), _vm._v(" "), _c('a', {
       staticClass: "btn btn-xs btn-primary pull-right",
       attrs: {
         "href": 'curriculum/take/' + curriculum.slug
@@ -69024,6 +69080,32 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("»")])])]) : _vm._e()], 2)])], 2)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "#",
+      "data-toggle": "tooltip",
+      "title": "$80,000/yr"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-university",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "",
+      "data-toggle": "tooltip",
+      "title": "Watch Trailer"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-play-circle-o",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('a', {
     attrs: {
       "href": "#",

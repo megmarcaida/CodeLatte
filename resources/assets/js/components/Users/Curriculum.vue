@@ -1,11 +1,15 @@
 <template>
 
     <div class="col-xs-12 col-md-12 col-lg-12">
-            <div class="curriculum" v-for="curriculum in curriculums">
-                <a v-bind:href="'curriculum/take/'+ curriculum.slug">
-                    <div class=" panel-primary card-curriculum">
+            <div class="curriculum" v-for="(curriculum,index) in curriculums">
+                <a v-if="userscourse[index] != null" v-bind:href="'curriculum/take/'+ curriculum.slug">
+                    <div class=" panel-warning card-curriculum">
 
-                            <div class="panel-heading"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;{{ curriculum.name }}</div>
+                            <div class="panel-heading">
+                                <i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;{{ curriculum.name }}
+
+                                    <h5 data-toggle="tooltip" title="Continue this course." class="pull-right" v-if="userscourse[index].course_id"><i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Pending</h5>
+                            </div>
                             <div class="panel-body">
                                 {{ curriculum.description }}
                             </div>
@@ -15,6 +19,22 @@
                                 <a v-bind:href="'curriculum/take/'+ curriculum.slug" class="btn btn-xs btn-primary pull-right">Switch</a>
                             </div>
                      </div>
+                </a>
+                <a v-else v-bind:href="'curriculum/take/'+ curriculum.slug">
+                    <div class=" panel-primary card-curriculum">
+
+                        <div class="panel-heading">
+                            <i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;{{ curriculum.name }}
+                        </div>
+                        <div class="panel-body">
+                            {{ curriculum.description }}
+                        </div>
+                        <div class="panel-footer card-curriculum-footer">
+                            <a href="#" data-toggle="tooltip"  title="$80,000/yr"><i class="fa fa-university" aria-hidden="true"></i></a>
+                            <a href="" data-toggle="tooltip" title="Watch Trailer"><i class="fa fa-play-circle-o" aria-hidden="true"></i></a>
+                            <a v-bind:href="'curriculum/take/'+ curriculum.slug" class="btn btn-xs btn-primary pull-right">Switch</a>
+                        </div>
+                    </div>
                 </a>
             </div>
 
@@ -49,6 +69,7 @@
                 curriculums: [],
                 plans : [],
                 errors: [],
+                userscourse: [],
                 pagination: {
                     total: 0,
                     per_page: 2,
@@ -92,8 +113,8 @@
                 this.$http.get('/users/curriculum/list?page='+page).then(response => {
                     this.curriculums  = response.data.curriculums.curriculums.data;
                     this.pagination = response.data.curriculums.pagination;
-
-
+                    this.userscourse = response.data.curriculums.userscourse;
+                    console.log(response.data.curriculums.userscourse);
                 });
             },
             fetchPlans(){

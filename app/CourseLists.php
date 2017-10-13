@@ -15,4 +15,8 @@ class CourseLists extends Model
     {
         return $this->belongsTo('App\Plans','plan_id');
     }
+
+    public function userscourse(){
+        return $this->hasMany('App\UsersCourse');
+    }
 }

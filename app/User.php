@@ -47,4 +47,8 @@ class User extends Authenticatable
     {
         return asset(Storage::url($avatar));
     }
+
+    public function userscourse(){
+        return $this->hasMany('App\UsersCourse');
+    }
 }
