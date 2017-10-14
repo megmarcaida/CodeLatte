@@ -65,7 +65,7 @@
                                 <strong><i class="fa fa-file-code-o" aria-hidden="true"></i></strong>
 
                             </div>
-                            <div class="tutorial-">
+                            <div>
 
                                 <?php
                                 switch ($tutorial->media->category){
@@ -90,7 +90,11 @@
                                 <input id="playButton" type="button" onclick="playVideo();" value="Play" />
                                 <input id="rewButton" type="button" onclick="skip(-10);" value="Rewind" />--}}
                                     <a class="latte-hover btn-lg" href="/users/curriculum/take/{{ $courselist->slug }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{ $courselist->name }}</a>
+                                    @if (isset($quiz))
                                     <a id="vidMessage" class="pull-right latte-tutorial-next" style="display:block;" href="/users/tutorial/take/quiz/{{ $quiz->slug }}">Take quiz now to proceed to next tutorial.</a>
+                                    @else
+                                        <a id="vidMessage" class="pull-right latte-tutorial-next" style="display:block;" href="#">Quiz for this tutorial not yet set.</a>
+                                    @endif
                             </div>
                             <div class="panel-body">
 

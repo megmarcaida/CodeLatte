@@ -6,6 +6,7 @@ use App\CourseLists;
 use App\Quiz;
 use App\Tutorials;
 use App\UsersCourse;
+use App\UsersTutorials;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -134,6 +135,7 @@ class CourseListController extends Controller
         $courselist = CourseLists::where('slug',$slug)->first();
         $tutorials = Tutorials::orderBy('id')->with(['programminglanguage','media','courselist'])->where('course_id','=',$courselist->id)->get();
         $userscourses = UsersCourse::where('user_id',Auth::user()->id)->where('course_id',$courselist->id)->first();
+        $userstutorials = UsersTutorials::with('users','course','tutorials')->get();
 
         if ($userscourses == null){
             $usersCourse = UsersCourse::create([
@@ -147,7 +149,7 @@ class CourseListController extends Controller
                 ->leftjoin('media', 'tutorials.media_id', '=', 'media.id')
                 ->leftjoin('course_lists', 'tutorials.course_id', '=', 'course_lists.id')
                 ->where('course_lists.id',"=",$course->id);*/
-        return view('users.take-curriculum')->with(['tutorials' => $tutorials,'courselist' => $courselist]);
+        return view('users.take-curriculum')->with(['tutorials' => $tutorials,'courselist' => $courselist,'userstutorials'=>$userstutorials]);
     }
 
     public function starttutorial($course_slug,$tutorial_slug){
@@ -156,6 +158,21 @@ class CourseListController extends Controller
         $tutorial = Tutorials::orderBy('id')->with(['programminglanguage','media','courselist'])
             ->where('course_id','=',$courselist->id)->where('slug','=',$tutorial_slug)->first();
         $quiz = Quiz::with('questionnaires')->where('tutorial_id',$tutorial->id)->first();
+
+        $userstutorials = UsersTutorials::where('user_id',Auth::user()->id)
+                                        ->where('course_id',$courselist->id)
+                                        ->where('tutorial_id',$tutorial->id)
+                                        ->first();
+
+        if ($userstutorials == null){
+            $usersCourse = UsersTutorials::create([
+                'user_id' => Auth::user()->id,
+                'course_id' => $courselist->id,
+                'tutorial_id' => $tutorial->id,
+                'status' => 0
+            ]);
+        }
+
 
         return view('users.start-tutorials')->with(['tutorial' => $tutorial,'courselist' => $courselist,'quiz' => $quiz]);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CourseLists;
 use App\Questionnaires;
 use App\Quiz;
 use App\Tutorials;
@@ -106,6 +107,7 @@ class QuizController extends Controller
         $quiz = Quiz::with('tutorials')->where('slug',$quiz_slug)->first();
         $tutorials = Tutorials::with('programminglanguage')->where('id',$quiz->tutorial_id)->first();
         $questionnaires = Questionnaires::where('quiz_id','=',$quiz->id)->get();
+
 
         return view('users.take-quiz')->with(['quiz' => $quiz,'questionnaires' => $questionnaires,'tutorials' => $tutorials]);
     }

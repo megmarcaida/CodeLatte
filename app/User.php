@@ -51,4 +51,8 @@ class User extends Authenticatable
     public function userscourse(){
         return $this->hasMany('App\UsersCourse');
     }
+
+    public function userstutorials(){
+        return $this->hasMany('App\UsersTutorials');
+    }
 }

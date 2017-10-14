@@ -40,6 +40,14 @@ a.free-trial:hover{
     font-weight: bold;
 }
 
+
+.latte-brand img{
+    display: inline-block;
+    width: 30px;
+    height:30px;
+    margin-top: -5px;
+}
+
 .latte-icons{
     font-size: 2em;
 }

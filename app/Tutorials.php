@@ -26,5 +26,7 @@ class Tutorials extends Model
         return $this->hasMany('App\Quiz');
     }
 
-
+    public function userstutorials(){
+        return $this->hasMany('App\UsersTutorials');
+    }
 }

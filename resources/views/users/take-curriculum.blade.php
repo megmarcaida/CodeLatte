@@ -12,6 +12,8 @@
                     <a href=""> click here to update your payment method.</a>
                 </div>
 
+                <a class="latte-hover btn-lg" href="/users/curriculum"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp; Curriculum</a>
+                <br><br>
                 <div class="panel">
                     <div class="panel-body">
                         <div class="col-xs-12 col-md-6 col-lg-6">
@@ -50,23 +52,62 @@
             <div class="col-xs-12 col-md-12 col-lg-12">
 
                 @if (count($tutorials) > 0)
-                    @foreach($tutorials as $tutorial)
+                    @foreach($tutorials as $index => $tutorial)
 
-                            <div class="panel panel-success card-curriculum">
-                                <div class="panel-heading bg-turquoise">
-                                    <strong><i class="fa fa-file-code-o" aria-hidden="true"></i></strong>
-                                    <a href="" data-toggle="tooltip" title="Watch Trailer" class="pull-right"><i class="fa fa-play-circle-o" aria-hidden="true"></i></a>
-                                    <a href="" data-toggle="tooltip" title="Bookmark" class="pull-right"><i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;</a>
+                        @if (isset($userstutorials[$index]))
+
+                            @if($userstutorials[$index]->status==1)
+                                <div class="panel panel-success card-curriculum">
+                                    <div class="panel-heading bg-hunter">
+                                        <strong><i class="fa fa-file-code-o" aria-hidden="true"></i></strong>
+                                        &nbsp;
+                                        <strong> Status: Finished</strong>
+                                        <a href="" data-toggle="tooltip" title="Watch Trailer" class="pull-right"><i class="fa fa-play-circle-o" aria-hidden="true"></i></a>
+                                        <a href="" data-toggle="tooltip" title="Bookmark" class="pull-right"><i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;</a>
+                                    </div>
+                                    <div class="panel-body">
+                                       <strong>Tutorial</strong>
+                                        <br>
+                                        <a data-toggle="tooltip" title="Start this tutorial" href="/users/library/{{$courselist->slug}}/{{ $tutorial->slug }}"><strong>{{ $tutorial->name }}</strong></a>
+                                        <hr>
+                                        <p>{{ $tutorial->description }}</p>
+                                    </div>
                                 </div>
-                                <div class="panel-body">
-                                   <strong>Tutorial</strong>
-                                    <br>
-                                    <a data-toggle="tooltip" title="Start this tutorial" href="/users/library/{{$courselist->slug}}/{{ $tutorial->slug }}"><strong>{{ $tutorial->name }}</strong></a>
-                                    <hr>
-                                    <p>{{ $tutorial->description }}</p>
+                                @elseif ($userstutorials[$index]->status==0)
+                                <div class="panel panel-success card-curriculum">
+                                    <div class="panel-heading bg-turquoise">
+                                        <strong><i class="fa fa-file-code-o" aria-hidden="true"></i></strong>
+                                        &nbsp;
+                                        <strong> Status: Pending </strong>
+                                        <a href="" data-toggle="tooltip" title="Watch Trailer" class="pull-right"><i class="fa fa-play-circle-o" aria-hidden="true"></i></a>
+                                        <a href="" data-toggle="tooltip" title="Bookmark" class="pull-right"><i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;</a>
+                                    </div>
+                                    <div class="panel-body">
+                                        <strong>Tutorial</strong>
+                                        <br>
+                                        <a data-toggle="tooltip" title="Start this tutorial" href="/users/library/{{$courselist->slug}}/{{ $tutorial->slug }}"><strong>{{ $tutorial->name }}</strong></a>
+                                        <hr>
+                                        <p>{{ $tutorial->description }}</p>
+                                    </div>
                                 </div>
+                            @endif
+
+                        @else
+                        <div class="panel panel-success card-curriculum">
+                            <div class="panel-heading bg-auburn">
+                                <strong><i class="fa fa-file-code-o" aria-hidden="true"></i></strong>
+                                <a href="" data-toggle="tooltip" title="Watch Trailer" class="pull-right"><i class="fa fa-play-circle-o" aria-hidden="true"></i></a>
+                                <a href="" data-toggle="tooltip" title="Bookmark" class="pull-right"><i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;</a>
                             </div>
-
+                            <div class="panel-body">
+                                <strong>Tutorial</strong>
+                                <br>
+                                <a data-toggle="tooltip" title="Start this tutorial" href="/users/library/{{$courselist->slug}}/{{ $tutorial->slug }}"><strong>{{ $tutorial->name }}</strong></a>
+                                <hr>
+                                <p>{{ $tutorial->description }}</p>
+                            </div>
+                        </div>
+                        @endif
                     @endforeach
                 @endif
             </div>

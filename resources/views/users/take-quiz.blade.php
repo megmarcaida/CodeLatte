@@ -47,6 +47,8 @@
                                 <br>
                                 <?php $i++ ?>
 
+                                    <input type="hidden" value="{{ $tutorials->id }}" name="tutorial_id[{{$questionnaire->id}}]">
+                                    <input type="hidden" value="{{ $tutorials->course_id }}" name="course_id[{{$questionnaire->id}}]">
                                     <input type="hidden" value="{{ $questionnaire->id }}" name="questionnaire_id[{{$questionnaire->id}}]">
                                     @if ($questionnaire->choice1 != "")
                                     <label class="radio-inline">

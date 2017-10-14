@@ -19,4 +19,8 @@ class CourseLists extends Model
     public function userscourse(){
         return $this->hasMany('App\UsersCourse');
     }
+
+    public function userstutorials(){
+        return $this->hasMany('App\UsersTutorials');
+    }
 }
