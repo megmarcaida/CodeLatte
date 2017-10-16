@@ -116,13 +116,11 @@
                             </div>
                             <div class="col-xs-12 col-md-9 col-lg-9">
                                 <h2>Earn</h2>
-                                <h4 class="text-justify">You'll earn badges as you journey through our extensive
-                                    library of courses. These badges are an indicator of
-                                    what skills you currently possess and are viewable by anyone
-                                    (even recruiters from big companies!).</h4>
+                                <h4 class="text-justify">You can earn while you will learn. Study with your own pace, work with no hesitation,
+                                it will help you to be a successfull programmer.</h4>
                             </div>
 
-                        </div>
+                        </div
 
                     </div>
 
@@ -158,7 +156,7 @@
                     <div class="col-xs-12 col-md-3 col-lg-3">
                         <img class="img-responsive tree" src="{{ asset('img/bus.png') }}" alt="Learn">
                         <h4 class="text-center">Form a Business</h4>
-                        <h5 class="text-left">Find out how to get your business off on the right foot. Topics include corporate structure, marketing, finance, and more!</h5>
+                        <h5 class="text-left">Find out how to get your business off on the right foot. You'll learn how to iporve yoour business and also your employees knowledge</h5>
                         <a href="#">Get Started</a>
                     </div>
 
