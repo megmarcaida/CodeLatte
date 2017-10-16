@@ -469,17 +469,16 @@ div.panel-body > a{
 }
 
 .bord {
-     border-top: groove solid;
-     border-top: 5px;
+     border: groove solid;
+     border: 5px;
      border-color: gray;
 
 }
-
-<<<<<<< HEAD
-.float {
-float:left;
+.inline {
+    display:inline-block;
+    width: 50px;
+    
 }
-
 =======
 .btn-code-block{
     background-color: #b68c5d;
