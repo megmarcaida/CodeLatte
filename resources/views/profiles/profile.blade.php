@@ -68,8 +68,26 @@
                 @if(count($user->posts) > 0)
                     @foreach($user->posts as $post)
                         <div class="panel panel-default">
-                            $user
-                            <b>{{ $post->content }}</b>
+                            <a href="">
+                                <img src="{{ $user->avatar  }}" width="30px" height="30px" style="border-radius:50%;" alt="">
+                                {{ $user->firstname . " " . $user->lastname  }}
+                            </a>
+                            <br>
+                            <div>{{ $post->content }}</div>
+                            @foreach($post->likes as $likes)
+                            <p class="text-center displayInlineBlock">
+                                <img data-toggle="tooltip" title="{{ $likes->user->firstname . " " . $likes->user->lastname  }}" src="{{$likes->user->avatar}}" width="15px" height="15px" class="avatar-like">
+                            </p>
+
+                            <hr>{{--
+                            <button class="btn btn-xs btn-primary" v-if="!auth_user_likes_post" @click="like()">
+                                Satisfied
+                            </button>
+
+                            <button class="btn btn-xs btn-danger" v-else @click="unlike()">
+                                Unsatisfied
+                            </button>--}}
+                            @endforeach
                         </div>
                         <br>
                     @endforeach
