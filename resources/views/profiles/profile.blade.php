@@ -62,13 +62,20 @@
                                 Share your thoughts...
                             </button>
                         </form>
-
-                        @if(count($posts) > 0)
-                            @foreach($posts as $post)
-                            @endforeach
-                        @endif
                     </div>
                 </div>
+
+                @if(count($user->posts) > 0)
+                    @foreach($user->posts as $post)
+                        <div class="panel panel-default">
+                            $user
+                            <b>{{ $post->content }}</b>
+                        </div>
+                        <br>
+                    @endforeach
+                @endif
+
+
             </div>
         </div>
 @stop

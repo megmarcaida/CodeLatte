@@ -15,12 +15,14 @@ class ProfilesController extends Controller
     {
         $user = User::where('slug',$slug)->first();
 
-        $posts = Post::where('user_id',$user->id);
-        foreach ($posts as $post) {
-            $post->likes = Like::where('post_id', $post->id)->get();
-        }
+       /* $feed = array();
 
-        return view('profiles.profile')->with(['user'=>$user,'posts'=>$posts]);
+        foreach(Auth::user()->posts as $post):
+            array_push($feed,$post);
+        endforeach;*/
+
+
+        return view('profiles.profile',compact("user"));
     }
 
     public function edit()
