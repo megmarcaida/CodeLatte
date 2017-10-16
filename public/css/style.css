@@ -475,9 +475,24 @@ div.panel-body > a{
 
 }
 
+<<<<<<< HEAD
 .float {
 float:left;
 }
+=======
+.btn-code-block{
+    background-color: #b68c5d;
+    color:#fff6f6 !important;
+    margin: 0.5em 1em;
+    line-height:10px !important;
+}
+.btn-code-block:hover{
+    background-color: #fff6f6;
+    color:#000 !important;
+    border-color: #b68c5d;
+}
+
+>>>>>>> 01f828153d109772f813bbb38736d2cefd059c45
 
 
 
