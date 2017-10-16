@@ -23,7 +23,12 @@
 		the error on your program? Otherwise how to boost your
 		critical thinking under pressure like how you think the correct 
 		syntax. In short you creating yourself as a solution-driven individual. </p>
-	<p>El Miguel A. Marcaida (Founder of Code Latte)</p>
+		<br>
+		<br>
+		<br>
+
+	<p class"float"> -El Miguel A. Marcaida </p>
+	<p calss="float">(Founder of Code Latte)</p>
       
 
       </div>
