@@ -122,7 +122,7 @@ img.twit {
 }
 
 
-.btn-brown{
+.btn-ban{
     background: #b68c5d !important;
     color:#fff6f6 !important;
     font-size: 1.5em;
@@ -462,15 +462,15 @@ div.panel-body > a{
 
 .about {
     padding: 50px;
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 500px;
+    margin-right: 50px;
 
 
 }
 
 .bord {
-     border-style-top: groove solid;
-     border-width-top: 5px;
+     border-top: groove solid;
+     border-top: 5px;
      border-color: gray;
 
 }
@@ -479,6 +479,7 @@ div.panel-body > a{
 .float {
 float:left;
 }
+
 =======
 .btn-code-block{
     background-color: #b68c5d;

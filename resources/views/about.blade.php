@@ -27,7 +27,7 @@
 		<br>
 		<br>
 
-	<p class"float">El Miguel A. Marcaida</p>
+	<p class="float">El Miguel A. Marcaida</p>
 	<p class="float"> (Founder of Code Latte) </p>
       
 
