@@ -62,6 +62,7 @@
                             <li><a title="Try our plans" class="free-trial" href="{{ url('plan') }}">Free Trial</a></li>
                         @else
                             <search></search>
+                            <li><a class="btn btn-block btn-code-block" title="Code Block" href="#"><i class="fa fa-code" aria-hidden="true"></i>&nbsp;Code Block</a></li>
                             <unread></unread>
                             <li><a title="Take a curriculum" class="latte-icons" href="{{ url('/users/curriculum') }}"><i class="fa fa-laptop" aria-hidden="true"></i></a></li>
                             <li><a title="Show your progress" class="latte-icons" href="{{ url('/users/progress') }}"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
