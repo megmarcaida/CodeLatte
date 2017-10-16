@@ -12,7 +12,7 @@
                         <ul class="list-group">
                             @foreach($nots as $not)
                                 <li class="list-group-item">
-                                    <a href="profile/{{ str_slug($not->data['name']) }}">{{ $not->data['name'] }}</a>&nbsp; {{ $not->data['message'] }}
+                                    <a href="profile/{{ str_slug($not->data['slug']) }}">{{ $not->data['name'] }}</a>&nbsp; {{ $not->data['message'] }}
                                     <span class="pull-right">{{ $not->created_at }}</span>
                                 </li>
                             @endforeach

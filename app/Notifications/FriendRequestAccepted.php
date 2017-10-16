@@ -56,6 +56,7 @@ class FriendRequestAccepted extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
+            'slug' =>$this->user->slug,
             'name' => $this->user->firstname . " " .$this->user->lastname,
             'message' => 'Accepted your friend request.'
         ];
