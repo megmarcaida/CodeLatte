@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username','firstname','lastname', 'email', 'password','slug','gender','avatar'
+        'username','firstname','lastname', 'email', 'password','slug','gender','avatar','plan_id'
     ];
 
     /**
@@ -46,5 +46,13 @@ class User extends Authenticatable
     public function getAvatarAttribute($avatar)
     {
         return asset(Storage::url($avatar));
+    }
+
+    public function userscourse(){
+        return $this->hasMany('App\UsersCourse');
+    }
+
+    public function userstutorials(){
+        return $this->hasMany('App\UsersTutorials');
     }
 }

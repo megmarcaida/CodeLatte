@@ -22,6 +22,7 @@ class CreateTutorialsTable extends Migration
             $table->integer('media_id');
             $table->integer('course_id');
             $table->integer('views');
+            $table->string('slug');
             $table->boolean('status');
             $table->timestamps();
         });

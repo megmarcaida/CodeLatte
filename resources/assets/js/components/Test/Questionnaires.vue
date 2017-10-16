@@ -16,12 +16,6 @@
         </td>
         <td>
             <div class="form-group">
-                <input type="text" id="name" class="form-control" v-model="editForm.name" v-if="edit">
-                <span v-else>{{ questionnaire.name }}</span>
-            </div>
-        </td>
-        <td>
-            <div class="form-group">
                 <textarea type="text" class="form-control" id="question_text"  v-model="editForm.question_text" v-if="edit"></textarea>
                 <span v-else>{{ questionnaire.question_text }}</span>
             </div>
@@ -75,6 +69,18 @@
             </div>
         </td>
         <td>
+            <div class="form-group">
+                <select class="form-control" id="correct_answer" v-model="editForm.correct_answer"  v-if="edit">
+                    <option value="choice1">Choice 1</option>
+                    <option value="choice2">Choice 2</option>
+                    <option value="choice3">Choice 3</option>
+                    <option value="choice4">Choice 4</option>
+                    <option value="choice5">Choice 5</option>
+                </select>
+                <span v-else>{{ questionnaire.correct_answer }}</span>
+            </div>
+        </td>
+        <td>
             <button type="button" class="btn btn-info" v-on:click="editQuestionnaires" v-if="!edit">
                 Edit
             </button>
@@ -83,10 +89,10 @@
                 Cancel
             </button>
 
-            <button type="button" class="btn btn-primary" v-on:click="updateQuestionnaires(questionnaires, editForm)" v-if="edit">
+            <button type="button" class="btn btn-primary" v-on:click="updateQuestionnaires(questionnaire, editForm)" v-if="edit">
                 update
             </button>
-            <button type="button" class="btn btn-danger" v-on:click="$emit('delete-questionnaires', questionnaires)" v-if="!edit">
+            <button type="button" class="btn btn-danger" v-on:click="$emit('delete-questionnaires', questionnaire)" v-if="!edit">
                 Delete
             </button>
         </td>
@@ -117,7 +123,7 @@
             }
         },
         created(){
-            this.fetchQuiz
+            this.fetchQuiz();
         }
         ,
         methods: {
@@ -154,9 +160,9 @@
                 this.$http.patch('/admin/questionnaires/update/' + oldQuestionnaires.id, newQuestionnaires).then(response => {
                     this.$emit('update-questionnaire');
                     this.cancelEdit();
-                    //console.log(response.data);
+                    console.log(response.data);
                 }, (response) => {
-                    //console.log(response.data);
+                    console.log(response.data);
                 });
             },
             fetchQuiz(){

@@ -12,8 +12,8 @@
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.quiz_id}">
                             <label>Quiz Name:</label>
-                            <select class="form-control" v-model="questionnaires.quiz_id">
-                                <option v-bind:value="quiz.id"  v-for="quiz in quizzes">
+                            <select class="form-control" v-model="questionnaire.quiz_id">
+                                <option v-bind:value="quiz.id" v-for="quiz in quizzes">
                                     {{ quiz.name }}
                                 </option>
                             </select>
@@ -22,43 +22,43 @@
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.question_text}">
                             <label>Question Text:</label>
-                            <textarea type="text" v-model="questionnaires.question_text" class="form-control"></textarea>
+                            <textarea type="text" v-model="questionnaire.question_text" class="form-control"></textarea>
                             <span class="help-block" v-for="error in errors.question_text">{{ error }}</span>
                         </div>
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.choice1}">
                             <label>Choice 1:</label>
-                            <input type="text" v-model="questionnaires.choice1" class="form-control">
+                            <input type="text" v-model="questionnaire.choice1" class="form-control">
                             <span class="help-block" v-for="error in errors.choice1">{{ error }}</span>
                         </div>
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.choice2}">
                             <label>Choice 2:</label>
-                            <input type="text" v-model="questionnaires.choice2" class="form-control">
+                            <input type="text" v-model="questionnaire.choice2" class="form-control">
                             <span class="help-block" v-for="error in errors.choice2">{{ error }}</span>
                         </div>
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.choice3}">
                             <label>Choice 3:</label>
-                            <input type="text" v-model="questionnaires.choice3" class="form-control">
+                            <input type="text" v-model="questionnaire.choice3" class="form-control">
                             <span class="help-block" v-for="error in errors.choice3">{{ error }}</span>
                         </div>
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.choice4}">
                             <label>Choice 4:</label>
-                            <input type="text" v-model="questionnaires.choice4" class="form-control">
+                            <input type="text" v-model="questionnaire.choice4" class="form-control">
                             <span class="help-block" v-for="error in errors.choice4">{{ error }}</span>
                         </div>
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.choice4}">
                             <label>Choice 5:</label>
-                            <input type="text" v-model="questionnaires.choice5" class="form-control">
+                            <input type="text" v-model="questionnaire.choice5" class="form-control">
                             <span class="help-block" v-for="error in errors.choice5">{{ error }}</span>
                         </div>
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.correct_answer}">
                             <label>Correct Answer:</label>
-                            <select class="form-control" v-model="questionnaires.correct_answer">
+                            <select class="form-control" v-model="questionnaire.correct_answer">
                                 <option value="choice1">Choice 1</option>
                                 <option value="choice2">Choice 2</option>
                                 <option value="choice3">Choice 3</option>
@@ -70,19 +70,19 @@
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.answer_explanation}">
                             <label>Answer Explanation:</label>
-                            <textarea type="text" v-model="questionnaires.answer_explanation" class="form-control"></textarea>
+                            <textarea type="text" v-model="questionnaire.answer_explanation" class="form-control"></textarea>
                             <span class="help-block" v-for="error in errors.answer_explanation">{{ error }}</span>
                         </div>
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.code_snippet}">
                             <label>Code Snippet:</label>
-                            <textarea type="text" v-model="questionnaires.code_snippet" class="form-control"></textarea>
+                            <textarea type="text" v-model="questionnaire.code_snippet" class="form-control"></textarea>
                             <span class="help-block" v-for="error in errors.code_snippet">{{ error }}</span>
                         </div>
 
                         <div v-bind:class="{'form-group': true, 'has-error': errors.more_info_link}">
                             <label>More Info Link:</label>
-                            <input type="text" v-model="questionnaires.more_info_link" class="form-control">
+                            <input type="text" v-model="questionnaire.more_info_link" class="form-control">
                             <span class="help-block" v-for="error in errors.more_info_link">{{ error }}</span>
                         </div>
 
@@ -107,15 +107,15 @@
                             <tr>
                                 <th>Quiz</th>
                                 <th>Question Text</th>
+                                <th>Answer Explanation</th>
+                                <th>Code Snippet</th>
+                                <th>More Info Link</th>
                                 <th>Choice 1</th>
                                 <th>Choice 2</th>
                                 <th>Choice 3</th>
                                 <th>Choice 4</th>
                                 <th>Choice 5</th>
                                 <th>Correct Answer</th>
-                                <th>Answer Explanation</th>
-                                <th>Code Snippet</th>
-                                <th>More Info Link</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -249,7 +249,7 @@
             fetchQuiz(){
                 this.$http.get('/admin/quiz/list').then(response => {
                     this.quizzes = response.data.quiz.quiz.data;
-
+                    //console.log(response.data.quiz.quiz);
 
                 });
             },

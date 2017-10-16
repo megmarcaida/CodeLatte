@@ -25,7 +25,7 @@ class CreateQuestionnairesTable extends Migration
             $table->string('choice3')->nullable();
             $table->string('choice4')->nullable();
             $table->string('choice5')->nullable();
-            $table->integer('correct_answer');
+            $table->string('correct_answer');
             $table->boolean('status');
             $table->timestamps();
         });

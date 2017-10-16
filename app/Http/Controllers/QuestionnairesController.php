@@ -15,6 +15,26 @@ class QuestionnairesController extends Controller
             'correct_answer' => 'required'
         ]);
 
+        $correct_answer = '';
+        switch ($request->correct_answer) {
+            case 'choice1':
+                $correct_answer = $request->choice1;
+                break;
+            case 'choice2':
+                $correct_answer = $request->choice2;
+                break;
+            case 'choice3':
+                $correct_answer = $request->choice3;
+                break;
+            case 'choice4':
+                $correct_answer = $request->choice4;
+                break;
+            case 'choice5':
+                $correct_answer = $request->choice5;
+                break;
+
+        }
+
         $questionnaires = Questionnaires::create([
             'quiz_id' => $request->quiz_id,
             'question_text' => $request->question_text,
@@ -26,9 +46,11 @@ class QuestionnairesController extends Controller
             'choice3' => $request->choice3,
             'choice4' => $request->choice4,
             'choice5' => $request->choice5,
-            'correct_answer' => $request->correct_answer,
+            'correct_answer' => $correct_answer,
             'status' => 1
         ]);
+
+
 
         return response()->json([
             'message' => 'Questionnaire created successfully',
@@ -75,7 +97,42 @@ class QuestionnairesController extends Controller
 
         $questionnaires = Questionnaires::find($id);
 
-        $questionnaires->update($request->all());
+
+        $correct_answer = '';
+        switch ($request->correct_answer) {
+            case 'choice1':
+                $correct_answer = $request->choice1;
+                break;
+            case 'choice2':
+                $correct_answer = $request->choice2;
+                break;
+            case 'choice3':
+                $correct_answer = $request->choice3;
+                break;
+            case 'choice4':
+                $correct_answer = $request->choice4;
+                break;
+            case 'choice5':
+                $correct_answer = $request->choice5;
+                break;
+
+        }
+
+        $questionnaires->update([
+            'quiz_id' => $request->quiz_id,
+            'question_text' => $request->question_text,
+            'code_snippet' => $request->code_snippet,
+            'answer_explanation' => $request->answer_explanation,
+            'more_info_link' => $request->more_info_link,
+            'choice1' => $request->choice1,
+            'choice2' => $request->choice2,
+            'choice3' => $request->choice3,
+            'choice4' => $request->choice4,
+            'choice5' => $request->choice5,
+            'correct_answer' => $correct_answer,
+            'status' => 1
+        ]);
+
 
         return response()->json([
             'message' => 'Questionnaire updated successfully'
