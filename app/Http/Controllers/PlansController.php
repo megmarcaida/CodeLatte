@@ -176,15 +176,4 @@ class PlansController extends Controller
         return redirect('users/billing-info')->with('success', 'Subscribed to '.$plan->name.' successfully');
 
     }
-
-    public function billingInfo()
-    {
-        $usersplan = UsersPlan::where('user_id',Auth::user()->id)->first();
-
-        $plans = Plans::where('id','=',$usersplan->plan_id)->first();
-
-
-        $profile = Auth::user()->profile()->first();
-        return view('users.billing_info',compact("plans","profile"));
-    }
 }

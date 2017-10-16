@@ -75,6 +75,6 @@ class UsersQuizAnswerController extends Controller
             $usersquizanswer->usersquestionnairesanswer = UsersQuestionnairesAnswer::where('usersQuizAnswer_id', $usersquizanswer->id)->get();
         }
 
-        return view('users.progress',compact('usersquizanswers'));
+        return view('users.progress')->with('usersquizanswers');
     }
 }

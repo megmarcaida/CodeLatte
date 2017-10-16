@@ -15,7 +15,7 @@
                         <div class="panel-heading">Billing History</div>
 
                         <div class="panel-body">
-
+                            {{ $users->firstname }}
                         </div>
                     </div>
                 </div>

@@ -208,7 +208,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::group(['middleware' => 'subscribed'], function () {
 
         Route::get('/users/billing-info',[
-            'uses' => 'PlansController@billingInfo'
+            'uses' => 'BillingInfoController@billingInfo'
 
         ]);
         Route::post('/subscription/cancel', 'SubscriptionController@cancel');
