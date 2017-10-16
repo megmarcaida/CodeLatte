@@ -4,7 +4,7 @@
 
         <div class="container">
             <br>
-            <div class="col-lg-4">
+            <div class="col-xs-12 col-md-4 col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         {{ $user->firstname  }}'s Profile.
@@ -49,6 +49,9 @@
                         </p>
                     </div>
                 </div>
+            </div>
+            <div class="col-xs-12 col-md-8 col-lg-8">
+                
             </div>
         </div>
 @stop
