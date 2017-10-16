@@ -2,7 +2,7 @@
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/pricing/style.css') }}">
-  
+    <link rel="stylesheet" href="{{ asset('css/pricing/plan.css') }}">
 
     <div class="container">
 
@@ -16,7 +16,6 @@
 
                     <ul class="cd-pricing-list">
                         @if (count($plans) > 0)
-                            {{count($plans) }}
                             @foreach($plans as $plan)
                                 @if($plan->id == 2)
                                     <li class="cd-popular">
