@@ -2,7 +2,7 @@
 
     <li>
 
-        <a href="/notifications" v-if="all_nots_count > 1">
+        <a href="/notifications" v-if="all_nots_count > 0">
             <span class="fa-stack has-badge span-count" v-bind:data-count="all_nots_count">
               <i class="fa fa-bell fa-stack-1x not-bell"></i>
             </span>

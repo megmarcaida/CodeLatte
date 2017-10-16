@@ -125,6 +125,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/noty.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-focus/2.1.0/vue-focus.min.js"></script>
     <script>
         @if(Session::has('success'))
               $(document).ready(function(){

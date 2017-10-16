@@ -18,7 +18,7 @@
                             var n = new Noty({
                                 type: 'success',
                                 layout: 'bottomLeft',
-                                text: notification.name + ' ' + notification.message,
+                                text: notification.username + ' ' + notification.message,
                             }).show();
                             n.setTimeout(1000);
                         })

@@ -64,8 +64,21 @@ Route::get('/testimonials', function() {
     return view('testimonials');
 });
 
-
 //ENDPAGES
+
+//SMS
+
+Route::get('/sms/send/{to}', function(\Nexmo\Client $nexmo, $to){
+    $message = $nexmo->message()->send([
+        'to' => $to,
+        'from' => '@leggetter',
+        'text' => 'Sending SMS from Laravel. Woohoo!'
+    ]);
+    Log::info('sent message: ' . $message['message-id']);
+});
+
+//ENDSMS
+
 
 Route::get('admin/login', 'AdminAuth\AdminLoginController@showLoginForm');
 Route::post('admin/login', 'AdminAuth\AdminLoginController@login');

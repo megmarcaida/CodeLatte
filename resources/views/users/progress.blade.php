@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+z`
 @section('content')
 
     <div class="container">
@@ -10,6 +10,10 @@
 
                 <div class="header-curriculum"><i class="fa fa-hashtag" aria-hidden="true"></i> Progress</div>
 
+                @if(count($usersquizanswers)>0)
+                    @foreach($usersquizanswers as $userquestionnairesAns)
+                    @endforeach
+                @endif
             </div>
 
         </div>

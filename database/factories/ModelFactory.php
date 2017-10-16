@@ -15,12 +15,16 @@
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
-    $name = $faker->name;
+    $username = $faker->username;
+    $firstname = $faker->firstname;
+    $lastname = $faker->lastname;
 
     return [
-        'name' => $name,
+        'username' => $username,
+        'firstname' => $firstname,
+        'lastname' => $lastname,
         'email' => $faker->unique()->safeEmail,
-        'slug' => str_slug($name),
+        'slug' => str_slug($username),
         'gender' => 0,
         'avatar' => 'public/defaults/avatars/male.png',
         'password' => $password ?: $password = bcrypt('secret'),

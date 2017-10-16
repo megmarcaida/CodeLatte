@@ -439,7 +439,25 @@ div.panel-body > a{
     display: none;
 }
 
+.search-list{
+    background: #ffffff !important;
+    list-style: none;
+    width: 100%;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+}
 
+.search-list li{
+    display: inline-block;
+    width: 100%;
+}
+
+.search-list li a h6, .search-list li a img{
+    display: inline-block;
+    float:left;
+
+}
 
 
 
