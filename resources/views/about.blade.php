@@ -3,6 +3,8 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/pricing/style.css') }}">
     <section>
+	
+    	<div class="about">
 	<p>Steve Jobs (Founder of Apple Inc) once said 
 		"Everybody in this country must learn how 
 		to program a computer because it teaches you
@@ -22,6 +24,8 @@
 		syntax. In short you creating yourself as a solution-driven individual. </p>
 	<p>El Miguel A. Marcaida (Founder of Code Latte)</p>
       
+
+      </div>
     </section>
 
 
