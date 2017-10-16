@@ -66,7 +66,8 @@
                 </div>
 
                 @if(count($user->posts) > 0)
-                    @foreach($user->posts as $post)
+
+                    @foreach( $user->posts as $post)
                         <div class="panel panel-default">
                             <a href="">
                                 <img src="{{ $user->avatar  }}" width="30px" height="30px" style="border-radius:50%;" alt="">
@@ -74,20 +75,44 @@
                             </a>
                             <br>
                             <div>{{ $post->content }}</div>
+
+                            <hr>
                             @foreach($post->likes as $likes)
-                            <p class="text-center displayInlineBlock">
-                                <img data-toggle="tooltip" title="{{ $likes->user->firstname . " " . $likes->user->lastname  }}" src="{{$likes->user->avatar}}" width="15px" height="15px" class="avatar-like">
-                            </p>
 
-                            <hr>{{--
-                            <button class="btn btn-xs btn-primary" v-if="!auth_user_likes_post" @click="like()">
-                                Satisfied
-                            </button>
+                            <br>
+                            @if(isset($likes->id) && $likes->user->id== $user->id )
 
-                            <button class="btn btn-xs btn-danger" v-else @click="unlike()">
-                                Unsatisfied
-                            </button>--}}
+                                    <a href="">Unlike</a>
+                            @elseif($likes->user->id== $user->id)
+                                    <a href="#">{{ $likes->user->firstname . " " . $likes->user->lastname  }}</a>
+
+                            @endif
+
                             @endforeach
+
+
+                            @foreach($post->likes as $likes)
+
+                                <p class="text-center displayInlineBlock">
+                                    @if($likes->user->id == $user->id )
+                                            @if(count($post->likes) > 1)
+                                                <a href="{{ $likes->user->slug }}">You </a>and
+                                            @else
+                                                <a href="{{ $likes->user->slug }}">You</a>,
+                                            @endif
+                                        @else
+
+                                        @if(count($post->likes) > 1)
+                                            <a href="{{ $likes->user->slug }}">{{ $likes->user->firstname . " " . $likes->user->lastname  }}</a>
+                                        @else
+                                            <a href="{{ $likes->user->slug }}">{{ $likes->user->firstname . " " . $likes->user->lastname  }}</a>
+                                        @endif
+
+                                    @endif
+                                    {{-- <img data-toggle="tooltip" title="{{ $likes->user->firstname . " " . $likes->user->lastname  }}" src="{{$likes->user->avatar}}" width="15px" height="15px" class="avatar-like">--}}
+                                </p>
+                            @endforeach
+                            like this.
                         </div>
                         <br>
                     @endforeach

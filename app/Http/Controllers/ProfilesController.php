@@ -14,13 +14,7 @@ class ProfilesController extends Controller
     public function index($slug)
     {
         $user = User::where('slug',$slug)->first();
-
-       /* $feed = array();
-
-        foreach(Auth::user()->posts as $post):
-            array_push($feed,$post);
-        endforeach;*/
-
+        $user->posts()->orderBy('id','DESC')->get();
 
         return view('profiles.profile',compact("user"));
     }
