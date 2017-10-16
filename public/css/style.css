@@ -461,10 +461,17 @@ div.panel-body > a{
 
 
 .about {
-    padding: 20px;
+    padding: 50px;
     margin-left: 20px;
     margin-right: 20px;
 
+
+}
+
+.bord {
+     border-style: groove solid;
+     border-width: 5px;
+     border-color: gray;
 
 }
 

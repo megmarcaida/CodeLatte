@@ -4,8 +4,8 @@
 
 
     <section>
-	
-    	<div class="about">
+
+    	<div class="about bord">
 	<p>Steve Jobs (Founder of Apple Inc) once said 
 		"Everybody in this country must learn how 
 		to program a computer because it teaches you
