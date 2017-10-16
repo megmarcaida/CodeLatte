@@ -120,7 +120,7 @@
                         <input type="hidden" name="plan" value="{{ $plans->id }}">
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button id="payment-button" type="submit"  class="btn btn-primary btn-flat btn-block">
+                                <button id="payment-button" type="submit"  class="btn btn-primary btn-flat">
                                     @if($plans->id != 1)
                                     Pay now
                                     @else

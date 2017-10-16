@@ -70,11 +70,5 @@ class UsersQuizAnswerController extends Controller
 
     public function progress(){
 
-        $usersquizanswers = UsersQuizAnswer::where('user_id',Auth::user()->id);
-        foreach ($usersquizanswers as $usersquizanswer) {
-            $usersquizanswer->usersquestionnairesanswer = UsersQuestionnairesAnswer::where('usersQuizAnswer_id', $usersquizanswer->id)->get();
-        }
-
-        return view('users.progress',compact('usersquizanswers'));
     }
 }

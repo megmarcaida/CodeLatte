@@ -7,7 +7,6 @@ use App\User;
 use App\Plans;
 use App\Http\Controllers\Controller;
 use App\UsersPlan;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -78,12 +77,6 @@ class RegisterController extends Controller
         {
             $avatar = 'public/defaults/avatars/female.png';
         }
-        $days=0;
-        if ($data['plan'] != 1)
-            $days= 30;
-        else
-            $days =7;
-
         $user = User::create([
             'username' => $data['username'],
             'firstname' => $data['firstname'],
@@ -93,8 +86,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'slug' => str_slug($data['username']),
             'avatar' => $avatar,
-            'plan_id' => $data['plan'],
-            'trial_ends_at' => Carbon::now()->addDays($days)
+            'plan_id' => $data['plan']
         ]);
 
         // get the plan after submitting the form
@@ -103,31 +95,18 @@ class RegisterController extends Controller
 
         // subscribe the user
         if ($data['plan'] != 1) {
-            $payment_method_nonce = 'fake-valid-nonce';
-            $user->newSubscription('main', $plan->braintree_plan)->create($payment_method_nonce,[
-                'email' => $data['email'],
-                'firstName' => $data['firstname'],
-                'lastName' => $data['lastname'],
-            ]);
-
-            $userplan = UsersPlan::create([
-                'user_id' => $user->id,
-                'plan_id' => $data['plan'],
-                'trial_days' => '30',
-                'status' => 1
-            ]);
+            $payment_method_nonce = $data['payment_method_nonce'];
+            $user->newSubscription('main', $plan->braintree_plan)->create($payment_method_nonce);
         }
-        else{
+        else
             $payment_method_nonce = 'Trial Period';
-            $userplan = UsersPlan::create([
-                'user_id' => $user->id,
-                'plan_id' => $data['plan'],
-                'trial_days' => '7',
-                'status' => 1
-            ]);
-        }
 
-
+        $userplan = UsersPlan::create([
+            'user_id' => $user->id,
+            'plan_id' => $data['plan'],
+            'trial_days' => '7',
+            'status' => 1
+        ]);
 
 
         Profile::create(['user_id'=>$user->id]);
