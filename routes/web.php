@@ -142,9 +142,11 @@ Route::group(['middleware'=>'auth'],function(){
     //FOR USER PAGES
 
     //CURRICULUM
-    Route::get('/users/curriculum', function(){
-        return view('users.curriculum');
-    });
+
+    Route::get('/users/curriculum',[
+        'uses' => 'CourseListController@curriculum',
+        'as' => 'userscurriculum'
+    ]);
 
     Route::get('/users/curriculum/take/{slug}',[
         'uses' => 'CourseListController@index',
@@ -173,21 +175,44 @@ Route::group(['middleware'=>'auth'],function(){
     ]);
     //ENDCURRICULUM
 
-    Route::get('/users/check_plans', function(){
-        return view('users.check_plans');
-    });
 
-    Route::get('/users/billing_info', function(){
-        return view('users.billing_info');
+    //PLANS
+    Route::get('/users/check_plans',[
+        'uses' => 'PlansController@checkPlans'
+
+    ]);
+
+    Route::get('/users/upgrade/{slug}/',[
+        'uses' => 'PlansController@upgradePlans'
+
+    ]);
+
+    Route::post('/users/upgrade/payment',[
+        'uses' => 'PlansController@payNow',
+        'as' => 'payment'
+    ]);
+
+    Route::group(['middleware' => 'subscribed'], function () {
+
+        Route::get('/users/billing-info',[
+            'uses' => 'PlansController@billingInfo'
+
+        ]);
+        Route::post('/subscription/cancel', 'SubscriptionController@cancel');
+        Route::post('/subscription/resume', 'SubscriptionController@resume');
     });
+    //ENDPLANS
+
+
 
     Route::get('/users/glossary', function(){
         return view('users.glossary');
     });
 
-    Route::get('/users/progress', function(){
-        return view('users.progress');
-    });
+    Route::get('/users/progress',[
+        'uses' => 'UsersQuizAnswerController@progress'
+
+    ]);
 
     //USER PAGES
 

@@ -14,16 +14,20 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/noty.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('css/intlTelInput.css') }}">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css" type="text/css">
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div id="app">
         <init></init>
         <nav class="navbar navbar-default navbar-static-top latte-nav">
             <div class="container">
+                @include ('layouts.notifications.notification')
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -62,9 +66,8 @@
                             <li><a title="Take a curriculum" class="latte-icons" href="{{ url('/users/curriculum') }}"><i class="fa fa-laptop" aria-hidden="true"></i></a></li>
                             <li><a title="Show your progress" class="latte-icons" href="{{ url('/users/progress') }}"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
                             <li><a title="Upgrade Plans" class="latte-icons" href="{{ url('/users/check_plans') }}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></li>
-                            <li><a title="Check your billing" class="latte-icons" href="{{ url('/users/billing_info') }}"><i class="fa fa-credit-card" aria-hidden="true"></i></a></li>
                             <li><a title="News Feed" href="{{ route('home') }}"class="latte-icons"><i class="fa fa-newspaper-o" aria-hidden="true"></i></a></li>
-                            <li><a href=""> <img src="{{ Auth::user()->avatar  }}" width="30px" height="30px" style="border-radius:50%;" alt=""></a></li>
+                            <li><a href="{{ route('profile',['slug'=> Auth::user()->slug ]) }}"> <img src="{{ Auth::user()->avatar  }}" width="30px" height="30px" style="border-radius:50%;" alt=""></a></li>
                             <li><a class="latte-menu" title="Go to your profile" href="{{ route('profile',['slug'=> Auth::user()->slug ]) }}">{{ Auth::user()->firstname  }}</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -75,6 +78,13 @@
 
                                     <li>
                                         <a href="#">Settings</a>
+                                    </li>
+                                    <li>
+                                        @if (Auth::user()->subscribed('main'))
+                                            <a href="{{ url('/users/billing-info') }}">
+                                                Manage subscriptions
+                                            </a>
+                                        @endif
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
@@ -126,8 +136,17 @@
                 });
         @endif
     </script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        document.onreadystatechange = function () {
+            var state = document.readyState
+            if (state == 'complete') {
+                setTimeout(function(){
+                    document.getElementById('payment-button').style.display="block";
+                },1000);
+            }
+        }
+    </script>
+
     <script>
         $( document ).ready(function() {
             setTimeout(function(){
@@ -139,51 +158,39 @@
 
         })
 
-        function playVideo() {
-            var video = document.getElementById('videoAllUrBase');
-            var message = document.getElementById('vidMessage');
-            var button = document.getElementById('playButton');
 
-            if (video.paused) {
-                video.play();
-                button.value = "Pause";
-                message.innerHTML = "The video is playing, click the Pause button to pause the video.";
-            } else {
-                video.pause();
-                button.value = "Play";
-                message.innerHTML = "The video is paused, click the Play button to resume the video.";
-            }
-
-            video.onended = videoEnded;
-        }
-
-        function videoEnded() {
-            var video = document.getElementById('videoAllUrBase');
-            var message = document.getElementById('vidMessage');
-            //message.innerHTML = "The video has ended, click Play to restart the video.";
-            message.style.display = "block";
-        }
-
-
-        var video = document.querySelector('video');
-        //video.BP = 0;
-
-        //vid.BP = 0;
-
-        /*vid.addEventListener('timeupdate', function(e){
-            var that = this;
-            (function(){
-                setTimeout(function(){
-                    that.BP=that.currentTime;
-                }, 500);
-            }).call(that);}
-        );*/
 
 
 
         $("#btnGetting_started").click(function (e) {
             $("#getting_started").fadeOut('slow');
         });
+
+        function check()
+        {
+
+            var contact = document.getElementById('contact');
+
+
+            var message = document.getElementById('message');
+
+            var goodColor = "#0C6";
+            var badColor = "#FF9B37";
+
+            if(contact.value.length!=10){
+
+                contact.style.backgroundColor = badColor;
+                message.style.color = badColor;
+                message.innerHTML = "required 10 digits, match requested format!"
+            }
+            else
+            {
+                message.style.color = goodColor;
+                message.innerHTML = "";
+                contact.style.backgroundColor = goodColor;
+            }
+        }
+
     </script>
 
     <!-- Scripts -->
@@ -192,21 +199,87 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-    @if (!Auth::check())
-    <script src="https://js.braintreegateway.com/js/braintree-2.30.0.min.js"></script>
+
+    <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+    @if(isset($plans->cost))
     <script>
         $.ajax({
             url: '{{ url('braintree/token') }}'
         }).done(function (response) {
             braintree.setup(response.data.token, 'dropin', {
                 container: 'dropin-container',
+                paypal: {
+                    singleUse: true,
+                    amount: '{{ $plans->cost }}',
+                    currency: 'USD',
+                    button: {
+                        type: 'checkout'
+                    }
+                },
                 onReady: function () {
                     $('#payment-button').removeClass('hidden');
                 }
             });
         });
     </script>
-
     @endif
+    <script src="{{ asset('js/intlTelInput.js') }}"></script>
+    <script>
+
+        var telInput = $("#contact"),
+            errorMsg = $("#error-msg"),
+            validMsg = $("#valid-msg"),
+            paymentbutton = $("#payment-button");
+
+        telInput.intlTelInput({
+            isValidNumber: true,
+            // allowDropdown: false,
+            // autoHideDialCode: false,
+            // autoPlaceholder: "off",
+            // dropdownContainer: "body",
+            // excludeCountries: ["us"],
+             formatOnDisplay: true,
+             geoIpLookup: function(callback) {
+               $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                 var countryCode = (resp && resp.country) ? resp.country : "";
+                 callback(countryCode);
+               });
+             },
+            // hiddenInput: "full_number",
+             initialCountry: "auto",
+             nationalMode: true,
+            // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+             placeholderNumberType: "MOBILE",
+            // preferredCountries: ['cn', 'jp'],
+            separateDialCode: true,
+            utilsScript: "{{ asset('js/utils.js') }}"
+        });
+
+        var reset = function() {
+            telInput.removeClass("error");
+            paymentbutton.removeClass("btn-is-disabled")
+            errorMsg.addClass("hide");
+            validMsg.addClass("hide");
+        };
+
+        // on blur: validate
+        telInput.blur(function() {
+            reset();
+            if ($.trim(telInput.val())) {
+                if (telInput.intlTelInput("isValidNumber")) {
+                    validMsg.removeClass("hide");
+                } else {
+                    telInput.addClass("error");
+                    paymentbutton.addClass("btn-is-disabled");
+                    errorMsg.removeClass("hide");
+                }
+            }
+        });
+
+        // on keyup / change flag: reset
+        telInput.on("keyup change", reset);
+    </script>
+
+
 </body>
 </html>

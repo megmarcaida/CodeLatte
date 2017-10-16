@@ -408,6 +408,37 @@ div.panel-body > a{
     font-size: 1.3em;
 }
 
+.btn-is-disabled {
+    pointer-events: none; /* Disables the button completely. Better than just cursor: default; */
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.latte-course-upgrade{
+    position:absolute;
+    width:50px;
+    height:50px;
+    right:0;
+}
+
+.header-curriculum{
+    padding:5px;
+    border-radius: 3px;
+    background-color: #b68c5d;
+    color:#fff6f6;
+    font-size: 20px;
+    width:100%;
+    margin: 10px 0 !important;
+}
+
+.upgrade-content{
+    margin-top: 20px;
+}
+
+.payment-button{
+    display: none;
+}
+
 
 
 

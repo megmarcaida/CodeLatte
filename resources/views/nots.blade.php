@@ -3,9 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12">
+
+                <div class="header-curriculum"><i class="fa fa-hashtag" aria-hidden="true"></i> Notifications</div>
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center">Notifications</div>
 
                     <div class="panel-body">
                         <ul class="list-group">
@@ -20,5 +21,6 @@
                 </div>
             </div>
         </div>
+        @include('users.footer')
     </div>
 @endsection

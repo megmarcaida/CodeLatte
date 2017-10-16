@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\CourseLists;
 use App\Quiz;
 use App\Tutorials;
+use App\User;
 use App\UsersCourse;
+use App\UsersPlan;
 use App\UsersTutorials;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,11 +109,20 @@ class CourseListController extends Controller
         ]);
     }
 
+    public function curriculum()
+    {
+        $users = User::where('id',Auth::user()->id)->first();
+        $userplans = UsersPlan::where('user_id',Auth::user()->id)->where('plan_id',$users->plan_id)->first();
+
+        return view('users.curriculum')->with(['users'=>$users,'userplans'=>$userplans]);
+    }
+
+
     public function getCurriculum()
     {
-
+        $users = User::where('id',Auth::user()->id)->get();
         $curriculums = CourseLists::with('plans')->paginate(10);
-        $usersCourse = UsersCourse::with(['users','course'])->get();
+        $usersCourse = UsersCourse::with(['users','course'])->where('user_id',Auth::user()->id)->get();
         $response = [
             'pagination' => [
                 'total' => $curriculums->total(),
@@ -122,7 +133,8 @@ class CourseListController extends Controller
                 'to' => $curriculums->lastItem()
             ],
             'curriculums' => $curriculums,
-            'userscourse' => $usersCourse
+            'userscourse' => $usersCourse,
+            'users' => $users
         ];
 
         return response()->json([
@@ -135,7 +147,9 @@ class CourseListController extends Controller
         $courselist = CourseLists::where('slug',$slug)->first();
         $tutorials = Tutorials::orderBy('id')->with(['programminglanguage','media','courselist'])->where('course_id','=',$courselist->id)->get();
         $userscourses = UsersCourse::where('user_id',Auth::user()->id)->where('course_id',$courselist->id)->first();
-        $userstutorials = UsersTutorials::with('users','course','tutorials')->get();
+        $userstutorials = UsersTutorials::with('users','course','tutorials')->where('user_id',Auth::user()->id)->get();
+        $users = User::where('id',Auth::user()->id)->first();
+        $userplans = UsersPlan::where('user_id',Auth::user()->id)->where('plan_id',$users->plan_id)->first();
 
         if ($userscourses == null){
             $usersCourse = UsersCourse::create([
@@ -149,7 +163,7 @@ class CourseListController extends Controller
                 ->leftjoin('media', 'tutorials.media_id', '=', 'media.id')
                 ->leftjoin('course_lists', 'tutorials.course_id', '=', 'course_lists.id')
                 ->where('course_lists.id',"=",$course->id);*/
-        return view('users.take-curriculum')->with(['tutorials' => $tutorials,'courselist' => $courselist,'userstutorials'=>$userstutorials]);
+        return view('users.take-curriculum')->with(['tutorials' => $tutorials,'courselist' => $courselist,'userstutorials'=>$userstutorials,'users'=>$users,'userplans'=>$userplans]);
     }
 
     public function starttutorial($course_slug,$tutorial_slug){
@@ -163,17 +177,19 @@ class CourseListController extends Controller
                                         ->where('course_id',$courselist->id)
                                         ->where('tutorial_id',$tutorial->id)
                                         ->first();
-
+        $users = User::where('id',Auth::user()->id)->first();
+        $userplans = UsersPlan::where('user_id',Auth::user()->id)->where('plan_id',$users->plan_id)->first();
         if ($userstutorials == null){
             $usersCourse = UsersTutorials::create([
                 'user_id' => Auth::user()->id,
                 'course_id' => $courselist->id,
                 'tutorial_id' => $tutorial->id,
-                'status' => 0
+                'status' => 0,
+                ''
             ]);
         }
 
 
-        return view('users.start-tutorials')->with(['tutorial' => $tutorial,'courselist' => $courselist,'quiz' => $quiz]);
+        return view('users.start-tutorials')->with(['tutorial' => $tutorial,'courselist' => $courselist,'quiz' => $quiz,'userstutorials'=>$userstutorials,'userplans'=>$userplans]);
     }
 }

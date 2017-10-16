@@ -6,6 +6,7 @@ use App\Profile;
 use App\User;
 use App\Plans;
 use App\Http\Controllers\Controller;
+use App\UsersPlan;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -95,11 +96,17 @@ class RegisterController extends Controller
         // subscribe the user
         if ($data['plan'] != 1) {
             $payment_method_nonce = $data['payment_method_nonce'];
-
             $user->newSubscription('main', $plan->braintree_plan)->create($payment_method_nonce);
         }
         else
             $payment_method_nonce = 'Trial Period';
+
+        $userplan = UsersPlan::create([
+            'user_id' => $user->id,
+            'plan_id' => $data['plan'],
+            'trial_days' => '7',
+            'status' => 1
+        ]);
 
 
         Profile::create(['user_id'=>$user->id]);
@@ -112,3 +119,4 @@ class RegisterController extends Controller
         return view('auth.register',compact("plans"));
     }
 }
+

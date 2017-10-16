@@ -67,4 +67,8 @@ class UsersQuizAnswerController extends Controller
         return view('users.progress');
 
     }
+
+    public function progress(){
+
+    }
 }

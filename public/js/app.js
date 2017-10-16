@@ -68888,6 +68888,85 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -68896,6 +68975,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             plans: [],
             errors: [],
             userscourse: [],
+            users: [],
             pagination: {
                 total: 0,
                 per_page: 2,
@@ -68943,6 +69023,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.curriculums = response.data.curriculums.curriculums.data;
                 _this.pagination = response.data.curriculums.pagination;
                 _this.userscourse = response.data.curriculums.userscourse;
+                _this.users = response.data.curriculums.users;
                 console.log(response.data.curriculums.userscourse);
             });
         },
@@ -68976,11 +69057,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._l((_vm.curriculums), function(curriculum, index) {
     return _c('div', {
       staticClass: "curriculum"
-    }, [(_vm.userscourse[index] != null) ? _c('a', {
+    }, [(_vm.users[0].plan_id === curriculum.plan_id) ? _c('a', {
       attrs: {
         "href": 'curriculum/take/' + curriculum.slug
       }
-    }, [_c('div', {
+    }, [(_vm.userscourse[index] != null) ? _c('div', [_c('div', {
       staticClass: " panel-warning card-curriculum"
     }, [_c('div', {
       staticClass: "panel-heading"
@@ -68989,7 +69070,58 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    }), _vm._v("  " + _vm._s(curriculum.name) + "\n\n                                "), (_vm.userscourse[index].course_id) ? _c('h5', {
+    }), _vm._v("  " + _vm._s(curriculum.name) + "\n\n                                    "), (_vm.userscourse[index].course_id) ? _c('h5', {
+      staticClass: "pull-right",
+      attrs: {
+        "data-toggle": "tooltip",
+        "title": "Continue this course."
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-bookmark",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }), _vm._v(" Pending")]) : _vm._e()]), _vm._v(" "), _c('div', {
+      staticClass: "panel-body"
+    }, [_vm._v("\n                                " + _vm._s(curriculum.description) + "\n                            ")]), _vm._v(" "), _c('div', {
+      staticClass: "panel-footer card-curriculum-footer"
+    }, [_vm._m(0, true), _vm._v(" "), _vm._m(1, true), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-xs btn-primary pull-right",
+      attrs: {
+        "href": 'curriculum/take/' + curriculum.slug
+      }
+    }, [_vm._v("Switch")])])])]) : _c('div', [_c('div', {
+      staticClass: " panel-primary card-curriculum"
+    }, [_c('div', {
+      staticClass: "panel-heading"
+    }, [_c('i', {
+      staticClass: "fa fa-book",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }), _vm._v("  " + _vm._s(curriculum.name) + "\n                        ")]), _vm._v(" "), _c('div', {
+      staticClass: "panel-body"
+    }, [_vm._v("\n                            " + _vm._s(curriculum.description) + "\n                        ")]), _vm._v(" "), _c('div', {
+      staticClass: "panel-footer card-curriculum-footer"
+    }, [_vm._m(2, true), _vm._v(" "), _vm._m(3, true), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-xs btn-primary pull-right",
+      attrs: {
+        "href": 'curriculum/take/' + curriculum.slug
+      }
+    }, [_vm._v("Switch")])])])])]) : _vm._e(), _vm._v(" "), (_vm.users[0].plan_id > curriculum.plan_id) ? _c('a', {
+      attrs: {
+        "href": 'curriculum/take/' + curriculum.slug
+      }
+    }, [(_vm.userscourse[index] != null) ? _c('div', [_c('div', {
+      staticClass: " panel-warning card-curriculum"
+    }, [_c('div', {
+      staticClass: "panel-heading"
+    }, [_c('i', {
+      staticClass: "fa fa-book",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }), _vm._v("  " + _vm._s(curriculum.name) + "\n\n                            "), (_vm.userscourse[index].course_id) ? _c('h5', {
       staticClass: "pull-right",
       attrs: {
         "data-toggle": "tooltip",
@@ -69004,16 +69136,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "panel-body"
     }, [_vm._v("\n                            " + _vm._s(curriculum.description) + "\n                        ")]), _vm._v(" "), _c('div', {
       staticClass: "panel-footer card-curriculum-footer"
-    }, [_vm._m(0, true), _vm._v(" "), _vm._m(1, true), _vm._v(" "), _c('a', {
+    }, [_vm._m(4, true), _vm._v(" "), _vm._m(5, true), _vm._v(" "), _c('a', {
       staticClass: "btn btn-xs btn-primary pull-right",
       attrs: {
         "href": 'curriculum/take/' + curriculum.slug
       }
-    }, [_vm._v("Switch")])])])]) : _c('a', {
-      attrs: {
-        "href": 'curriculum/take/' + curriculum.slug
-      }
-    }, [_c('div', {
+    }, [_vm._v("Switch")])])])]) : _c('div', [_c('div', {
       staticClass: " panel-primary card-curriculum"
     }, [_c('div', {
       staticClass: "panel-heading"
@@ -69022,16 +69150,76 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    }), _vm._v("  " + _vm._s(curriculum.name) + "\n                    ")]), _vm._v(" "), _c('div', {
+    }), _vm._v("  " + _vm._s(curriculum.name) + "\n                        ")]), _vm._v(" "), _c('div', {
       staticClass: "panel-body"
-    }, [_vm._v("\n                        " + _vm._s(curriculum.description) + "\n                    ")]), _vm._v(" "), _c('div', {
+    }, [_vm._v("\n                            " + _vm._s(curriculum.description) + "\n                        ")]), _vm._v(" "), _c('div', {
       staticClass: "panel-footer card-curriculum-footer"
-    }, [_vm._m(2, true), _vm._v(" "), _vm._m(3, true), _vm._v(" "), _c('a', {
+    }, [_vm._m(6, true), _vm._v(" "), _vm._m(7, true), _vm._v(" "), _c('a', {
       staticClass: "btn btn-xs btn-primary pull-right",
       attrs: {
         "href": 'curriculum/take/' + curriculum.slug
       }
-    }, [_vm._v("Switch")])])])])])
+    }, [_vm._v("Switch")])])])])]) : _vm._e(), _vm._v(" "), (_vm.users[0].plan_id < curriculum.plan_id) ? _c('a', {
+      staticClass: "btn-is-disabled",
+      attrs: {
+        "href": 'checkplans/' + curriculum.plans.slug
+      }
+    }, [(_vm.userscourse[index] != null) ? _c('div', [_c('div', {
+      staticClass: "panel-warning card-curriculum"
+    }, [_c('div', {
+      staticClass: "panel-heading"
+    }, [_c('i', {
+      staticClass: "fa fa-book",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }), _vm._v("  " + _vm._s(curriculum.name) + "\n\n                            "), (_vm.userscourse[index].course_id) ? _c('h5', {
+      staticClass: "pull-right",
+      attrs: {
+        "data-toggle": "tooltip",
+        "title": "Continue this course."
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-bookmark",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }), _vm._v(" Pending")]) : _vm._e()]), _vm._v(" "), _c('div', {
+      staticClass: "panel-body"
+    }, [_vm._v("\n                            " + _vm._s(curriculum.description) + "\n                        ")]), _vm._v(" "), _c('div', {
+      staticClass: "panel-footer card-curriculum-footer"
+    }, [_vm._m(8, true), _vm._v(" "), _vm._m(9, true), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-xs btn-primary pull-right",
+      attrs: {
+        "href": 'curriculum/take/' + curriculum.slug
+      }
+    }, [_vm._v("Switch")])])])]) : _c('div', [_c('div', {
+      staticClass: " panel-info card-curriculum"
+    }, [_c('img', {
+      staticClass: "latte-course-upgrade",
+      attrs: {
+        "src": '../img/star.png',
+        "height": "720",
+        "alt": "AW",
+        "width": "720"
+      }
+    }), _vm._v(" "), _c('div', {
+      staticClass: "panel-heading"
+    }, [_c('i', {
+      staticClass: "fa fa-book",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }), _vm._v("  " + _vm._s(curriculum.name) + "\n                        ")]), _vm._v(" "), _c('div', {
+      staticClass: "panel-body"
+    }, [_vm._v("\n                            " + _vm._s(curriculum.description) + "\n                        ")]), _vm._v(" "), _c('div', {
+      staticClass: "panel-footer card-curriculum-footer"
+    }, [_vm._m(10, true), _vm._v(" "), _vm._m(11, true), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-xs btn-primary pull-right",
+      attrs: {
+        "href": 'curriculum/take/' + curriculum.slug
+      }
+    }, [_vm._v("Switch")])])])])]) : _vm._e()])
   }), _vm._v(" "), _c('nav', [_c('ul', {
     staticClass: "pagination"
   }, [(_vm.pagination.current_page > 1) ? _c('li', [_c('a', {
@@ -69080,6 +69268,110 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("»")])])]) : _vm._e()], 2)])], 2)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "#",
+      "data-toggle": "tooltip",
+      "title": "$80,000/yr"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-university",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "",
+      "data-toggle": "tooltip",
+      "title": "Watch Trailer"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-play-circle-o",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "#",
+      "data-toggle": "tooltip",
+      "title": "$80,000/yr"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-university",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "",
+      "data-toggle": "tooltip",
+      "title": "Watch Trailer"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-play-circle-o",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "#",
+      "data-toggle": "tooltip",
+      "title": "$80,000/yr"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-university",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "",
+      "data-toggle": "tooltip",
+      "title": "Watch Trailer"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-play-circle-o",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "#",
+      "data-toggle": "tooltip",
+      "title": "$80,000/yr"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-university",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "",
+      "data-toggle": "tooltip",
+      "title": "Watch Trailer"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-play-circle-o",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('a', {
     attrs: {
       "href": "#",

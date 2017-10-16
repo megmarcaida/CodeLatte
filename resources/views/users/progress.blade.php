@@ -2,12 +2,21 @@
 
 @section('content')
 
-    <section id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        Score
-    </section>
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-xs-12 col-md-12 col-lg-12">
+
+                <div class="header-curriculum"><i class="fa fa-hashtag" aria-hidden="true"></i> Progress</div>
+
+            </div>
+
+        </div>
 
 
-    @include('includes.footer')
+        @include('users.footer')
 
+    </div>
 
 @endsection

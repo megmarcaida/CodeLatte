@@ -59,5 +59,7 @@ class Kernel extends HttpKernel
         //add custom middlewares here as key and value pair.
         'admin_auth' => \App\Http\Middleware\AuthenticateAdmin::class,
         'admin_guest' => \App\Http\Middleware\RedirectIfAdminAuthenticated::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'subscribed' => \App\Http\Middleware\Subscribed::class,
     ];
 }

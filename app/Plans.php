@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Cashier\Billable;
 
 class Plans extends Model
 {
-    protected $fillable = ['name', 'slug', 'braintree_plan', 'cost', 'description'];
+    use Billable;
+
+    protected $fillable = ['name', 'slug', 'braintree_plan', 'cost','trialDuration','trialDurationUnit','discount', 'description'];
 
     public function plansContent()
     {
