@@ -25,3 +25,4 @@ class BillingInfoController extends Controller
         return view('users.billing_info',compact("plans","profile","users","billinginfo"));
     }
 }
+0
