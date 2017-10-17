@@ -1,4 +1,4 @@
-<?php
+;;;;;;;;;;;<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -9,9 +9,7 @@ class CreateCodeBlocksTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
-     */
-    public function up()
+ * @return void99999999======== QQQQQQQQQQQQQQQQQQQQQQQQQQQ32   E]
     {
         Schema::create('code_blocks', function (Blueprint $table) {
             $table->increments('id');
@@ -29,8 +27,4 @@ class CreateCodeBlocksTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('code_blocks');
-    }
-}
+    public function down()9i9999999///////////////////////////

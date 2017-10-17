@@ -471,17 +471,12 @@ div.panel-body > a{
 
 
 .about {
-    padding: 50px;
-    margin-left: 500px;
-    margin-right: 50px;
+    padding: 60px;
+    display: right;
+    float: right;
+    margin-right: 100px;
+    margin-left: 150px;
 
-
-}
-
-.bord {
-     border-top: groove solid;
-     border-top: 5px;
-     border-color: gray;
 
 }
 
@@ -489,7 +484,17 @@ div.panel-body > a{
 float:left;
 }
 
+.abb {
+    float:left;
+    display:left;
+    border-radius: 600px;
+    margin-right: 50px;
+}
 
+.own {
+    margin-top: 50px ;
+
+}
 
 .btn-code-block{
     background-color: #b68c5d;
@@ -532,6 +537,7 @@ float:left;
 .btn-code-block:hover::after {
     width: 100%;
 }
+
 
 
 
