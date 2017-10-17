@@ -10,10 +10,11 @@
                 <li class="active">Templates</li>
             </ol>
             <div class="row">
-                {{-- {{ csrf_field() }}
-                 <PlansContent></PlansContent>
-
-                 <ListPlansContent></ListPlansContent>--}}
+                <div class="jumbotron text-center" style="margin-top: 12%; height: 100%;">
+                    <h1>THIS PAGE IS UNDER CONSTRUCTION</h1>
+                    <h2>Coming Soon</h2>
+                    <h3><code>Templates for education</code></h3>
+                </div>
             </div>
         </div><!-- contentpanel -->
     </div><!-- mainpanel -->

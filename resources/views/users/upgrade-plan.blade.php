@@ -16,7 +16,7 @@
                                     <label for="name" class="col-md-4 control-label">Billing Address</label>
 
                                     <div class="col-md-6">
-                                        <textarea id="address" type="text" readonly class="form-control" name="address" required autofocus>{{ $profile->location  }}</textarea>
+                                        <textarea id="billing_address" name="billing_address" type="text"  class="form-control" name="address" required autofocus>{{ $profile->location  }}</textarea>
 
                                         @if ($errors->has('address'))
                                             <span class="help-block">

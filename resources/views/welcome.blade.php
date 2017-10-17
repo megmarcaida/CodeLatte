@@ -136,28 +136,28 @@
                         <img class="img-responsive tree" src="{{ asset('img/builld.png') }}" alt="Learn">
                         <h4 class="text-center">Develop a Website</h4>
                         <h5 class="text-left">You'll learn the basics to building a website with an introduction to text editors, basic HTML tags, and advanced HTML skills.</h5>
-                        <a href="#">Get Started</a>
+                        <a href="{{ url('plan') }}">Get Started</a>
                     </div>
 
                     <div class="col-xs-12 col-md-3 col-lg-3">
                         <img class="img-responsive tree" src="{{ asset('img/codes.png') }}" alt="Learn">
                         <h4 class="text-center">Learn Coding</h4>
                         <h5 class="text-left">Learn technologies such as Ruby on Rails to help you build the next world changing product.</h5>
-                        <a href="#">Get Started</a>
+                        <a href="{{ url('plan') }}">Get Started</a>
                     </div>
 
                     <div class="col-xs-12 col-md-3 col-lg-3">
                         <img class="img-responsive tree" src="{{ asset('img/app.png') }}" alt="Learn">
                         <h4 class="text-center">Develop an App</h4>
                         <h5 class="text-left">This is the spot to learn how to build apps. You'll learn the language, tools, and necessary concepts to get your app out the door.</h5>
-                        <a href="#">Get Started</a>
+                        <a href="{{ url('plan') }}">Get Started</a>
                     </div>
 
                     <div class="col-xs-12 col-md-3 col-lg-3">
                         <img class="img-responsive tree" src="{{ asset('img/bus.png') }}" alt="Learn">
                         <h4 class="text-center">Form a Business</h4>
                         <h5 class="text-left">Find out how to get your business off on the right foot. You'll learn how to iporve yoour business and also your employees knowledge</h5>
-                        <a href="#">Get Started</a>
+                        <a href="{{ url('plan') }}">Get Started</a>
                     </div>
 
 

@@ -29,7 +29,9 @@ class ProfilesController extends Controller
 
         $this->validate($r,[
            'location' => 'required',
-            'about' => 'required|max:255'
+            'about' => 'required|max:255',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
         ]);
 
         Auth::user()->profile()->update([
@@ -40,12 +42,30 @@ class ProfilesController extends Controller
         if($r->hasFile('avatar'))
         {
             Auth::user()->update([
-               'avatar' => $r->avatar->store('public/avatars')
+               'avatar' => $r->avatar->store('public/avatars'),
             ]);
         }
+        if (isset($r['oldpassword']))
+        {
+            if(bcrypt($r['oldpassword']) == Auth::user()->password) {
+                Auth::user()->update([
+                    'password' => bcrypt($r['newpassword']),
+                ]);
+            }
+            else{
+                Session::flash('error','Your old password is incorrect.');
 
-        /*dd(Auth::user()->profile);*/
-        Session::flash('success','Profile updated');
+            }
+        }
+
+        $us = Auth::user()->update([
+            'firstname' => $r['firstname'],
+            'lastname' => $r['lastname'],
+            'mobile' => $r['mobile'],
+        ]);
+
+        Session::flash('success', 'Profile updated');
+
 
         return redirect()->back();
     }

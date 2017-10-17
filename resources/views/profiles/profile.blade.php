@@ -51,20 +51,21 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-8 col-lg-8">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <form action="{{ url('/create/post') }}" method="post">
-                            {{ csrf_field() }}
-                            <textarea rows="3" class="form-control" content="content" id="content"></textarea>
+                @if($user->id == Auth::user()->id)
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form action="{{ url('/create/post') }}" method="post">
+                                {{ csrf_field() }}
+                                <textarea rows="3" class="form-control" content="content" id="content"></textarea>
 
-                            <br>
-                            <button class="btn btn-success pull-right">
-                                Share your thoughts...
-                            </button>
-                        </form>
+                                <br>
+                                <button class="btn btn-success pull-right">
+                                    Share your thoughts...
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-
+                @endif
                 @if(count($user->posts) > 0)
 
                     @foreach( $user->posts as $post)

@@ -45,13 +45,13 @@ Route::get('/about', function() {
     return view('about');
 });
 
-Route::get('/gallery', function() {
-    return view('gallery');
-});
+Route::get('/gallery', [
+    'uses' => 'MediaController@getGalleryImage'
+]);
 
-Route::get('/faqs', function() {
-    return view('faqs');
-});
+Route::get('/faqs', [
+    'uses' => 'FaqsController@index'
+]);
 
 Route::get('/courses', function() {
     return view('courses');
@@ -231,6 +231,10 @@ Route::group(['middleware'=>'auth'],function(){
     ]);
 
     //USER PAGES
+
+    Route::get('/messages',function (){
+        return view('users.messages');
+    });
 
 });
 
@@ -467,6 +471,8 @@ Route::group(['middleware' => 'admin_auth'], function(){
     Route::get('/admin/users/list',[
         'uses' => 'UsersListController@index'
     ]);
+
+
     //ENDUSERS-LIST
 
 
@@ -484,6 +490,10 @@ Route::group(['middleware' => 'admin_auth'], function(){
     Route::get('admin/progress', function() {
         return view('admin.users.progress');
     });
+
+    Route::get('admin/progress/list',[
+        'uses' => 'UserQuizAnswerController@progresslist'
+    ]);
     //ENDUSERPROGRESS
 
     //SUPPORT
@@ -497,6 +507,10 @@ Route::group(['middleware' => 'admin_auth'], function(){
     Route::get('admin/courses ', function() {
         return view('admin.users.courses');
     });
+
+    Route::get('admin/courses/list',[
+        'uses' => 'CourseListController@usercourse'
+    ]);
     //ENDUSERCOURSES
 
 #END USERS

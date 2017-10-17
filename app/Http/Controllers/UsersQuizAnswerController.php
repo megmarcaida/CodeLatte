@@ -96,4 +96,24 @@ class UsersQuizAnswerController extends Controller
 
         return view('users.progress',compact("usersquizanswers","userscourse","userstutorial","tutorials"));
     }
+
+    public function progresslist(){
+
+        $usersquizanswer = UsersQuizAnswer::with(['users','quiz'])->paginate(10);
+        $response = [
+            'pagination' => [
+                'total' => $usersquizanswer->total(),
+                'per_page' => $usersquizanswer->perPage(),
+                'current_page' => $usersquizanswer->currentPage(),
+                'last_page' => $usersquizanswer->lastPage(),
+                'from' => $usersquizanswer->firstItem(),
+                'to' => $usersquizanswer->lastItem()
+            ],
+            'usersquizanswer' => $usersquizanswer
+        ];
+
+        return response()->json([
+            'usersquizanswer' => $response
+        ]);
+    }
 }

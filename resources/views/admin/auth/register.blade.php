@@ -13,9 +13,9 @@
                         <h1>Code Latte</h1>
                         <h4 class="panel-title">Create an Account!</h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body">{{--
                         <button class="btn btn-primary btn-quirk btn-fb btn-block">Sign Up Using Facebook</button>
-                        <div class="or">or</div>
+                        <div class="or">or</div>--}}
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/register') }}">
                             {{ csrf_field() }}
 

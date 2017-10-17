@@ -108,4 +108,12 @@ class MediaController extends Controller
             'media' => $response
         ]);
     }
+
+    public function getGalleryImage()
+    {
+        $media = Media::latest()->where('category','Image')->get();
+
+        return view('gallery',compact('media'));
+    }
+
 }

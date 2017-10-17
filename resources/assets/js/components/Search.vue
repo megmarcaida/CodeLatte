@@ -1,6 +1,6 @@
 <template>
     <li style="width: 280px;margin: 0 auto;">
-        <input style="margin:1em auto;" type="text" class="input-sm form-control" placeholder="Search users..." @blur="empty" v-model="query" @keyup.enter="search">
+        <input style="margin:1em auto;" type="text" class="input-sm form-control" placeholder="Search users..." @keyup.esc="empty" v-model="query" @keyup.enter="search">
 
         <div class="dropdown">
             <ul class="search-list" style="position:absolute;top:0;left:0;" v-if="results.length">
@@ -44,7 +44,7 @@
 
             empty(){
                 index.search(this.query, (err, content) => {
-                    this.results = null;
+                    this.results = 0;
                     /*console.log(content.hits)*/
                 })
             }

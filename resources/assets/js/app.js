@@ -68,6 +68,8 @@ Vue.component('curriculum', require('./components/Users/Curriculum.vue'));
 //ADMIN
 Vue.component('userslist', require('./components/Admin/UsersList.vue'));
 Vue.component('usersbillinginfo', require('./components/Admin/UsersBillingInfo.vue'));
+Vue.component('userscourse', require('./components/Admin/UsersCourse.vue'));
+Vue.component('usersprogress', require('./components/Admin/UsersProgress.vue'));
 //ENDADMIN
 
 

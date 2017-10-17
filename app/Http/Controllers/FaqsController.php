@@ -73,4 +73,11 @@ class FaqsController extends Controller
             'message' => 'Faq updated successfully'
         ]);
     }
+    public function index()
+    {
+        $faqs = Faqs::get();
+
+        return view('faqs',compact('faqs'));
+    }
+
 }

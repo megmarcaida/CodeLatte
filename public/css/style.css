@@ -1,3 +1,5 @@
+@import "bg.css";
+
 body{
     font-family: "Open Sans", "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
 }
@@ -58,6 +60,9 @@ a.free-trial:hover{
 
 .latte-nav{
     margin-bottom: 0 !important;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
 
 }
 
@@ -256,119 +261,6 @@ div.panel-body > a{
     display: block;
 }
 
-
-.bg-auburn {
-   background-color: #922724 !important;
-    color:#fff !important;
-}
-
-
-
-.bg-hunter {
-    background-color: #355e3b !important;
-    color:#fff !important;
-}
-
-.bg-jet {
-    background-color: #050002 !important;
-    color:#fff !important;
-}
-
-.bg-redd {
-    background-color: #d60e0e !important;
-    color:#fff !important;
-}
-
-.bg-rusty {
-    background-color: #b7410e !important;
-    color:#fff !important;
-}
-
-.bg-slate {
-    background-color: #708090 !important;
-    color:#fff !important;
-}
-
-.bg-sterling {
-    background-color: #bec2cb !important;
-    color:#000000 !important;
-}
-
-.bg-fuschia {
-    background-color: #FF0080 !important;
-    color:#000000 !important;
-}
-
-.bg-cinnamon {
-    background-color: #D2691E !important;
-    color:#fff !important;
-}
-
-.bg-diamond {
-    background-color: #c8e5eb !important;
-    color:#000000 !important;
-}
-
-.bg-crystal {
-    background-color: #a7d8de !important;
-    color:#000000 !important;
-}
-
-.bg-ebony {
-    background-color: #282C34 !important;
-    color:#fff !important;
-}
-
-.bg-amber {
-     background-color: #ffbf00 !important;
-    color:#000000 !important;
- }
-
-.bg-hazel {
-      background-color: #776536 !important;
-    color:#fff !important;
-  }
-
-.bg-ruby {
-    background-color: #9b111e !important;
-    color:#fff !important;
-}
-
-.bg-sable {
-    background-color: #624a3e !important;
-    color:#fff !important;
-}
-
-.bg-siena {
-    background-color: #A0522D !important;
-    color:#fff !important;
-}
-
-.bg-scarlet {
-    background-color: #ff2400 !important;
-    color:#000 !important;
-}
-
-.bg-turquoise {
-    background-color: #40E0D0 !important;
-    color:#000 !important;
-}
-
-.bg-gold {
-    background-color: #D0B240 !important;
-    color:#000 !important;
-}
-
-.bg-raven {
-    background-color: #667480 !important;
-    color:#fff !important;
-}
-
-.bg-azure {
-    background-color: #F0FFFF !important;
-    color:#000 !important;
-}
-
 .latte-hover{
     color: #3a2968;
     transition: all 500ms;
@@ -380,6 +272,10 @@ div.panel-body > a{
 
 .latte-video{
     width:100%;
+}
+
+.latte-profile{
+    margin-top: 2em;
 }
 
 .user-footer{
@@ -538,8 +434,52 @@ float:left;
     width: 100%;
 }
 
+ul.home-sidebar{
+    list-style: none;
+    margin-top: 10px;
+    float: right;
+}
 
+ul.home-sidebar li {
+    margin-top:7px;
+}
 
+ul.home-sidebar li a{
+    text-decoration: none;
+    font-size: 1.2em !important;
+    padding: 10px;
+}
+
+ul.home-sidebar li a > i{
+    font-size: 1.5em !important;
+    text-align: center !important;
+    display: inline;
+    width:50px;
+}
+ul.home-sidebar li a > strong{
+
+    display: inline;
+    float: right;
+}
+
+.home-sidebar li img{
+    border-radius: 50%;
+}
+
+.friendship-sidebar{
+    height: 100%;
+}
+
+.fix {
+    position: fixed;
+    width: 100%;
+      -webkit-transform: scale(1,1);
+    -moz-transform: scale(1,1);
+    -ms-transform: scale(1,1);
+    -o-transform: scale(1,1);
+    transform: scale(1,1);
+    top:0;
+}
 
 
 

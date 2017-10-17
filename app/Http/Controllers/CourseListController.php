@@ -192,4 +192,26 @@ class CourseListController extends Controller
 
         return view('users.start-tutorials')->with(['tutorial' => $tutorial,'courselist' => $courselist,'quiz' => $quiz,'userstutorials'=>$userstutorials,'userplans'=>$userplans]);
     }
+
+    public function usercourse(){
+
+        $usersCourse = UsersCourse::with(['users','course'])->paginate(10);
+        $response = [
+            'pagination' => [
+                'total' => $usersCourse->total(),
+                'per_page' => $usersCourse->perPage(),
+                'current_page' => $usersCourse->currentPage(),
+                'last_page' => $usersCourse->lastPage(),
+                'from' => $usersCourse->firstItem(),
+                'to' => $usersCourse->lastItem()
+            ],
+            'userscourses' => $usersCourse
+        ];
+
+        return response()->json([
+            'userscourses' => $response
+        ]);
+    }
+
+
 }

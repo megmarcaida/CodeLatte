@@ -2,45 +2,37 @@
 
     <div class="col-xs-12 col-md-12 col-lg-12">
 
-        <div class="billinginfo">
+        <div class="userslists">
 
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong>List of  Billing Informations</strong>
+                    <strong>List of Course</strong>
                 </div>
                 <div class="panel-body">
                     <div class="table table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>Availed Plan</th>
-                                <th>Billing Address</th>
-                                <th>Billing Contact</th>
+                                <th>Course Name</th>
+                                <th>Course Description</th>
+                                <th>Avatar</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
-                                <th>Billing Method</th>
-                                <th>Billing Cost</th>
-                                <th>Billing Due Date</th>
-                                <th>Card Brand</th>
-                                <th>Card Last Four Digit</th>
+                                <th>Username</th>
                             </tr>
                             </thead>
-                            <tbody v-for="billing in billinginfo">
+                            <tbody v-for="uc in userscourse">
                             <tr>
-                                <th>{{ billing.billing_name }}</th>
-                                <td>{{ billing.billing_address }}</td>
-                                <td>{{ billing.billing_contact }}</td>
-                                <td>{{ billing.users.firstname }}</td>
-                                <td>{{ billing.users.lastname }}</td>
-                                <td>{{ billing.users.email }}</td>
-                                <td>{{ billing.billing_method }}</td>
-                                <td>$ {{ billing.plans.cost }}</td>
-                                <td>{{ billing.billing_duedate }}</td>
-                                <td>{{ billing.users.card_brand }}</td>
-                                <td>**** **** **** {{ billing.users.card_last_four }}</td>
 
+                                <td>{{ uc.course.name }}</td>
+                                <td>{{ uc.course.description }}</td>
+                                <td><img width="30px" height="30px" :src="uc.users.avatar" alt=""></td>
+                                <td>{{ uc.users.firstname }}</td>
+                                <td>{{ uc.users.lastname }}</td>
+                                <td>{{ uc.users.email }}</td>
+                                <td>{{ uc.users.username }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -80,7 +72,7 @@
         data(){
             return {
                 errors: [],
-                billinginfo: [],
+                userscourse: [],
                 pagination: {
                     total: 0,
                     per_page: 2,
@@ -92,7 +84,7 @@
             }
         },
         created(){
-            this.fetchUsersBillingInfo(this.pagination.current_page);
+            this.fetchUsersCourse(this.pagination.current_page);
 
         },
         computed: {
@@ -120,16 +112,16 @@
             }
         },
         methods: {
-            fetchUsersBillingInfo: function(page){
-                this.$http.get('/admin/billinginfo/list?page='+page).then(response => {
-                    this.billinginfo  = response.data.billinginfo.billinginfo.data;
-                    this.pagination = response.data.billinginfo.pagination;
-                    console.log(response.data.billinginfo.billinginfo);
+            fetchUsersCourse: function(page){
+                this.$http.get('/admin/courses/list?page='+page).then(response => {
+                    this.userscourse  = response.data.userscourses.userscourses.data;
+                    this.pagination = response.data.userscourses.pagination;
+                    console.log(response.data)
                 });
             },
             changePage: function (page) {
                 this.pagination.current_page = page;
-                this.fetchUsersBillingInfo(page);
+                this.fetchCourseList(page);
             }
         },
         http: {

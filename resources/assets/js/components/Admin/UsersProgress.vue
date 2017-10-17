@@ -2,45 +2,41 @@
 
     <div class="col-xs-12 col-md-12 col-lg-12">
 
-        <div class="billinginfo">
+        <div class="userslists">
 
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong>List of  Billing Informations</strong>
+                    <strong>List of Course</strong>
                 </div>
                 <div class="panel-body">
                     <div class="table table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>Availed Plan</th>
-                                <th>Billing Address</th>
-                                <th>Billing Contact</th>
+                                <th>Quiz Name</th>
+                                <th>Quiz Description</th>
+                                <th>Score</th>
+                                <th>Avatar</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
-                                <th>Billing Method</th>
-                                <th>Billing Cost</th>
-                                <th>Billing Due Date</th>
-                                <th>Card Brand</th>
-                                <th>Card Last Four Digit</th>
+                                <th>Username</th>
+                                <th>Status</th>
                             </tr>
                             </thead>
-                            <tbody v-for="billing in billinginfo">
+                            <tbody v-for="uqa in usersquizanswer">
                             <tr>
-                                <th>{{ billing.billing_name }}</th>
-                                <td>{{ billing.billing_address }}</td>
-                                <td>{{ billing.billing_contact }}</td>
-                                <td>{{ billing.users.firstname }}</td>
-                                <td>{{ billing.users.lastname }}</td>
-                                <td>{{ billing.users.email }}</td>
-                                <td>{{ billing.billing_method }}</td>
-                                <td>$ {{ billing.plans.cost }}</td>
-                                <td>{{ billing.billing_duedate }}</td>
-                                <td>{{ billing.users.card_brand }}</td>
-                                <td>**** **** **** {{ billing.users.card_last_four }}</td>
 
+                                <td>{{ uqa.quiz.name }}</td>
+                                <td>{{ uqa.quiz.description }}</td>
+                                <td>{{ uqa.score }}/{{ uqa.items }}</td>
+                                <td><img width="30px" height="30px" :src="uqa.users.avatar" alt=""></td>
+                                <td>{{ uqa.users.firstname }}</td>
+                                <td>{{ uqa.users.lastname }}</td>
+                                <td>{{ uqa.users.email }}</td>
+                                <td>{{ uqa.users.username }}</td>
+                                <td>{{ uqa.quiz_status == 1 ? 'Passed' : 'Failed' }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -80,7 +76,7 @@
         data(){
             return {
                 errors: [],
-                billinginfo: [],
+                usersquizanswer: [],
                 pagination: {
                     total: 0,
                     per_page: 2,
@@ -92,7 +88,7 @@
             }
         },
         created(){
-            this.fetchUsersBillingInfo(this.pagination.current_page);
+            this.fetchUsersCourse(this.pagination.current_page);
 
         },
         computed: {
@@ -120,16 +116,16 @@
             }
         },
         methods: {
-            fetchUsersBillingInfo: function(page){
-                this.$http.get('/admin/billinginfo/list?page='+page).then(response => {
-                    this.billinginfo  = response.data.billinginfo.billinginfo.data;
-                    this.pagination = response.data.billinginfo.pagination;
-                    console.log(response.data.billinginfo.billinginfo);
+            fetchUsersQuizAnswer: function(page){
+                this.$http.get('/admin/progress/list?page='+page).then(response => {
+                    this.usersquizanswer  = response.data.usersquizanswer.usersquizanswer.data;
+                    this.pagination = response.data.usersquizanswer.pagination;
+                    console.log(response.data)
                 });
             },
             changePage: function (page) {
                 this.pagination.current_page = page;
-                this.fetchUsersBillingInfo(page);
+                this.fetchUsersQuizAnswer(page);
             }
         },
         http: {

@@ -62,7 +62,9 @@
                             <li><a title="Try our plans" class="free-trial" href="{{ url('plan') }}">Free Trial</a></li>
                         @else
                             <search></search>
+                            @if(Auth::user()->subscribed())
                             <li><a class="btn btn-block btn-code-block" title="Code Block" href="/users/code-block"><i class="fa fa-code" aria-hidden="true"></i>&nbsp;Code Block</a></li>
+                            @endif
                             <unread></unread>
                             <li><a title="Take a curriculum" class="latte-icons" href="{{ url('/users/curriculum') }}"><i class="fa fa-laptop" aria-hidden="true"></i></a></li>
                             <li><a title="Show your progress" class="latte-icons" href="{{ url('/users/progress') }}"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
@@ -78,7 +80,7 @@
                                 <ul class="dropdown-menu" role="menu">
 
                                     <li>
-                                        <a href="#">Settings</a>
+                                        <a href="{{ url('/profile/edit/profile') }}">Profile Settings</a>
                                     </li>
                                     <li>
                                         @if (Auth::user()->subscribed('main'))
@@ -285,7 +287,16 @@
         // on keyup / change flag: reset
         telInput.on("keyup change", reset);
     </script>
-
+    <script>
+        $(window).scroll(function () {
+            var sc = $(window).scrollTop()
+            if (sc > 100) {
+                $("#app > nav").addClass("fix")
+            } else {
+                $("#app > nav").removeClass("fix")
+            }
+        });
+    </script>
 
 </body>
 </html>

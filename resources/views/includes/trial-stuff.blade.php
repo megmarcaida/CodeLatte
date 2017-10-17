@@ -11,7 +11,7 @@
                     <li>Practive every lesson you've learn by our Developers Environment </li>
                     <li>Ask and communicate to others using our social media </li>
                 </ul>
-                <a href="{{ route('register') }}" class="form-control btn btn-brown">Start Now</a>
+                <a href="{{ url('/plan') }}" class="form-control btn btn-brown">Start Now</a>
             </div>
         </div>
 

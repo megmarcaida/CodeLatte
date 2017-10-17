@@ -2,20 +2,41 @@
 
     <div class="col-xs-12 col-md-12 col-lg-12">
 
-        <div class="userslists" v-for="(userslist,index) in userslists">
+        <div class="userslists">
 
 
-            <div class=" panel-warning">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;
-                    <h5 data-toggle="tooltip" title="Continue this course." class="pull-right"><i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Pending</h5>
+                    <strong>List of Users</strong>
                 </div>
                 <div class="panel-body">
-
+                    <div class="table table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Avatar</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Username</th>
+                                    <th>Plan</th>
+                                </tr>
+                            </thead>
+                            <tbody v-for="userslist in userslists">
+                                <tr>
+                                    <td><img width="30px" height="30px" :src="userslist.users.avatar" alt=""></td>
+                                    <td>{{ userslist.users.firstname }}</td>
+                                    <td>{{ userslist.users.lastname }}</td>
+                                    <td>{{ userslist.users.email }}</td>
+                                    <td>{{ userslist.users.username }}</td>
+                                    <td>{{ userslist.plans.name }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="panel-footer card-curriculum-footer">
-                    <a href="#" data-toggle="tooltip"  title="$80,000/yr"><i class="fa fa-university" aria-hidden="true"></i></a>
-                    <a href="" data-toggle="tooltip" title="Watch Trailer"><i class="fa fa-play-circle-o" aria-hidden="true"></i></a>
+
                 </div>
             </div>
 
@@ -91,8 +112,8 @@
             fetchUsersList: function(page){
                 this.$http.get('/admin/users/list?page='+page).then(response => {
                     this.userslists  = response.data.userslist.userslist.data;
-                    this.pagination = response.data.userslist.pagination;
-                    console.log(response.data.userslist.userslist);
+                     this.pagination = response.data.userslist.pagination;
+
                 });
             },
             changePage: function (page) {

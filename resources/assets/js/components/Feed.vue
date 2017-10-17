@@ -1,29 +1,27 @@
 <template>
-    <div id="feed" class="container">
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1">
-                <div class="panel panel-default" v-for="post in posts">
-                    <div class="panel-heading">
-                        <img :src="post.user.avatar" alt="" width="40px" height="40px" class="avatar-feed">
-                        {{ post.user.firstname }}
-                        <span class="pull-right">
-                            {{ post.created_at }}
-                        </span>
-                    </div>
+    <div id="feed">
 
-                    <div class="panel-body">
-                        <p class="text-center">
+        <div class="panel panel-default" v-for="post in posts">
+            <div class="panel-heading">
+                <img :src="post.user.avatar" alt="" width="40px" height="40px" class="avatar-feed">
+                {{ post.user.firstname }}
+                <span class="pull-right">
+                    {{ post.created_at }}
+                </span>
+            </div>
 
-                            {{ post.content }}
-                        </p>
+            <div class="panel-body">
+                <p class="text-center">
+
+                    {{ post.content }}
+                </p>
 
 
-                        <like :id="post.id"></like>
+                <like :id="post.id"></like>
 
-                    </div>
-                </div>
             </div>
         </div>
+
     </div>
 </template>
 

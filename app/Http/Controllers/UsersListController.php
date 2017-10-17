@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Friendship;
 use App\User;
 use App\UsersPlan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersListController extends Controller
 {
@@ -19,12 +21,13 @@ class UsersListController extends Controller
                 'from' => $userslists->firstItem(),
                 'to' => $userslists->lastItem()
             ],
-            'userslists' => $userslists
+            'userslist' => $userslists
 
         ];
 
         return response()->json([
-            'userslists' => $response
+            'userslist' => $response
         ]);
     }
+
 }

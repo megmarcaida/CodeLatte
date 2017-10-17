@@ -165,7 +165,7 @@ class PlansController extends Controller
             'user_id' => Auth::user()->id,
             'plan_id' => $data->plan,
             'billing_name' => $plan->name,
-            'billing_address'=> Auth::user()->profile->location,
+            'billing_address'=> isset(Auth::user()->profile->location) ? Auth::user()->profile->location : $data->billing_address,
             'billing_contact'=> $data->contact,
             'billing_method'=> $payment_method_nonce,
             'billing_duedate'=> Carbon::now()->addDays('30')

@@ -14,11 +14,11 @@
 
                     <div class="row panel-quick-page">
 
-                        <div class="col-xs-4 col-sm-5 col-md-4 page-user">
+                        <div class="col-xs-12 col-sm-6 col-md-6 page-user">
                             <div class="panel">
                                 <a href="{{ url('admin/users') }}">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">Manage Users</h4>
+                                        <h4 class="panel-title">Users List</h4>
                                     </div>
                                     <div class="panel-body">
                                         <div class="page-icon"><i class="icon ion-person-stalker"></i></div>
@@ -26,19 +26,19 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-4 col-sm-3 col-md-2 page-events">
+                        <div class="col-xs-6 col-sm-6 col-md-6 page-events">
                             <div class="panel">
-                                <a href="#">
+                                <a href="{{ url('admin/billing') }}">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">Events</h4>
+                                        <h4 class="panel-title">Billing Information</h4>
                                     </div>
                                     <div class="panel-body">
-                                        <div class="page-icon"><i class="icon ion-ios-calendar-outline"></i></div>
+                                        <div class="page-icon"><i class="icon ion-ios-list-outline"></i></div>
                                     </div>
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-4 col-sm-3 col-md-2 page-messages">
+                        <div class="col-xs-6 col-sm-6 col-md-6 page-messages">
                             <div class="panel">
                                 <a href="#">
                                     <div class="panel-heading">
@@ -50,7 +50,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-4 col-sm-5 col-md-2 page-reports">
+                        <div class="col-xs-6 col-sm-6 col-md-6 page-reports">
                             <div class="panel">
                                 <a href="#">
                                     <div class="panel-heading">
@@ -62,7 +62,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-4 col-sm-4 col-md-2 page-statistics">
+                        <div class="col-xs-6 col-sm-4 col-md-4 page-statistics">
                             <div class="panel">
                                 <a href="#">
                                     <div class="panel-heading">
@@ -74,7 +74,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-4 col-sm-4 col-md-2 page-privacy">
+                        <div class="col-xs-6 col-sm-4 col-md-4 page-privacy">
                             <div class="panel">
                                 <a href="#">
                                     <div class="panel-heading">
@@ -86,7 +86,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-4 col-sm-4 col-md-2 page-settings">
+                        <div class="col-xs-6 col-sm-4 col-md-4 page-settings">
                             <div class="panel">
                                 <a href="#">
                                     <div class="panel-heading">

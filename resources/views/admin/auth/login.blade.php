@@ -10,8 +10,8 @@
             <h4 class="panel-title">Welcome! Please signin.</h4>
         </div>
         <div class="panel-body">
-            <button class="btn btn-primary btn-quirk btn-fb btn-block">Connect with Facebook</button>
-            <div class="or">or</div>
+          {{--  <button class="btn btn-primary btn-quirk btn-fb btn-block">Connect with Facebook</button>
+            <div class="or">or</div>--}}
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/login') }}">
                 {{ csrf_field() }}
                 <div class="form-group mb10 {{ $errors->has('email') ? ' has-error' : '' }}">

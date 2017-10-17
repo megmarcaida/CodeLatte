@@ -3,7 +3,7 @@
         <div class="col-xs-12 col-md-4 col-lg-4">
             <div class="footer-center">
                 <h2>Latte Innovation</h2>
-                <h4>2019 latte Innovation Inc.</h4>
+                <h4>2019 &copy; latte Innovation Inc.</h4>
             </div>
         </div>
 
