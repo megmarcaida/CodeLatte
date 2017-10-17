@@ -20,4 +20,9 @@ class Plans extends Model
     {
         return $this->hasMany('App\CourseLists');
     }
+
+    public function billinginfo()
+    {
+        return $this->hasMany('App\BillingInfo');
+    }
 }

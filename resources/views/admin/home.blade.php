@@ -16,7 +16,7 @@
 
                         <div class="col-xs-4 col-sm-5 col-md-4 page-user">
                             <div class="panel">
-                                <a href="#">
+                                <a href="{{ url('admin/users') }}">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">Manage Users</h4>
                                     </div>

@@ -462,6 +462,11 @@ Route::group(['middleware' => 'admin_auth'], function(){
     Route::get('admin/users', function() {
         return view('admin.users.list-of-users');
     });
+
+
+    Route::get('/admin/users/list',[
+        'uses' => 'UsersListController@index'
+    ]);
     //ENDUSERS-LIST
 
 
@@ -469,6 +474,10 @@ Route::group(['middleware' => 'admin_auth'], function(){
     Route::get('admin/billing', function() {
         return view('admin.users.billing');
     });
+
+    Route::get('admin/billinginfo/list',[
+        'uses' => 'BillingInfoController@index'
+    ]);
     //ENDBILLING
 
     //USERSPROGRESS

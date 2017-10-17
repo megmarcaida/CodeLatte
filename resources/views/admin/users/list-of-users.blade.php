@@ -10,10 +10,10 @@
                 <li class="active">List of users</li>
             </ol>
             <div class="row">
-                {{-- {{ csrf_field() }}
-                 <PlansContent></PlansContent>
 
-                 <ListPlansContent></ListPlansContent>--}}
+                 <UsersList></UsersList>
+
+
             </div>
         </div><!-- contentpanel -->
     </div><!-- mainpanel -->

@@ -65,6 +65,11 @@ Vue.component('listquestionnaires', require('./components/Test/ListQuestionnaire
 Vue.component('curriculum', require('./components/Users/Curriculum.vue'));
 //ENDUSERS
 
+//ADMIN
+Vue.component('userslist', require('./components/Admin/UsersList.vue'));
+Vue.component('usersbillinginfo', require('./components/Admin/UsersBillingInfo.vue'));
+//ENDADMIN
+
 
 import { store } from './store'
 

@@ -7,6 +7,7 @@ use App\User;
 use App\Plans;
 use App\Http\Controllers\Controller;
 use App\UsersPlan;
+use App\BillingInfo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -127,10 +128,21 @@ class RegisterController extends Controller
             ]);
         }
 
+        $billing = BillingInfo::create([
+            'user_id' => $user->id,
+            'plan_id' => $data['plan'],
+            'billing_name' => $plan->name,
+            'billing_address'=> '',
+            'billing_contact'=> '',
+            'billing_method'=> $payment_method_nonce,
+            'billing_duedate'=> Carbon::now()->addDays('30')
+        ]);
 
 
 
         Profile::create(['user_id'=>$user->id]);
+
+
 
         return $user;
     }

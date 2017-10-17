@@ -160,7 +160,7 @@ class PlansController extends Controller
             'trial_days' => '30',
             'status' => 1
         ]);
-        var_dump($payment_method_nonce);
+
         $billing = BillingInfo::create([
             'user_id' => Auth::user()->id,
             'plan_id' => $data->plan,

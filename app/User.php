@@ -59,4 +59,9 @@ class User extends Authenticatable
     public function usersquizanswer(){
         return $this->belongsTo('App\UsersQuizAnswer');
     }
+
+    public function billinginfo()
+    {
+        return $this->hasMany('App\BillingInfo');
+    }
 }

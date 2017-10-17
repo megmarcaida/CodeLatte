@@ -10,10 +10,9 @@
                 <li class="active">Billing</li>
             </ol>
             <div class="row">
-                {{-- {{ csrf_field() }}
-                 <PlansContent></PlansContent>
 
-                 <ListPlansContent></ListPlansContent>--}}
+                 <usersbillinginfo></usersbillinginfo>
+
             </div>
         </div><!-- contentpanel -->
     </div><!-- mainpanel -->

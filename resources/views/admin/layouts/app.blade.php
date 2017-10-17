@@ -232,11 +232,8 @@
                                           <li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
                                           <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Account Settings</a></li>
                                           <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Help</a></li>
-                                          <li><a href="{{ url('/admin/logout') }}"
-                                                 onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                          <li><a href="{{ url('/admin/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                                   <i class="glyphicon glyphicon-log-out"></i> Log Out</a>
-
                                               <form id="logout-form" action="{{ url('/admin/logout') }}" method="POST" style="display: none;">
                                                   {{ csrf_field() }}
                                               </form></li>
@@ -347,7 +344,7 @@
                                       <ul class="children">
                                           <li><a href="{{ url('admin/users') }}">List of Users</a></li>
                                           <li><a href="{{ url('admin/billing') }}">Billing</a></li>
-                                          <li><a href="{{ url('admin/videos') }}">Progress</a></li>
+                                          <li><a href="{{ url('admin/progress') }}">Progress</a></li>
                                           <li><a href="{{ url('admin/courses') }}">Courses</a></li>
                                           <li><a href="{{ url('admin/support') }}">Support Center</a></li>
                                       </ul>

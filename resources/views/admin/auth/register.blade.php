@@ -57,7 +57,7 @@
 
                             <div class="form-group mb20">
                                 <label class="ckbox">
-                                    <input type="checkbox" name="checkbox">
+                                    <input required type="checkbox" name="checkbox">
                                     <span>Accept terms and conditions</span>
                                 </label>
                             </div>
