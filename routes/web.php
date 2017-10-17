@@ -213,6 +213,9 @@ Route::group(['middleware'=>'auth'],function(){
         ]);
         Route::post('/subscription/cancel', 'SubscriptionController@cancel');
         Route::post('/subscription/resume', 'SubscriptionController@resume');
+        Route::get('/users/code-block',[
+            'uses' => 'CodeBlockController@index'
+        ]);
     });
     //ENDPLANS
 

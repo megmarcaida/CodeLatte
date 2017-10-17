@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\CourseLists;
+use App\Tutorials;
 use App\User;
+use App\UsersCourse;
 use App\UsersQuizAnswer;
 use App\UsersQuestionnairesAnswer;
 use App\Questionnaires;
@@ -39,6 +42,7 @@ class UsersQuizAnswerController extends Controller
             $quiz_status = 0;
 
         $UserQuizAnswer = UsersQuizAnswer::create([
+            'user_id'=>Auth::user()->id,
             'quiz_id' => $quiz_id,
             'score' => $score,
             'items' => $items,
@@ -64,17 +68,32 @@ class UsersQuizAnswerController extends Controller
 
 
 
-        return view('users.progress');
+        $usersquizanswers = UsersQuizAnswer::with('quiz')->where('user_id',Auth::user()->id)->get();
+        foreach ($usersquizanswers as $usersquizanswer) {
+            $usersquizanswer->usersquestionnairesanswer = UsersQuestionnairesAnswer::where('usersQuizAnswer_id', $usersquizanswer->id)->get();
+        }
+
+        $userscourse = UsersCourse::where('user_id',Auth::user()->id)->get();
+
+        $userstutorial = UsersTutorials::with('tutorials')->where('user_id',Auth::user()->id)->get();
+        $tutorials = Tutorials::get();
+
+        return view('users.progress',compact("usersquizanswers","userscourse","userstutorial","tutorials"));
 
     }
 
     public function progress(){
 
-        $usersquizanswers = UsersQuizAnswer::where('user_id',Auth::user()->id);
+        $usersquizanswers = UsersQuizAnswer::with('quiz')->where('user_id',Auth::user()->id)->get();
         foreach ($usersquizanswers as $usersquizanswer) {
-            $usersquizanswer->usersquestionnairesanswer = UsersQuestionnairesAnswer::where('usersQuizAnswer_id', $usersquizanswer->id)->get();
+            $usersquizanswer->usersquestionnairesanswer = UsersQuestionnairesAnswer::with('questionnaires')->where('usersQuizAnswer_id', $usersquizanswer->id)->get();
         }
 
-        return view('users.progress')->with('usersquizanswers');
+        $userscourse = UsersCourse::where('user_id',Auth::user()->id)->get();
+
+       $userstutorial = UsersTutorials::with('tutorials')->where('user_id',Auth::user()->id)->get();
+        $tutorials = Tutorials::get();
+
+        return view('users.progress',compact("usersquizanswers","userscourse","userstutorial","tutorials"));
     }
 }

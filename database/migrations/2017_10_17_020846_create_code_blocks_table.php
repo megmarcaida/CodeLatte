@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersQuizAnswersTable extends Migration
+class CreateCodeBlocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateUsersQuizAnswersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_quiz_answers', function (Blueprint $table) {
+        Schema::create('code_blocks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('quiz_id');
-            $table->integer('score');
-            $table->integer('items');
-            $table->boolean('quiz_status');
+            $table->integer('programminglanguge_id');
+            $table->integer('template_id');
+            $table->string('code_file');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateUsersQuizAnswersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_quiz_answers');
+        Schema::dropIfExists('code_blocks');
     }
 }
