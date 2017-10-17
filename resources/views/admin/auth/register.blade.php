@@ -10,7 +10,7 @@
             <div class="col-sm-5">
                 <div class="panel">
                     <div class="panel-heading">
-                        <h1>Quirk</h1>
+                        <h1>Code Latte</h1>
                         <h4 class="panel-title">Create an Account!</h4>
                     </div>
                     <div class="panel-body">
@@ -70,19 +70,9 @@
             </div><!-- col-sm-5 -->
             <div class="col-sm-7">
                 <div class="sign-sidebar">
-                    <h3 class="signtitle mb20">Two Good Reasons to Love Quirk</h3>
+                    <h3 class="signtitle mb20">What is Code Latte</h3>
                     <p>When it comes to websites or apps, one of the first impression you consider is the design. It needs to be high quality enough otherwise you will lose potential users due to bad design.</p>
-                    <p>Below are some of the reasons why you love Quirk.</p>
-
-                    <br>
-
-                    <h4 class="reason">1. Attractive</h4>
-                    <p>When your website or app is attractive to use, your users will not simply be using it, they’ll look forward to using it. This means that you should fashion the look and feel of your interface for your users.</p>
-
-                    <br>
-
-                    <h4 class="reason">2. Responsive</h4>
-                    <p>Responsive Web design is the approach that suggests that design and development should respond to the user’s behavior and environment based on screen size, platform and orientation. This would eliminate the need for a different design and development phase for each new gadget on the market.</p>
+                    <p>Code latte is an E-learning application that have a high quality of learning process not for only students but also for everyone.</p>
 
                     <hr class="invisible">
 

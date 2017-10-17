@@ -62,6 +62,7 @@
                             <li><a title="Try our plans" class="free-trial" href="{{ url('plan') }}">Free Trial</a></li>
                         @else
                             <search></search>
+                            <li><a class="btn btn-block btn-code-block" title="Code Block" href="/users/code-block"><i class="fa fa-code" aria-hidden="true"></i>&nbsp;Code Block</a></li>
                             <unread></unread>
                             <li><a title="Take a curriculum" class="latte-icons" href="{{ url('/users/curriculum') }}"><i class="fa fa-laptop" aria-hidden="true"></i></a></li>
                             <li><a title="Show your progress" class="latte-icons" href="{{ url('/users/progress') }}"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
@@ -126,6 +127,8 @@
     <script src="{{ asset('js/noty.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-focus/2.1.0/vue-focus.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ asset('js/timeline.js') }}"></script>
     <script>
         @if(Session::has('success'))
               $(document).ready(function(){
@@ -202,6 +205,7 @@
     </script>
 
     <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+
     @if(isset($plans->cost))
     <script>
         $.ajax({
@@ -224,6 +228,7 @@
         });
     </script>
     @endif
+
     <script src="{{ asset('js/intlTelInput.js') }}"></script>
     <script>
 

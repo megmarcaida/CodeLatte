@@ -17,6 +17,6 @@ class UsersTutorials extends Model
     }
 
     public function tutorials(){
-        return $this->belongsTo('App\Tutorials');
+        return $this->belongsTo('App\Tutorials','tutorial_id');
     }
 }

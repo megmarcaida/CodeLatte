@@ -1,5 +1,5 @@
 <template>
-    <li style="width: 320px;margin: 0 auto;">
+    <li style="width: 280px;margin: 0 auto;">
         <input style="margin:1em auto;" type="text" class="input-sm form-control" placeholder="Search users..." @blur="empty" v-model="query" @keyup.enter="search">
 
         <div class="dropdown">

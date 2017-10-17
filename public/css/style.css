@@ -122,6 +122,16 @@ img.twit {
 }
 
 
+.btn-ban{
+     background: #b68c5d !important;
+     color:#fff6f6 !important;
+     font-size: 1.5em;
+     font-weight:bold;
+     line-height: 20px;
+     width: 80%;
+     margin: 0 10%!important;
+ }
+
 .btn-brown{
     background: #b68c5d !important;
     color:#fff6f6 !important;
@@ -457,6 +467,70 @@ div.panel-body > a{
     display: inline-block;
     float:left;
 
+}
+
+
+.about {
+    padding: 50px;
+    margin-left: 500px;
+    margin-right: 50px;
+
+
+}
+
+.bord {
+     border-top: groove solid;
+     border-top: 5px;
+     border-color: gray;
+
+}
+
+.float {
+float:left;
+}
+
+
+
+.btn-code-block{
+    background-color: #b68c5d;
+    color:#fff6f6 !important;
+    margin: 0.5em 1.5em;
+    line-height:10px !important;
+    transition:color 0.25s ease;
+    font-weight: bolder;
+    position: relative;
+    border: 3px solid #b68c5d;
+}
+.btn-code-block:hover{
+    background-color: #fff6f6;
+    color:#000 !important;
+    border: 3px solid #b68c5d;
+
+}
+
+.btn-code-block:focus{
+    background-color: #b68c5d !important;
+    color:#fff6f6 !important;
+    margin: 0.5em 1em;
+    line-height:10px !important;
+    transition:width 0.25s ease;
+}
+
+.btn-code-block::after {
+    position: absolute;
+    content: '';
+    top:0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: white;
+    transform-origin:left;
+    transition:width 0.25s ease;
+    z-index:-1;
+}
+
+.btn-code-block:hover::after {
+    width: 100%;
 }
 
 

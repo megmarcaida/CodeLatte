@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function posts()
     {
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Post')->orderBy('id','DESC');
     }
 
     public function getAvatarAttribute($avatar)
@@ -54,5 +54,9 @@ class User extends Authenticatable
 
     public function userstutorials(){
         return $this->hasMany('App\UsersTutorials');
+    }
+
+    public function usersquizanswer(){
+        return $this->belongsTo('App\UsersQuizAnswer');
     }
 }

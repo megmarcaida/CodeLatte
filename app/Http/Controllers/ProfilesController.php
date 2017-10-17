@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Like;
+use App\Post;
 use Auth;
 use Session;
 use App\User;
@@ -12,8 +14,9 @@ class ProfilesController extends Controller
     public function index($slug)
     {
         $user = User::where('slug',$slug)->first();
+        $user->posts()->orderBy('id','DESC')->get();
 
-        return view('profiles.profile')->with('user',$user);
+        return view('profiles.profile',compact("user"));
     }
 
     public function edit()
