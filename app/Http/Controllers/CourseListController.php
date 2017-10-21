@@ -117,6 +117,12 @@ class CourseListController extends Controller
         return view('users.curriculum')->with(['users'=>$users,'userplans'=>$userplans]);
     }
 
+    public function coursesCurriculum()
+    {
+        $course = CourseLists::with('plans')->get();
+
+        return view('courses')->with(['course'=>$course]);
+    }
 
     public function getCurriculum()
     {

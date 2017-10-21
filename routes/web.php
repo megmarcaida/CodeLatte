@@ -26,7 +26,8 @@ Route::get('/admin/home', function(){
     return view('admin.home');
 });
 
-
+Route::get('admin/media/get/{filename}', [
+    'as' => 'getmedia', 'uses' => 'MediaController@get']);
 
 Route::get('/register/{plan}/', [
     'uses' => 'Auth\RegisterController@getPlans',
@@ -53,9 +54,10 @@ Route::get('/faqs', [
     'uses' => 'FaqsController@index'
 ]);
 
-Route::get('/courses', function() {
-    return view('courses');
-});
+Route::get('/courses',[
+    'uses' => 'CourseListController@coursesCurriculum',
+    'as' => 'courses'
+]);
 
 Route::get('/contact_us', function() {
     return view('contact_us');
@@ -380,8 +382,7 @@ Route::group(['middleware' => 'admin_auth'], function(){
 
 
     Route::get('admin/media', 'MediaController@index');
-    Route::get('admin/media/get/{filename}', [
-        'as' => 'getmedia', 'uses' => 'MediaController@get']);
+
     Route::post('admin/media/add',[
         'as' => 'addmedia', 'uses' => 'MediaController@add']);
 

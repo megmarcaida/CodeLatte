@@ -26,6 +26,20 @@ class ProfilesController extends Controller
 
     public function update(request $r)
     {
+        $message="";
+        /*if (isset($r['oldpassword']))
+        {
+            if(bcrypt($r['oldpassword']) == Auth::user()->password) {
+                Auth::user()->update([
+                    'password' => bcrypt($r['newpassword']),
+                ]);
+                $message .= "Password has been changed";
+
+            }
+            else{
+                $message .= "Your old password is incorrect.";
+            }
+        }*/
 
         $this->validate($r,[
            'location' => 'required',
@@ -44,18 +58,7 @@ class ProfilesController extends Controller
             Auth::user()->update([
                'avatar' => $r->avatar->store('public/avatars'),
             ]);
-        }
-        if (isset($r['oldpassword']))
-        {
-            if(bcrypt($r['oldpassword']) == Auth::user()->password) {
-                Auth::user()->update([
-                    'password' => bcrypt($r['newpassword']),
-                ]);
-            }
-            else{
-                Session::flash('error','Your old password is incorrect.');
 
-            }
         }
 
         $us = Auth::user()->update([
@@ -64,10 +67,11 @@ class ProfilesController extends Controller
             'mobile' => $r['mobile'],
         ]);
 
-        Session::flash('success', 'Profile updated');
 
-
+        Session::flash('success', "Profile successfully updated.");
         return redirect()->back();
+
+
     }
 
 }

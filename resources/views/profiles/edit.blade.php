@@ -30,7 +30,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-default">
+                    {{--<div class="panel panel-default">
                         <div class="panel-heading">Change Password</div>
                         <div class="panel-body">
 
@@ -44,7 +44,7 @@
                                 <input type="password" name="newpassword" class="form-control" >
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
                 <div class="col-xs-12 col-md-8 col-lg-8">
                     <div class="panel panel-default">
